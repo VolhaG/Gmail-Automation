@@ -3,14 +3,16 @@ package com.sam;
 
 import com.sam.webdriver.WebDriverProvider;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 public class BaseTest {
 
-    public WebDriverProvider provider = WebDriverProvider.getInstance();
+    private WebDriverProvider provider = WebDriverProvider.getInstance();
+
+    @BeforeSuite
+    public void setupSuite() {
+        TestEnvironment.setup();
+    }
 
     protected WebDriver getWebDriver() {
         WebDriver driver = provider.get();
@@ -20,7 +22,6 @@ public class BaseTest {
     @BeforeClass
     @Parameters("configurationName")
     public void initializeTest(@Optional("") String configName) {
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         provider.initialize(configName);
     }
 
