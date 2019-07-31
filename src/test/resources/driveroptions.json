@@ -1,0 +1,68 @@
+{
+  "firefox": [
+    {
+      "name": "firefox_1",
+      "proxy": false,
+      "string_capabilities": {
+        "cap1": "val1",
+        "cap2": "val2"
+      },
+      "boolean_capabilities": {
+        "headless": false,
+        "cap4": false
+      }
+    },
+    {
+      "name": "firefox_2",
+      "proxy": false,
+      "boolean_capabilities": {
+        "headless": true,
+        "cap4": false
+      }
+    }
+  ],
+  "chrome": [
+    {
+      "name": "chrome_default",
+      "proxy": false,
+      "headless": false
+    },
+    {
+      "name": "chrome_headless",
+      "proxy": false,
+      "headless": true
+    },
+    {
+      "name": "configProxyElements",
+      "proxy": true,
+      "headless": false
+    }
+  ],
+  "edge": [
+    {
+      "name": "config4",
+      "proxy": false,
+      "headless": false
+    },
+    {
+      "name": "edge_headless",
+      "proxy": false,
+      "headless": false
+    }
+  ],
+  "remote": [
+    {
+      "name": "remote_config",
+      "proxy": false,
+      "remoteAddress": "https://10.1.1.0/wd/hub"
+    }
+  ],
+  "default": "config3",
+
+  "settings": {
+    "width": 0,
+    "height": 0,
+    "pageLoadTimeout": 5,
+    "scriptTimeout": 5
+  }
+}
