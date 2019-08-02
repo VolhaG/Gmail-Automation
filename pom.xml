@@ -21,21 +21,33 @@
     </build>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>com.sam_solutions</groupId>-->
+<!--            <artifactId>configurations-module</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${project.basedir}/lib/configurations-module-1.0-SNAPSHOT.jar</systemPath>-->
+<!--        </dependency>-->
+
         <dependency>
-            <groupId>com.sam_solutions</groupId>
-            <artifactId>configurations-module</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/configurations-module-1.0-SNAPSHOT.jar</systemPath>
+        <groupId>com.sam_solutions</groupId>
+        <artifactId>configurations-module</artifactId>
+        <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.sam_solutions</groupId>
             <artifactId>selenium-common</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/selenium-common-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.sam_solutions</groupId>-->
+<!--            <artifactId>selenium-common</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${project.basedir}/lib/selenium-common-1.0-SNAPSHOT.jar</systemPath>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -86,12 +98,16 @@
             <artifactId>log4j-core</artifactId>
             <version>2.11.0</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.4.2</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
