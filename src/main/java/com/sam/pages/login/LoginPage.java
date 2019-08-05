@@ -9,6 +9,11 @@ public class LoginPage extends PageImpl<Login> {
         super(new LoginImpl());
     }
 
+    @Override
+    public Boolean exists(){
+        return content.existsDefElement();
+    }
+
     public MainPage login(String email, String password) {
         content.inputLogin(email);
         content.clickNext();

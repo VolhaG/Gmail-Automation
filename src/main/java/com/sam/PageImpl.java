@@ -23,6 +23,11 @@ public class PageImpl<C extends Content> implements Page<C> {
     }
 
     @Override
+    public Boolean exists() {
+        return true;
+    }
+
+    @Override
     public void refresh() {
         driver.navigate().refresh();
     }

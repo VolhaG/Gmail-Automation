@@ -10,7 +10,7 @@ import org.openqa.selenium.By;
 public class ComposeImpl extends MainImpl implements ComposeLetter {
 
     private Button defElement = new ButtonImpl(By.id(":qi"), 10 , 1);
-    private Input recipient = new InputImpl(By.id(":ra"), 10,1);
+    private Input recipient = new InputImpl(By.id(":ra"), 10,2);
     private Input subject = new InputImpl(By.id(":qs"));
     private Input letter = new InputImpl(By.id(":rx"));
 
@@ -21,22 +21,22 @@ public class ComposeImpl extends MainImpl implements ComposeLetter {
     @Override
     public void writeLetter(String startBody, String body, String endBody) {
         String letterBuild = startBody + "%n" + body + "%n" + endBody;
-        letter.setValue(letterBuild);
+        letter.setText(letterBuild);
     }
 
     @Override
     public void writeLetter(String body) {
-        letter.setValue(body);
+        letter.setText(body);
     }
 
     @Override
     public void setSubject(String topic) {
-        subject.setValue(topic);
+        subject.setText(topic);
     }
 
     @Override
     public void setRecipient(String mail) {
-        recipient.setValue(mail);
+        recipient.setText(mail);
     }
 
     @Override

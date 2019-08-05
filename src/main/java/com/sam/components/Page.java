@@ -7,6 +7,8 @@ public interface Page<C extends Content> {
 
     C getContent();
 
+    Boolean exists();
+
     void refresh();
 
     String getUrl();
