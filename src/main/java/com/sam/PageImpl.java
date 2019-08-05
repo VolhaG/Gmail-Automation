@@ -3,6 +3,8 @@ package com.sam;
 import com.sam.components.Content;
 import com.sam.components.Page;
 import com.sam.webdriver.WebDriverProvider;
+import com.sam.webelement.WrapElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
@@ -24,7 +26,7 @@ public class PageImpl<C extends Content> implements Page<C> {
 
     @Override
     public Boolean exists() {
-        return true;
+        return content.existsDefElement();
     }
 
     @Override

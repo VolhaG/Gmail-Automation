@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="AllTestsSuite" parallel="classes" thread-count="1">
+<suite name="AllTestsSuite" parallel="methods" thread-count="1">
     <parameter name="configurationName" value="config3"/>
-    <parameter name="email" value="volha.xx@gmail.com"/>
-    <parameter name="password" value="jkz200384"/>
+    <parameter name="email" value="tt7381566@gmail.com"/>
+    <parameter name="password" value="test11111"/>
+<!--        <parameter name="email" value="volha.xx@gmail.com"/>-->
+<!--        <parameter name="password" value="jkz200384"/>-->
 
     <test name="TestCore Tests" group-by-instances="true">
         <classes>

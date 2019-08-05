@@ -25,4 +25,10 @@ public class ComposePage extends PageImpl<ComposeImpl> {
        content.sendLetter();
        return new MainPage();
     }
+
+    public MainPage closePage(){
+        content.close();
+        return new MainPage();
+    }
+
 }
