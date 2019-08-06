@@ -5,8 +5,6 @@
     <parameter name="configurationName" value="config3"/>
     <parameter name="email" value="tt7381566@gmail.com"/>
     <parameter name="password" value="test11111"/>
-<!--        <parameter name="email" value="volha.xx@gmail.com"/>-->
-<!--        <parameter name="password" value="jkz200384"/>-->
 
     <test name="TestCore Tests" group-by-instances="true">
         <classes>
