@@ -1,14 +1,16 @@
 package com.sam.components;
 
+import com.sam.webelement.ElementWaiters;
 import com.sam.webelement.WrapElement;
-import com.sam.webelement.WrapElementImpl;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public interface Content extends WrapElement {
 
-   default Boolean existsDefElement(By by){
-       return WrapElementImpl.exists(by);
-   }
+     Boolean existsDefElement();
 
-   Boolean existsDefElement();
+    default Boolean existsDefElement(By by, int timeOut){
+        WebElement el = ElementWaiters.waitForPresence(by,timeOut);
+        return el != null;
+    }
 }

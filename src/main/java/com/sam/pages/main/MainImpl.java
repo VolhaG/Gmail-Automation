@@ -1,6 +1,7 @@
 package com.sam.pages.main;
 
 import com.sam.webelement.ButtonImpl;
+import com.sam.webelement.ElementWaiters;
 import com.sam.webelement.WrapElement;
 import com.sam.webelement.WrapElementImpl;
 import org.openqa.selenium.By;
@@ -17,6 +18,8 @@ public class MainImpl extends WrapElementImpl implements Main {
 
     @Override
     public void clickCompose() {
+       // WebElement el = ElementWaiters.waitForPresence(composeBy,20);
+        ElementWaiters.wait(7);
         compose.click();
     }
 
@@ -27,6 +30,6 @@ public class MainImpl extends WrapElementImpl implements Main {
 
     @Override
     public Boolean existsDefElement() {
-        return WrapElementImpl.exists(defElementBy);
+        return existsDefElement(defElementBy,20);
     }
 }

@@ -11,12 +11,13 @@ public class ComposeImpl extends MainImpl implements Compose {
     Logger LOG = LogManager.getLogger("ComposeImpl");
 
     private Button defElement = new ButtonImpl(By.xpath("//div[@class = 'dC']/div"), 10 , 1);
-    private Input recipient = new InputImpl(By.xpath("//div[@class = 'wO nr l1']/textarea"), 10,1);
+    private Input recipient = new InputImpl(By.xpath("//div[@class = 'wO nr l1']/textarea"), 20,1);
     private Input subject = new InputImpl(By.name("subjectbox"),10,1);
     private Input letter = new InputImpl(By.xpath("//div[@class = 'Am Al editable LW-avf']"),10,1);
     private Input close = new InputImpl(By.xpath("//td[@class = 'Hm']/img[3]"));
 
     private By defElementBy = By.xpath("//div[@class = 'dC']/div");
+    private By  closeBy = By.xpath("//td[@class = 'Hm']/img[3]");
 
     ComposeImpl(){
         super();
@@ -24,7 +25,7 @@ public class ComposeImpl extends MainImpl implements Compose {
 
     @Override
     public Boolean existsDefElement() {
-        return existsDefElement(defElementBy);
+        return existsDefElement(defElementBy,20);
     }
 
     @Override
@@ -40,8 +41,9 @@ public class ComposeImpl extends MainImpl implements Compose {
 
     @Override
     public void close() {
-       ElementWaiters.wait(2);
-       close.click();
+      // WebElement el = ElementWaiters.waitForPresence(closeBy,20);
+        ElementWaiters.wait(5);
+        close.click();
     }
 
     @Override

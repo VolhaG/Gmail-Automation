@@ -1,6 +1,7 @@
 package com.sam.cases;
 
 import com.sam.GmailBaseTest;
+import com.sam.data.StaticDataProvider;
 import com.sam.pages.login.LoginPage;
 import com.sam.pages.main.MainPage;
 import com.sam.pages.main.compose_letter.AlertAbsentRecipient;
@@ -8,12 +9,11 @@ import com.sam.pages.main.compose_letter.ComposePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ExistingAccountLogin extends GmailBaseTest {
+public class ExistingAccountLoginWithDataProvider extends GmailBaseTest {
 
     private Logger LOG = LogManager.getLogger("ExistingAccountLogin");
 
@@ -22,19 +22,17 @@ public class ExistingAccountLogin extends GmailBaseTest {
         getWebDriver().navigate().to("https://gmail.com");
     }
 
-    @Test(priority = 1, enabled = true)
-    @Parameters({"email", "password"})
+    @Test(priority = 1, dataProvider = "login", dataProviderClass = StaticDataProvider.class, enabled = true)
     void login(String email, String password) {
         LOG.info("Start login test...");
         LoginPage loginPage = new LoginPage();
-        assertThat(loginPage.exists()).as("Login page verification.").isTrue();
+        assertThat(loginPage.exists()).isTrue();
         MainPage mainPage = loginPage.login(email, password);
         assertThat(mainPage.exists()).as("Login was passed successful.").isTrue();
         LOG.info("End login test...");
     }
 
-    @Test(priority = 2, enabled = true)
-    @Parameters({"email", "password"})
+    @Test(priority = 2, dataProvider = "login", dataProviderClass = StaticDataProvider.class, enabled = true)
     void composeLetter(String email, String password) {
         LOG.info("Start composeLetter test...");
         MainPage mainPage;
@@ -47,8 +45,7 @@ public class ExistingAccountLogin extends GmailBaseTest {
         LOG.info("End composeLetter test...");
     }
 
-    @Test(priority = 3, enabled = true)
-    @Parameters({"email", "password"})
+    @Test(priority = 3, dataProvider = "login", dataProviderClass = StaticDataProvider.class, enabled = true)
     void tryToSendLetterWithoutRecipient(String email, String password) {
         LOG.info("Start tryToSendLetterWithoutRecipient test...");
         MainPage mainPage;
@@ -66,8 +63,7 @@ public class ExistingAccountLogin extends GmailBaseTest {
         LOG.info("End tryToSendLetterWithoutRecipient test...");
     }
 
-    @Test(priority = 4, enabled = true)
-    @Parameters({"email", "password"})
+    @Test(priority = 4, dataProvider = "login", dataProviderClass = StaticDataProvider.class, enabled = true)
     void tryToSendLetterWithoutSubject(String email, String password) {
         LOG.info("Start tryToSendLetterWithoutSubject test...");
         MainPage mainPage;
@@ -80,8 +76,7 @@ public class ExistingAccountLogin extends GmailBaseTest {
         LOG.info("End tryToSendLetterWithoutSubject test...");
     }
 
-    @Test(priority = 5,  enabled = true)
-    @Parameters({"email", "password"})
+    @Test(priority = 5, dataProvider = "login", dataProviderClass = StaticDataProvider.class, enabled = true)
     void tryToSendLetterWithoutBody(String email, String password) {
         LOG.info("Start tryToSendLetterWithoutBody test...");
         MainPage mainPage;

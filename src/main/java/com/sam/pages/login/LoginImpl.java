@@ -16,7 +16,7 @@ public class LoginImpl extends WrapElementImpl implements Login {
     }
 
     public Boolean existsDefElement(){
-        return existsDefElement(defElementBy);
+        return existsDefElement(defElementBy,20);
     }
 
     @Override
@@ -26,7 +26,6 @@ public class LoginImpl extends WrapElementImpl implements Login {
 
     @Override
     public String getTitle() {
-
         return findElement(defElementBy).getAttribute("title");
     }
 
