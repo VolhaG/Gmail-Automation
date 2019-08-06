@@ -7,6 +7,7 @@ import com.sam.pages.main.compose_letter.AlertAbsentRecipient;
 import com.sam.pages.main.compose_letter.ComposePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -16,11 +17,15 @@ public class ExistingAccountLogin extends GmailBaseTest {
 
     private Logger LOG = LogManager.getLogger("ExistingAccountLogin");
 
+    @BeforeMethod
+    void navigateToGmail(){
+        getWebDriver().navigate().to("https://gmail.com");
+    }
+
     @Test(priority = 1, enabled = true)
     @Parameters({"email", "password"})
     void login(String email, String password) {
         LOG.info("Start login test...");
-        getWebDriver().navigate().to("https://gmail.com");
         LoginPage loginPage = new LoginPage();
         assertThat(loginPage.exists()).isTrue();
         MainPage mainPage = loginPage.login(email, password);
@@ -33,7 +38,6 @@ public class ExistingAccountLogin extends GmailBaseTest {
     void composeLetter(String email, String password) {
         LOG.info("Start composeLetter test...");
         MainPage mainPage;
-        getWebDriver().navigate().to("https://gmail.com");
         LoginPage loginPage = new LoginPage();
         mainPage = getMainPage(email, password, loginPage);
         ComposePage composePage = mainPage.compose();
@@ -48,14 +52,13 @@ public class ExistingAccountLogin extends GmailBaseTest {
     void tryToSendLetterWithoutRecipient(String email, String password) {
         LOG.info("Start tryToSendLetterWithoutRecipient test...");
         MainPage mainPage;
-        getWebDriver().navigate().to("https://gmail.com");
         LoginPage loginPage = new LoginPage();
         mainPage = getMainPage(email, password, loginPage);
         ComposePage composePage = mainPage.compose();
         composePage.writeLetter(" ", "New","Hello! How are you?");
         composePage.sendLetter();
         Boolean alertExists = AlertAbsentRecipient.exists();
-        assertThat(alertExists).isTrue().as("Alert is appeared when recipient is absent.");
+        assertThat(alertExists).isTrue().as("Alert appears when recipient is absent. The letter couldn't be sent.");
         AlertAbsentRecipient.close();
         if (alertExists) {
             composePage.closePage();
@@ -68,7 +71,6 @@ public class ExistingAccountLogin extends GmailBaseTest {
     void tryToSendLetterWithoutSubject(String email, String password) {
         LOG.info("Start tryToSendLetterWithoutSubject test...");
         MainPage mainPage;
-        getWebDriver().navigate().to("https://gmail.com");
         LoginPage loginPage = new LoginPage();
         mainPage = getMainPage(email, password, loginPage);
         ComposePage composePage = mainPage.compose();
@@ -76,6 +78,20 @@ public class ExistingAccountLogin extends GmailBaseTest {
         mainPage = composePage.sendLetter();
         assertThat(mainPage.exists()).isTrue().as("Sending letter without subject is successful.");
         LOG.info("End tryToSendLetterWithoutSubject test...");
+    }
+
+    @Test(priority = 5, enabled = true)
+    @Parameters({"email", "password"})
+    void tryToSendLetterWithoutBody(String email, String password) {
+        LOG.info("Start tryToSendLetterWithoutBody test...");
+        MainPage mainPage;
+        LoginPage loginPage = new LoginPage();
+        mainPage = getMainPage(email, password, loginPage);
+        ComposePage composePage = mainPage.compose();
+        composePage.writeLetter("tt7381566@gmail.com", "New"," ");
+        mainPage = composePage.sendLetter();
+        assertThat(mainPage.exists()).isTrue().as("Sending letter without body is successful.");
+        LOG.info("End tryToSendLetterWithoutBody test...");
     }
 
     private MainPage getMainPage(String email, String password, LoginPage loginPage) {

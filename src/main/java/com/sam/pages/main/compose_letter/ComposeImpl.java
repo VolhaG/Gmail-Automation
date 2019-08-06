@@ -2,9 +2,13 @@ package com.sam.pages.main.compose_letter;
 
 import com.sam.pages.main.MainImpl;
 import com.sam.webelement.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
 public class ComposeImpl extends MainImpl implements Compose {
+
+    Logger LOG = LogManager.getLogger("ComposeImpl");
 
     private Button defElement = new ButtonImpl(By.xpath("//div[@class = 'dC']/div"), 10 , 1);
     private Input recipient = new InputImpl(By.xpath("//div[@class = 'wO nr l1']/textarea"), 10,1);
@@ -36,12 +40,8 @@ public class ComposeImpl extends MainImpl implements Compose {
 
     @Override
     public void close() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        close.click();
+       ElementWaiters.wait(2);
+       close.click();
     }
 
     @Override
