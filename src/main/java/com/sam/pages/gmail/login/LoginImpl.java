@@ -1,4 +1,4 @@
-package com.sam.pages.login;
+package com.sam.pages.gmail.login;
 
 import com.sam.webelement.*;
 import org.openqa.selenium.*;
@@ -30,7 +30,7 @@ public class LoginImpl extends WrapElementImpl implements Login {
     }
 
     @Override
-    public void inputLogin(String email) {
+    public void inputEmail(String email) {
         login.setText(email);
     }
 

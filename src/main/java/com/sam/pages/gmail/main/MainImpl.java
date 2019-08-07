@@ -1,4 +1,4 @@
-package com.sam.pages.main;
+package com.sam.pages.gmail.main;
 
 import com.sam.webelement.ButtonImpl;
 import com.sam.webelement.ElementWaiters;
@@ -30,6 +30,7 @@ public class MainImpl extends WrapElementImpl implements Main {
 
     @Override
     public Boolean existsDefElement() {
+        ElementWaiters.wait(7);
         return existsDefElement(defElementBy,20);
     }
 }

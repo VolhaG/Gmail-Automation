@@ -1,14 +1,14 @@
-package com.sam.pages.login;
+package com.sam.pages.clogin;
 
 import com.sam.components.Content;
 
-public interface Login extends Content {
+public interface CLogin extends Content {
 
     void clickNext();
 
     String getTitle();
 
-    void inputLogin(String email);
+    void inputEmail(String email);
 
     void inputPassword(String email);
 }

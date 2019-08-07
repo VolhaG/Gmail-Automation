@@ -1,4 +1,4 @@
-package com.sam.pages.main.compose_letter;
+package com.sam.pages.gmail.main.compose_letter;
 
 import com.sam.webelement.Button;
 import com.sam.webelement.ButtonImpl;

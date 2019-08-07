@@ -1,6 +1,6 @@
-package com.sam.pages.main.compose_letter;
+package com.sam.pages.gmail.main.compose_letter;
 
-import com.sam.pages.main.MainImpl;
+import com.sam.pages.gmail.main.MainImpl;
 import com.sam.webelement.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
