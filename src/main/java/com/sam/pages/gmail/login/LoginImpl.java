@@ -9,14 +9,14 @@ public class LoginImpl extends WrapElementImpl implements Login {
     private Input login = new InputImpl(By.name("identifier"));
     private Input password = new InputImpl(By.name("password"));
 
-    private By defElementBy = By.cssSelector("div#logo");
+    private By logoBy = By.cssSelector("div#logo");
 
     public LoginImpl() {
         super(By.xpath("//body"));
     }
 
     public Boolean existsDefElement(){
-        return existsDefElement(defElementBy,20);
+        return existsDefElement(logoBy,20);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class LoginImpl extends WrapElementImpl implements Login {
 
     @Override
     public String getTitle() {
-        return findElement(defElementBy).getAttribute("title");
+        return findElement(logoBy).getAttribute("title");
     }
 
     @Override

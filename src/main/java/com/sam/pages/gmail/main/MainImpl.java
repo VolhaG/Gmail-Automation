@@ -10,7 +10,7 @@ public class MainImpl extends WrapElementImpl implements Main {
 
     private WrapElement title = new WrapElementImpl(By.xpath( "//a[@class ='gb_me gb_pc gb_ke']"), 10,1);
     private ButtonImpl compose = new ButtonImpl(By.xpath("//div[@class = 'T-I J-J5-Ji T-I-KE L3']"), 10,1);
-    private By defElementBy = By.xpath("//div[@class = 'T-I J-J5-Ji T-I-KE L3']");
+    private By composeBy = By.xpath("//div[@class = 'T-I J-J5-Ji T-I-KE L3']");
 
     public MainImpl() {
         super(By.xpath("//body"));
@@ -31,6 +31,6 @@ public class MainImpl extends WrapElementImpl implements Main {
     @Override
     public Boolean existsDefElement() {
         ElementWaiters.wait(7);
-        return existsDefElement(defElementBy,20);
+        return existsDefElement(composeBy,20);
     }
 }
