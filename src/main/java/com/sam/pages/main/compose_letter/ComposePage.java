@@ -1,34 +1,15 @@
 package com.sam.pages.main.compose_letter;
 
-import com.sam.PageImpl;
-import com.sam.pages.main.MainPage;
+import com.sam.pages.main.MainPageImpl;
 
-public class ComposePage extends PageImpl<ComposeImpl> {
+public interface ComposePage {
 
-    public ComposePage() {
-        super(new ComposeImpl());
-    }
+     void writeLetter(String recipient, String subject, String letter);
 
-    public void writeLetter(String recipient, String subject, String letter) {
-        content.setRecipient(recipient);
-        content.setSubject(subject);
-        content.writeLetter(letter);
-    }
+     void writeLetter(String to, String topic, String letterBody,  String letterStart, String letterEnd);
 
-    public void writeLetter(String to, String topic, String letterBody,  String letterStart, String letterEnd) {
-        content.setRecipient(to);
-        content.setSubject(topic);
-        content.writeLetter(letterStart,letterBody,letterEnd);
-    }
+     MainPageImpl sendLetter();
 
-    public MainPage sendLetter(){
-       content.sendLetter();
-       return new MainPage();
-    }
-
-    public MainPage closePage(){
-        content.close();
-        return new MainPage();
-    }
+     MainPageImpl closePage();
 
 }

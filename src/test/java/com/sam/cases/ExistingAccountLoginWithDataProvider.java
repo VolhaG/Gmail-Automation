@@ -2,10 +2,10 @@ package com.sam.cases;
 
 import com.sam.GmailBaseTest;
 import com.sam.data.StaticDataProvider;
-import com.sam.pages.login.LoginPage;
-import com.sam.pages.main.MainPage;
+import com.sam.pages.login.LoginPageImpl;
+import com.sam.pages.main.MainPageImpl;
 import com.sam.pages.main.compose_letter.AlertAbsentRecipient;
-import com.sam.pages.main.compose_letter.ComposePage;
+import com.sam.pages.main.compose_letter.ComposePageImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeMethod;
@@ -25,9 +25,9 @@ public class ExistingAccountLoginWithDataProvider extends GmailBaseTest {
     @Test(priority = 1, dataProvider = "login", dataProviderClass = StaticDataProvider.class, enabled = true)
     void login(String email, String password) {
         LOG.info("Start login test...");
-        LoginPage loginPage = new LoginPage();
+        LoginPageImpl loginPage = new LoginPageImpl();
         assertThat(loginPage.exists()).isTrue();
-        MainPage mainPage = loginPage.login(email, password);
+        MainPageImpl mainPage = loginPage.login(email, password);
         assertThat(mainPage.exists()).as("Login was passed successful.").isTrue();
         LOG.info("End login test...");
     }
@@ -35,10 +35,10 @@ public class ExistingAccountLoginWithDataProvider extends GmailBaseTest {
     @Test(priority = 2, dataProvider = "login", dataProviderClass = StaticDataProvider.class, enabled = true)
     void composeLetter(String email, String password) {
         LOG.info("Start composeLetter test...");
-        MainPage mainPage;
-        LoginPage loginPage = new LoginPage();
+        MainPageImpl mainPage;
+        LoginPageImpl loginPage = new LoginPageImpl();
         mainPage = getMainPage(email, password, loginPage);
-        ComposePage composePage = mainPage.compose();
+        ComposePageImpl composePage = mainPage.compose();
         composePage.writeLetter("tt7381566@gmail.com", "New","Hello! How are you?");
         mainPage = composePage.sendLetter();
         assertThat(mainPage.exists()).as("Composing letter was passed successful.").isTrue();
@@ -48,10 +48,10 @@ public class ExistingAccountLoginWithDataProvider extends GmailBaseTest {
     @Test(priority = 3, dataProvider = "login", dataProviderClass = StaticDataProvider.class, enabled = true)
     void tryToSendLetterWithoutRecipient(String email, String password) {
         LOG.info("Start tryToSendLetterWithoutRecipient test...");
-        MainPage mainPage;
-        LoginPage loginPage = new LoginPage();
+        MainPageImpl mainPage;
+        LoginPageImpl loginPage = new LoginPageImpl();
         mainPage = getMainPage(email, password, loginPage);
-        ComposePage composePage = mainPage.compose();
+        ComposePageImpl composePage = mainPage.compose();
         composePage.writeLetter(" ", "New","Hello! How are you?");
         composePage.sendLetter();
         Boolean alertExists = AlertAbsentRecipient.exists();
@@ -66,10 +66,10 @@ public class ExistingAccountLoginWithDataProvider extends GmailBaseTest {
     @Test(priority = 4, dataProvider = "login", dataProviderClass = StaticDataProvider.class, enabled = true)
     void tryToSendLetterWithoutSubject(String email, String password) {
         LOG.info("Start tryToSendLetterWithoutSubject test...");
-        MainPage mainPage;
-        LoginPage loginPage = new LoginPage();
+        MainPageImpl mainPage;
+        LoginPageImpl loginPage = new LoginPageImpl();
         mainPage = getMainPage(email, password, loginPage);
-        ComposePage composePage = mainPage.compose();
+        ComposePageImpl composePage = mainPage.compose();
         composePage.writeLetter("tt7381566@gmail.com", " ","Hello! How are you?");
         mainPage = composePage.sendLetter();
         assertThat(mainPage.exists()).isTrue().as("Sending letter without subject is successful.");
@@ -79,22 +79,22 @@ public class ExistingAccountLoginWithDataProvider extends GmailBaseTest {
     @Test(priority = 5, dataProvider = "login", dataProviderClass = StaticDataProvider.class, enabled = true)
     void tryToSendLetterWithoutBody(String email, String password) {
         LOG.info("Start tryToSendLetterWithoutBody test...");
-        MainPage mainPage;
-        LoginPage loginPage = new LoginPage();
+        MainPageImpl mainPage;
+        LoginPageImpl loginPage = new LoginPageImpl();
         mainPage = getMainPage(email, password, loginPage);
-        ComposePage composePage = mainPage.compose();
+        ComposePageImpl composePage = mainPage.compose();
         composePage.writeLetter("tt7381566@gmail.com", "New"," ");
         mainPage = composePage.sendLetter();
         assertThat(mainPage.exists()).isTrue().as("Sending letter without body is successful.");
         LOG.info("End tryToSendLetterWithoutBody test...");
     }
 
-    private MainPage getMainPage(String email, String password, LoginPage loginPage) {
-        MainPage mainPage;
+    private MainPageImpl getMainPage(String email, String password, LoginPageImpl loginPage) {
+        MainPageImpl mainPage;
         if (loginPage.exists()) {
             mainPage = loginPage.login(email, password);
         } else {
-            mainPage = new MainPage();
+            mainPage = new MainPageImpl();
         }
         return mainPage;
     }
