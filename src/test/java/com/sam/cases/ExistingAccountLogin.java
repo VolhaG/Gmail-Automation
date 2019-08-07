@@ -1,6 +1,7 @@
 package com.sam.cases;
 
 import com.sam.GmailBaseTest;
+import com.sam.pages.login.LoginPage;
 import com.sam.pages.login.LoginPageImpl;
 import com.sam.pages.main.MainPageImpl;
 import com.sam.pages.main.compose_letter.AlertAbsentRecipient;
@@ -26,7 +27,7 @@ public class ExistingAccountLogin extends GmailBaseTest {
     @Parameters({"email", "password"})
     void login(String email, String password) {
         LOG.info("Start login test...");
-        LoginPageImpl loginPage = new LoginPageImpl();
+        LoginPage loginPage = new LoginPageImpl();
         assertThat(loginPage.exists()).as("Login page verification.").isTrue();
         MainPageImpl mainPage = loginPage.login(email, password);
         assertThat(mainPage.exists()).as("Authentication was passed successful.").isTrue();
