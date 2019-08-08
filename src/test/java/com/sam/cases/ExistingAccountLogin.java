@@ -9,7 +9,6 @@ import com.sam.service.LoginService;
 import com.sam.service.MainService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -18,11 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ExistingAccountLogin extends GmailBaseTest {
 
     private Logger LOG = LogManager.getLogger("ExistingAccountLogin");
-
-    @BeforeMethod
-    void navigateToGmail(){
-        getWebDriver().navigate().to("https://gmail.com");
-    }
 
     @Test(priority = 1, enabled = true)
     @Parameters({"email", "password"})
@@ -37,7 +31,6 @@ public class ExistingAccountLogin extends GmailBaseTest {
         CLoginPage loginPage = LoginService.initFor(LoginPageImpl.class);
         assertThat(loginPage.exists()).as("Login page verification.").isTrue();
         CMainPage mainPage = loginPage.login(email, password);
-        assertThat(mainPage.exists()).as("Authentication was passed successful.").isTrue();
         LOG.info("End login test...");
     }
 
