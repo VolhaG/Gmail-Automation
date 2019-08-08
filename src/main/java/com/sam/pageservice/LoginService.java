@@ -8,16 +8,18 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public abstract class LoginService {
 
     private static Map<Class<? extends LoginPage>, Class<? extends LoginPage>> loginImplementations =
             new HashMap<>();
-           static {
-                loginImplementations.put(GMailLoginPage.class, GMailLoginPageImpl.class);
-            }
 
-    public static <T extends LoginPage> T  initFor(Class<T> loginPageInterface) throws Exception {
+    static {
+        loginImplementations.put(GMailLoginPage.class, GMailLoginPageImpl.class);
+    }
+
+    public static <T extends LoginPage> T initFor(Class<T> loginPageInterface) throws Exception {
         if (!loginPageInterface.isInterface()) {
             throw new IllegalArgumentException("Argument must be an interface.");
         }
@@ -55,12 +57,12 @@ public abstract class LoginService {
             Constructor<T> constructor = c.getDeclaredConstructor();
             result = constructor.newInstance();
 
-        } catch (InstantiationException|InvocationTargetException| IllegalAccessException| NoSuchMethodException | NullPointerException ex){
+        } catch (InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | NullPointerException ex) {
             ex.printStackTrace();
         }
-
+        Objects.requireNonNull(result, "Login page is null!");
         return result;
-
     }
+
 }
 
