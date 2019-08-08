@@ -1,6 +1,6 @@
 package com.sam.pages.gmail.main.compose_letter;
 
-import com.sam.PageImpl;
+import com.sam.pages.PageImpl;
 import com.sam.pages.base.compose.Compose;
 import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;

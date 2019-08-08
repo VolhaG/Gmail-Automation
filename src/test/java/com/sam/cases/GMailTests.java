@@ -3,6 +3,9 @@ package com.sam.cases;
 import com.sam.GmailBaseTest;
 import com.sam.pages.base.login.LoginPage;
 import com.sam.pages.base.main.MainPage;
+import com.sam.pages.gmail.login.GMailLogin;
+import com.sam.pages.gmail.login.GMailLoginPage;
+import com.sam.pages.gmail.login.GMailLoginPageImpl;
 import com.sam.pageservice.LoginService;
 import com.sam.pageservice.MainService;
 import org.apache.logging.log4j.LogManager;
@@ -12,13 +15,13 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ExistingAccountLogin extends GmailBaseTest {
+public class GMailTests extends GmailBaseTest {
 
     private Logger LOG = LogManager.getLogger("ExistingAccountLogin");
 
     @Test(priority = 1, enabled = true)
     @Parameters({"email", "password"})
-    void login(String email, String password) {
+    void login(String email, String password) throws Exception {
 //        LOG.info("Start login test...");
 //        LoginPage loginPage = new LoginPageImpl();
 //        assertThat(loginPage.exists()).as("Login page verification.").isTrue();
@@ -26,7 +29,7 @@ public class ExistingAccountLogin extends GmailBaseTest {
 //        assertThat(mainPage.exists()).as("Authentication was passed successful.").isTrue();
 //        LOG.info("End login test...");
         LOG.info("Start login test...");
-        LoginPage loginPage = LoginService.initFor(PAGESNAME);
+        GMailLoginPage loginPage = LoginService.initFor(GMailLoginPage.class);
         assertThat(loginPage.exists()).as("Login page verification.").isTrue();
         MainPage mainPage = loginPage.login(email, password);
         LOG.info("End login test...");
@@ -99,8 +102,8 @@ public class ExistingAccountLogin extends GmailBaseTest {
         if (loginPage.exists()) {
             mainPage = loginPage.login(email, password);
         } else {
-            mainPage = MainService.initFor(PAGESNAME);
+            //mainPage = MainService.initFor(GMailLoginPageImpl.class);
         }
-        return mainPage;
+        return null;
     }
 }

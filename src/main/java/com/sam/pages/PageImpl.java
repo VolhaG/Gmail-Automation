@@ -1,4 +1,4 @@
-package com.sam;
+package com.sam.pages;
 
 import com.sam.components.Content;
 import com.sam.components.Page;

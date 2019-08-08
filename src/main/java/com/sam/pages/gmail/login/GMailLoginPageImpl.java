@@ -1,6 +1,6 @@
 package com.sam.pages.gmail.login;
 
-import com.sam.PageImpl;
+import com.sam.pages.PageImpl;
 import com.sam.pages.base.login.Login;
 import com.sam.pages.base.main.MainPage;
 

@@ -14,6 +14,11 @@ public abstract class MainService {
     }};
 
     public static MainPage initFor(String implementationName) {
+        Class impl = mainImplementations.get(implementationName);
+
+        if ((impl == null) || (impl.isInterface())) {
+            return null;
+        }
         String className = mainImplementations.get(implementationName).getCanonicalName();
         return createImplementationInstance(className);
     }
