@@ -56,6 +56,7 @@ public abstract class LoginService {
             result = constructor.newInstance();
 
         } catch (InstantiationException|InvocationTargetException| IllegalAccessException| NoSuchMethodException | NullPointerException ex){
+            ex.printStackTrace();
         }
 
         return result;
