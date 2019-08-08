@@ -1,14 +1,14 @@
 package com.sam.pages.gmail.main.compose_letter;
 
 import com.sam.PageImpl;
-import com.sam.pages.ccompose.CCompose;
-import com.sam.pages.gmail.main.MainPage;
-import com.sam.pages.gmail.main.MainPageImpl;
+import com.sam.pages.base.compose.Compose;
+import com.sam.pages.gmail.main.GMailMainPage;
+import com.sam.pages.gmail.main.GMailMainPageImpl;
 
-public class ComposePageImpl extends PageImpl<CCompose> implements ComposePage {
+public class GMailComposePageImpl extends PageImpl<Compose> implements GMailComposePage {
 
-    public ComposePageImpl() {
-        super((CCompose) new ComposeImpl());
+    public GMailComposePageImpl() {
+        super((Compose) new GMailComposeImpl());
     }
 
     @Override
@@ -26,15 +26,15 @@ public class ComposePageImpl extends PageImpl<CCompose> implements ComposePage {
     }
 
     @Override
-    public MainPage sendLetter(){
+    public GMailMainPage sendLetter(){
        content.sendLetter();
-       return new MainPageImpl();
+       return new GMailMainPageImpl();
     }
 
     @Override
-    public MainPage closePage(){
+    public GMailMainPage closePage(){
         content.close();
-        return new MainPageImpl();
+        return new GMailMainPageImpl();
     }
 
 }

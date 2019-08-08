@@ -1,12 +1,10 @@
 package com.sam.cases;
 
 import com.sam.GmailBaseTest;
-import com.sam.pages.clogin.CLoginPage;
-import com.sam.pages.cmain.CMainPage;
-import com.sam.pages.gmail.login.LoginPageImpl;
-import com.sam.pages.gmail.main.MainPageImpl;
-import com.sam.service.LoginService;
-import com.sam.service.MainService;
+import com.sam.pages.base.login.LoginPage;
+import com.sam.pages.base.main.MainPage;
+import com.sam.pageservice.LoginService;
+import com.sam.pageservice.MainService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Parameters;
@@ -28,9 +26,9 @@ public class ExistingAccountLogin extends GmailBaseTest {
 //        assertThat(mainPage.exists()).as("Authentication was passed successful.").isTrue();
 //        LOG.info("End login test...");
         LOG.info("Start login test...");
-        CLoginPage loginPage = LoginService.initFor(LoginPageImpl.class);
+        LoginPage loginPage = LoginService.initFor(PAGESNAME);
         assertThat(loginPage.exists()).as("Login page verification.").isTrue();
-        CMainPage mainPage = loginPage.login(email, password);
+        MainPage mainPage = loginPage.login(email, password);
         LOG.info("End login test...");
     }
 
@@ -96,12 +94,12 @@ public class ExistingAccountLogin extends GmailBaseTest {
 //        LOG.info("End tryToSendLetterWithoutBody test...");
 //    }
 
-    private CMainPage getMainPage(String email, String password, CLoginPage loginPage) {
-        CMainPage mainPage;
+    private MainPage getMainPage(String email, String password, LoginPage loginPage) {
+        MainPage mainPage;
         if (loginPage.exists()) {
             mainPage = loginPage.login(email, password);
         } else {
-            mainPage =  MainService.initFor(MainPageImpl.class);
+            mainPage = MainService.initFor(PAGESNAME);
         }
         return mainPage;
     }

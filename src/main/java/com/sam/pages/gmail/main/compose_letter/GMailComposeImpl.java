@@ -1,12 +1,12 @@
 package com.sam.pages.gmail.main.compose_letter;
 
-import com.sam.pages.gmail.main.MainImpl;
+import com.sam.pages.gmail.main.GMailMainImpl;
 import com.sam.webelement.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
-public class ComposeImpl extends MainImpl implements Compose {
+public class GMailComposeImpl extends GMailMainImpl implements GMailCompose {
 
     Logger LOG = LogManager.getLogger("ComposeImpl");
 
@@ -19,7 +19,7 @@ public class ComposeImpl extends MainImpl implements Compose {
     private By sendBy = By.xpath("//div[@class = 'dC']/div");
     private By  closeBy = By.xpath("//td[@class = 'Hm']/img[3]");
 
-    ComposeImpl(){
+    GMailComposeImpl(){
         super();
     }
 

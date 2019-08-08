@@ -1,9 +1,11 @@
-package com.sam.pages.cmain;
+package com.sam.pages.base.main;
 
 import com.sam.components.Content;
 
-public interface CMain extends Content {
+public interface Main extends Content {
+
     void clickCompose();
+
     String getTitle();
 
 }

@@ -1,8 +1,9 @@
 package com.sam.pages.gmail.main;
 
-import com.sam.pages.cmain.CMain;
+import com.sam.pages.base.main.Main;
 
-public interface Main extends CMain {
+public interface GMailMain extends Main {
+
     void clickCompose();
     String getTitle();
 

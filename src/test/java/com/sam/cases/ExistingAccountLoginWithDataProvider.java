@@ -1,16 +1,8 @@
 package com.sam.cases;
 
 import com.sam.GmailBaseTest;
-import com.sam.data.StaticDataProvider;
-import com.sam.pages.gmail.login.LoginPageImpl;
-import com.sam.pages.gmail.main.MainPageImpl;
-import com.sam.pages.gmail.main.compose_letter.AlertAbsentRecipient;
-import com.sam.pages.gmail.main.compose_letter.ComposePageImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ExistingAccountLoginWithDataProvider extends GmailBaseTest {
 

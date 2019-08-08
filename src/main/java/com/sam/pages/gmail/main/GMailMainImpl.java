@@ -6,13 +6,13 @@ import com.sam.webelement.WrapElement;
 import com.sam.webelement.WrapElementImpl;
 import org.openqa.selenium.By;
 
-public class MainImpl extends WrapElementImpl implements Main {
+public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
     private WrapElement title = new WrapElementImpl(By.xpath( "//a[@class ='gb_me gb_pc gb_ke']"), 10,1);
     private ButtonImpl compose = new ButtonImpl(By.xpath("//div[@class = 'T-I J-J5-Ji T-I-KE L3']"), 10,1);
     private By composeBy = By.xpath("//div[@class = 'T-I J-J5-Ji T-I-KE L3']");
 
-    public MainImpl() {
+    public GMailMainImpl() {
         super(By.xpath("//body"));
     }
 
@@ -33,4 +33,5 @@ public class MainImpl extends WrapElementImpl implements Main {
         ElementWaiters.wait(7);
         return existsDefElement(composeBy,20);
     }
+
 }

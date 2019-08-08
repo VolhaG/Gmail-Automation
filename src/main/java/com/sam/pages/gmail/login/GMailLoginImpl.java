@@ -3,7 +3,7 @@ package com.sam.pages.gmail.login;
 import com.sam.webelement.*;
 import org.openqa.selenium.*;
 
-public class LoginImpl extends WrapElementImpl implements Login {
+public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     private Button continueBtn = new ButtonImpl(By.xpath("//span[@class = 'RveJvd snByac']"));
     private Input login = new InputImpl(By.name("identifier"));
@@ -11,7 +11,7 @@ public class LoginImpl extends WrapElementImpl implements Login {
 
     private By logoBy = By.cssSelector("div#logo");
 
-    public LoginImpl() {
+    public GMailLoginImpl() {
         super(By.xpath("//body"));
     }
 
