@@ -3,11 +3,8 @@ package com.sam.cases;
 import com.sam.GmailBaseTest;
 import com.sam.pages.base.login.LoginPage;
 import com.sam.pages.base.main.MainPage;
-import com.sam.pages.gmail.login.GMailLogin;
 import com.sam.pages.gmail.login.GMailLoginPage;
-import com.sam.pages.gmail.login.GMailLoginPageImpl;
 import com.sam.pageservice.LoginService;
-import com.sam.pageservice.MainService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Parameters;
@@ -19,15 +16,9 @@ public class GMailTests extends GmailBaseTest {
 
     private Logger LOG = LogManager.getLogger("ExistingAccountLogin");
 
-    @Test(priority = 1, enabled = true)
+    @Test(priority = 1)
     @Parameters({"email", "password"})
-    void login(String email, String password) throws Exception {
-//        LOG.info("Start login test...");
-//        LoginPage loginPage = new LoginPageImpl();
-//        assertThat(loginPage.exists()).as("Login page verification.").isTrue();
-//        MainPage mainPage = loginPage.login(email, password);
-//        assertThat(mainPage.exists()).as("Authentication was passed successful.").isTrue();
-//        LOG.info("End login test...");
+    void login(String email, String password) {
         LOG.info("Start login test...");
         GMailLoginPage loginPage = LoginService.initFor(GMailLoginPage.class);
         assertThat(loginPage.exists()).as("Login page verification.").isTrue();
