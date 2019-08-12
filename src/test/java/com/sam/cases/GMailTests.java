@@ -36,19 +36,18 @@ public class GMailTests extends GmailBaseTest {
     }
 
 
-//    @Test(priority = 2, enabled = false)
-//    @Parameters({"email", "password"})
-//    void composeLetter(String email, String password) {
-//        LOG.info("Start composeLetter test...");
-//        MainPage mainPage;
-//        LoginPage loginPage = new LoginPageImpl();
-//        mainPage = getMainPage(email, password, loginPage);
-//        ComposePage composePage = mainPage.compose();
-//        composePage.writeLetter("tt7381566@gmail.com", "New","Hello! How are you?");
-//        mainPage = composePage.sendLetter();
-//        assertThat(mainPage.exists()).as("Composing letter was passed successful.").isTrue();
-//        LOG.info("End composeLetter test...");
-//    }
+    @Test(priority = 2, enabled = false)
+    @Parameters({"email", "password"})
+    void composeLetter(String email, String password) {
+        LOG.info("Start composeLetter test...");
+        loginPage.login(email, password);
+        mainPage.compose();
+        composePage.writeLetter("tt7381566@gmail.com", "New","Hello! How are you?");
+        composePage.sendLetter();
+        assertThat(mainPage.exists()).as("Composing letter was passed successful.").isTrue();
+        LOG.info("End composeLetter test...");
+    }
+
 //
 //    @Test(priority = 3, enabled = false)
 //    @Parameters({"email", "password"})
