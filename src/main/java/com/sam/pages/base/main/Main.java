@@ -8,4 +8,8 @@ public interface Main extends Content {
 
     String getTitle();
 
+    void openAccountMenu();
+
+    void clickLogout();
+
 }

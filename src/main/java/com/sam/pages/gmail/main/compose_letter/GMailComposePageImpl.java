@@ -8,7 +8,7 @@ import com.sam.pages.gmail.main.GMailMainPageImpl;
 public class GMailComposePageImpl extends PageImpl<Compose> implements GMailComposePage {
 
     public GMailComposePageImpl() {
-        super((Compose) new GMailComposeImpl());
+        super(new GMailComposeImpl());
     }
 
     @Override
@@ -19,20 +19,20 @@ public class GMailComposePageImpl extends PageImpl<Compose> implements GMailComp
     }
 
     @Override
-    public void writeLetter(String to, String topic, String letterBody,  String letterStart, String letterEnd) {
+    public void writeLetter(String to, String topic, String letterBody, String letterStart, String letterEnd) {
         content.setRecipient(to);
         content.setSubject(topic);
-        content.writeLetter(letterStart,letterBody,letterEnd);
+        content.writeLetter(letterStart, letterBody, letterEnd);
     }
 
     @Override
-    public GMailMainPage sendLetter(){
-       content.sendLetter();
-       return new GMailMainPageImpl();
+    public GMailMainPage sendLetter() {
+        content.sendLetter();
+        return new GMailMainPageImpl();
     }
 
     @Override
-    public GMailMainPage closePage(){
+    public GMailMainPage closePage() {
         content.close();
         return new GMailMainPageImpl();
     }

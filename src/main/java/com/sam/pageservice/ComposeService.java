@@ -1,8 +1,10 @@
 package com.sam.pageservice;
 
+import com.sam.pages.base.compose.ComposePage;
 import com.sam.pages.base.main.MainPage;
-import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
+import com.sam.pages.gmail.main.compose_letter.GMailComposePage;
+import com.sam.pages.gmail.main.compose_letter.GMailComposePageImpl;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -10,32 +12,32 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class MainService {
+public class ComposeService {
 
-    private MainService() {
+    private ComposeService() {
     }
 
-    private static Map<Class<? extends MainPage>, Class<? extends MainPage>> mainImplementations = new HashMap<>();
+    private static Map<Class<? extends ComposePage>, Class<? extends ComposePage>> composeImplementations = new HashMap<>();
     static {
-        mainImplementations.put(GMailMainPage.class, GMailMainPageImpl.class);
+        composeImplementations.put(GMailComposePage.class, GMailComposePageImpl.class);
     };
 
-    public static <T extends MainPage> T initFor(Class<T> mainPageInterface) {
-        if (!mainPageInterface.isInterface()) {
+    public static <T extends ComposePage> T initFor(Class<T> composePageInterface) {
+        if (!composePageInterface.isInterface()) {
             throw new IllegalArgumentException("Argument must be an interface.");
         }
-        Class<? extends MainPage> impl = mainImplementations.get(mainPageInterface);
+        Class<? extends ComposePage> impl = composeImplementations.get(composePageInterface);
         if (impl == null) {
-            throw new NullPointerException("Implementation is absent for interface " + mainPageInterface.toString());
+            throw new NullPointerException("Implementation is absent for interface " + composePageInterface.toString());
         }
-        if (!mainPageInterface.isAssignableFrom(impl)) {
+        if (!composePageInterface.isAssignableFrom(impl)) {
             throw new IllegalArgumentException("Implementation is not assigned with interface.");
         }
         String classImplementation = impl.getCanonicalName();
         return createImplementationInstance(classImplementation);
     }
 
-    private static <T extends MainPage> T createImplementationInstance(String className) {
+    private static <T extends ComposePage> T createImplementationInstance(String className) {
         T result = null;
         try {
             Class c = Class.forName(className);
@@ -44,7 +46,7 @@ public class MainService {
         } catch (InstantiationException | InvocationTargetException | ClassNotFoundException | IllegalAccessException | NoSuchMethodException | NullPointerException ex) {
             ex.printStackTrace();
         }
-        Objects.requireNonNull(result, "Main page is not initialized!");
+        Objects.requireNonNull(result, "Compose page is not initialized!");
         return result;
     }
 

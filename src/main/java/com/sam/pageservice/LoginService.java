@@ -38,18 +38,15 @@ public class LoginService {
     }
 
     private static <T extends LoginPage> T createImplementationInstance(String className) {
-        Class c = null;
         T result = null;
-
         try {
-            c = Class.forName(className);
+            Class c = Class.forName(className);
             Constructor<T> constructor = c.getDeclaredConstructor();
             result = constructor.newInstance();
-
         } catch (InstantiationException | InvocationTargetException | ClassNotFoundException | IllegalAccessException | NoSuchMethodException | NullPointerException ex) {
             ex.printStackTrace();
         }
-        Objects.requireNonNull(result, "Login page is null!");
+        Objects.requireNonNull(result, "Login page is not initialized!");
         return result;
     }
 

@@ -4,7 +4,11 @@ import com.sam.GmailBaseTest;
 import com.sam.pages.base.login.LoginPage;
 import com.sam.pages.base.main.MainPage;
 import com.sam.pages.gmail.login.GMailLoginPage;
+import com.sam.pages.gmail.main.GMailMainPage;
+import com.sam.pages.gmail.main.compose_letter.GMailComposePage;
+import com.sam.pageservice.ComposeService;
 import com.sam.pageservice.LoginService;
+import com.sam.pageservice.MainService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Parameters;
@@ -14,15 +18,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GMailTests extends GmailBaseTest {
 
-    private Logger LOG = LogManager.getLogger("ExistingAccountLogin");
+    private final static Logger LOG = LogManager.getLogger("ExistingAccountLogin");
+
+    private static GMailLoginPage loginPage = LoginService.initFor(GMailLoginPage.class);
+    private static GMailMainPage mainPage = MainService.initFor(GMailMainPage.class);
+    private static GMailComposePage composePage = ComposeService.initFor(GMailComposePage.class);
 
     @Test(priority = 1)
     @Parameters({"email", "password"})
     void login(String email, String password) {
         LOG.info("Start login test...");
-        GMailLoginPage loginPage = LoginService.initFor(GMailLoginPage.class);
         assertThat(loginPage.exists()).as("Login page verification.").isTrue();
-        MainPage mainPage = loginPage.login(email, password);
+        loginPage.login(email, password);
+        assertThat(mainPage.exists()).as("Main page verification.").isTrue();
+        mainPage.logout();
         LOG.info("End login test...");
     }
 

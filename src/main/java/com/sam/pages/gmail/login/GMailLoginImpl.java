@@ -39,4 +39,4 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
         password.setText(pwd);
     }
 
-}
+   }
