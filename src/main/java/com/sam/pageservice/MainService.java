@@ -18,7 +18,7 @@ public class MainService {
     private static Map<Class<? extends MainPage>, Class<? extends MainPage>> mainImplementations = new HashMap<>();
     static {
         mainImplementations.put(GMailMainPage.class, GMailMainPageImpl.class);
-    };
+    }
 
     public static <T extends MainPage> T initFor(Class<T> mainPageInterface) {
         if (!mainPageInterface.isInterface()) {

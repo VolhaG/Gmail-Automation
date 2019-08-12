@@ -20,7 +20,7 @@ public class ComposeService {
     private static Map<Class<? extends ComposePage>, Class<? extends ComposePage>> composeImplementations = new HashMap<>();
     static {
         composeImplementations.put(GMailComposePage.class, GMailComposePageImpl.class);
-    };
+    }
 
     public static <T extends ComposePage> T initFor(Class<T> composePageInterface) {
         if (!composePageInterface.isInterface()) {
