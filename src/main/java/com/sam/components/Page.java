@@ -34,4 +34,5 @@ public interface Page<C extends Content> {
     void getURL();
 
     void quit();
+
 }

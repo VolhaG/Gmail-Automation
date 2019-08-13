@@ -11,7 +11,7 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     private By logoBy = By.cssSelector("div#logo");
 
-    public GMailLoginImpl() {
+    GMailLoginImpl() {
         super(By.xpath("//body"));
     }
 

@@ -9,10 +9,12 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 
 public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPage {
+
+    private static Logger LOG = LogManager.getLogger();
+
     public GMailLoginPageImpl() {
         super(new GMailLoginImpl());
     }
-     private static Logger LOG = LogManager.getLogger();
 
     @Override
     public GMailMainPage login(String email, String password) {

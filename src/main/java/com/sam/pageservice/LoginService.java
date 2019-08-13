@@ -8,7 +8,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class LoginService {
 
@@ -34,20 +33,14 @@ public class LoginService {
             throw new IllegalArgumentException("Implementation is not assigned with interface.");
         }
         String classImplementation = impl.getCanonicalName();
-        return createImplementationInstance(classImplementation);
-    }
-
-    private static <T extends LoginPage> T createImplementationInstance(String className) {
-        T result = null;
         try {
-            Class c = Class.forName(className);
+            Class c = Class.forName(classImplementation);
             Constructor<T> constructor = c.getDeclaredConstructor();
-            result = constructor.newInstance();
+            return constructor.newInstance();
         } catch (InstantiationException | InvocationTargetException | ClassNotFoundException | IllegalAccessException | NoSuchMethodException | NullPointerException ex) {
             ex.printStackTrace();
         }
-        Objects.requireNonNull(result, "Login page is not initialized!");
-        return result;
+        return null;
     }
 
 }

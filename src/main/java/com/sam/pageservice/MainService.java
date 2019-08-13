@@ -16,6 +16,7 @@ public class MainService {
     }
 
     private static Map<Class<? extends MainPage>, Class<? extends MainPage>> mainImplementations = new HashMap<>();
+
     static {
         mainImplementations.put(GMailMainPage.class, GMailMainPageImpl.class);
     }
@@ -32,13 +33,9 @@ public class MainService {
             throw new IllegalArgumentException("Implementation is not assigned with interface.");
         }
         String classImplementation = impl.getCanonicalName();
-        return createImplementationInstance(classImplementation);
-    }
-
-    private static <T extends MainPage> T createImplementationInstance(String className) {
         T result = null;
         try {
-            Class c = Class.forName(className);
+            Class c = Class.forName(classImplementation);
             Constructor<T> constructor = c.getDeclaredConstructor();
             result = constructor.newInstance();
         } catch (InstantiationException | InvocationTargetException | ClassNotFoundException | IllegalAccessException | NoSuchMethodException | NullPointerException ex) {

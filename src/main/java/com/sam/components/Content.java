@@ -9,8 +9,9 @@ public interface Content extends WrapElement {
 
     Boolean existsDefElement();
 
-    default Boolean existsDefElement(By by, int timeOut){
-        WebElement el = ElementWaiters.waitForPresence(by,timeOut);
+    default Boolean existsDefElement(By by, int timeOut) {
+        WebElement el = ElementWaiters.waitForPresence(by, timeOut);
         return el != null;
     }
+
 }

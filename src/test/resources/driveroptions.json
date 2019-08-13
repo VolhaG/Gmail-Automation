@@ -52,12 +52,12 @@
   ],
   "remote": [
     {
-      "name": "remote_config",
+      "name": "firefox_1",
       "proxy": false,
       "remoteAddress": "https://10.1.1.0/wd/hub"
     }
   ],
-  "default": "chrome_default",
+  "default": "firefox_1",
 
   "settings": {
     "width": 0,

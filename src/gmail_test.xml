@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="AllTestsSuite" >
-    <parameter name="configurationName" value="config3"/>
+    <parameter name="configurationName" value="firefox_1"/>
     <parameter name="email" value="tt7381566@gmail.com"/>
     <parameter name="password" value="test11111"/>
 

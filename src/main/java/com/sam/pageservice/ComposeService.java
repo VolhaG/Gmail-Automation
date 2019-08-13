@@ -1,8 +1,6 @@
 package com.sam.pageservice;
 
 import com.sam.pages.base.compose.ComposePage;
-import com.sam.pages.base.main.MainPage;
-import com.sam.pages.gmail.main.GMailMainPageImpl;
 import com.sam.pages.gmail.main.compose_letter.GMailComposePage;
 import com.sam.pages.gmail.main.compose_letter.GMailComposePageImpl;
 
@@ -18,6 +16,7 @@ public class ComposeService {
     }
 
     private static Map<Class<? extends ComposePage>, Class<? extends ComposePage>> composeImplementations = new HashMap<>();
+
     static {
         composeImplementations.put(GMailComposePage.class, GMailComposePageImpl.class);
     }
@@ -34,19 +33,15 @@ public class ComposeService {
             throw new IllegalArgumentException("Implementation is not assigned with interface.");
         }
         String classImplementation = impl.getCanonicalName();
-        return createImplementationInstance(classImplementation);
-    }
-
-    private static <T extends ComposePage> T createImplementationInstance(String className) {
         T result = null;
         try {
-            Class c = Class.forName(className);
+            Class c = Class.forName(classImplementation);
             Constructor<T> constructor = c.getDeclaredConstructor();
             result = constructor.newInstance();
         } catch (InstantiationException | InvocationTargetException | ClassNotFoundException | IllegalAccessException | NoSuchMethodException | NullPointerException ex) {
             ex.printStackTrace();
         }
-        Objects.requireNonNull(result, "Compose page is not initialized!");
+        Objects.requireNonNull(result, "Main page is not initialized!");
         return result;
     }
 

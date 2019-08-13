@@ -1,8 +1,6 @@
 package com.sam.cases;
 
 import com.sam.GmailBaseTest;
-import com.sam.pages.base.login.LoginPage;
-import com.sam.pages.base.main.MainPage;
 import com.sam.pages.gmail.login.GMailLoginPage;
 import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.compose_letter.AlertAbsentRecipient;
@@ -53,7 +51,6 @@ public class GMailTests extends GmailBaseTest {
         LOG.info("End composeLetter test...");
     }
 
-
     @Test(priority = 3)
     @Parameters({"email", "password"})
     void tryToSendLetterWithoutRecipient(String email, String password) {
@@ -78,7 +75,7 @@ public class GMailTests extends GmailBaseTest {
         mainPage.compose();
         composePage.writeLetter("tt7381566@gmail.com", " ","Hello! How are you?");
         composePage.sendLetter();
-        assertThat(mainPage.exists()).isTrue().as("Sending letter without subject is successful.");
+        assertThat(mainPage.exists()).as("Sending letter without subject is successful.").isTrue();
         LOG.info("End tryToSendLetterWithoutSubject test...");
     }
 
