@@ -10,7 +10,7 @@ import org.openqa.selenium.NoSuchElementException;
 
 public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPage {
 
-    private static Logger LOG = LogManager.getLogger();
+    private static Logger log = LogManager.getLogger();
 
     public GMailLoginPageImpl() {
         super(new GMailLoginImpl());
@@ -22,7 +22,7 @@ public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPag
             content.inputEmail(email);
             content.clickNext();
         } catch (NoSuchElementException ex) {
-            LOG.info("Continue authentification without email.");
+            log.info("Continue authentification without email.");
         }
         content.inputPassword(password);
         content.clickNext();

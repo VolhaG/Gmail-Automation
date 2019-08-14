@@ -13,7 +13,6 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     GMailLoginImpl() {
         super(By.xpath("//body"));
-        login.click();
     }
 
     public Boolean existsDefElement(){
@@ -40,4 +39,4 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
         password.setText(pwd);
     }
 
-   }
+}
