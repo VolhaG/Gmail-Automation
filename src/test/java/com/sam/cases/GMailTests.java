@@ -25,7 +25,7 @@ public class GMailTests extends GmailBaseTest {
 
     @BeforeMethod
     @Parameters({"email", "password"})
-    private void setUp(Method method, String email, String password) {
+    void setUp(Method method, String email, String password) {
         log.info("Start " + method.getName() + " test...");
         if (!(method.getName() == "login")) {
             GMailMainPage gmailMainPage = (GMailMainPage) loginPage.login(email, password);
@@ -35,7 +35,7 @@ public class GMailTests extends GmailBaseTest {
     }
 
     @AfterMethod
-    void logOut(Method  method) {
+    void finish(Method  method) {
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         gmailMainPage.logout();
         log.info("End " + method.getName() + " test...");
@@ -45,7 +45,7 @@ public class GMailTests extends GmailBaseTest {
     @Parameters({"email", "password"})
     void login(String email, String password) {
         assertThat(loginPage.exists()).as("Login page verification passed.").isTrue();
-        log.info("Login page verification is passed");
+        log.info("Login page verification passed");
         GMailMainPage gmailMainPage = (GMailMainPage) loginPage.login(email, password);
         assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
         log.info("Main page verification is passed.");

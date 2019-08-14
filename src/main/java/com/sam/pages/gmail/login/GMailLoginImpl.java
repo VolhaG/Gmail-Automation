@@ -5,14 +5,19 @@ import org.openqa.selenium.*;
 
 public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
-    private Button continueBtn = new ButtonImpl(By.xpath("//span[@class = 'RveJvd snByac']"));
-    private Input login = new InputImpl(By.name("identifier"));
-    private Input password = new InputImpl(By.name("password"));
-
-    private By logoBy = By.cssSelector("div#logo");
+    private static final String LOGIN_PAGE_CSSLOCATOR = "div#initialView";
+    private static final By by = By.cssSelector(LOGIN_PAGE_CSSLOCATOR);
+    private static final By logoBy = By.cssSelector("div#logo");
+    private Button continueBtn;
+    private Input login;
+    private Input password;
 
     GMailLoginImpl() {
-        super(By.xpath("//body"));
+        super(by);
+        WebElement defElement = findElement(by);
+        continueBtn = (Button) defElement.findElement(By.xpath("//span[@class = 'RveJvd snByac']"));
+        login = (Input) getWebElement().findElement( By.name("identifier"));
+        password = (Input) getWebElement().findElement(By.name("password"));
     }
 
     public Boolean existsDefElement(){

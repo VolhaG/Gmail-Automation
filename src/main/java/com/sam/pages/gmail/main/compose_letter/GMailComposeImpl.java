@@ -6,17 +6,24 @@ import org.openqa.selenium.By;
 
 public class GMailComposeImpl extends GMailMainImpl implements GMailCompose {
 
-    private Button send = new ButtonImpl(By.xpath("//div[@class = 'dC']/div"), 10, 1);
-    private Input recipient = new InputImpl(By.xpath("//div[@class = 'wO nr l1']/textarea"), 20, 1);
-    private Input subject = new InputImpl(By.name("subjectbox"), 10, 1);
-    private Input letter = new InputImpl(By.xpath("//div[@class = 'Am Al editable LW-avf']"), 10, 1);
-    private Input close = new InputImpl(By.xpath("//td[@class = 'Hm']/img[3]"));
+    private Button send;
+    private Input recipient;
+    private Input subject;
+    private Input letter;
+    private Input close;
 
-    private By sendBy = By.xpath("//div[@class = 'dC']/div");
-    private By closeBy = By.xpath("//td[@class = 'Hm']/img[3]");
+    private By sendBy;
+    private By closeBy;
 
     GMailComposeImpl() {
         super();
+        send =(Button) this.findWrapElement(By.xpath("//div[@class = 'dC']/div"));
+        recipient = (Input) this.findWrapElement(By.xpath("//div[@class = 'wO nr l1']/textarea"));
+        subject = (Input) this.findWrapElement(By.name("subjectbox"));
+        letter = (Input) this.findWrapElement(By.xpath("//div[@class = 'Am Al editable LW-avf']"));
+        close = (Input) this.findWrapElement(By.xpath("//td[@class = 'Hm']/img[3]"));
+        sendBy = By.xpath("//div[@class = 'dC']/div");
+        closeBy = By.xpath("//td[@class = 'Hm']/img[3]");
     }
 
     @Override
