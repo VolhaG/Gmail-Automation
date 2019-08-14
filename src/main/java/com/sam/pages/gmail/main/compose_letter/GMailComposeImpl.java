@@ -30,8 +30,6 @@ public class GMailComposeImpl extends GMailMainImpl implements GMailCompose {
         sb.append(startBody)
                 .append(body)
                 .append(endBody);
-        //String letterBuild = startBody + "%n" + body + "%n" + endBody;
-//        letter.setText(letterBuild);
         letter.setText(sb.toString());
     }
 

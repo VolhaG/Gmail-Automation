@@ -12,17 +12,19 @@ public class GMailComposePageImpl extends PageImpl<Compose> implements GMailComp
     }
 
     @Override
-    public void writeLetter(String recipient, String subject, String letter) {
+    public  GMailComposePage writeLetter(String recipient, String subject, String letter) {
         content.setRecipient(recipient);
         content.setSubject(subject);
         content.writeLetter(letter);
+        return new GMailComposePageImpl();
     }
 
     @Override
-    public void writeLetter(String to, String topic, String letterBody, String letterStart, String letterEnd) {
+    public  GMailComposePage writeLetter(String to, String topic, String letterBody, String letterStart, String letterEnd) {
         content.setRecipient(to);
         content.setSubject(topic);
         content.writeLetter(letterStart, letterBody, letterEnd);
+        return new GMailComposePageImpl();
     }
 
     @Override

@@ -28,7 +28,6 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
         // WebElement el = ElementWaiters.waitForPresence(composeBy,20);
         ElementWaiters.wait(7);
         compose.click();
-
     }
 
     @Override

@@ -1,10 +1,16 @@
 package com.sam;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class GmailBaseTest extends BaseTest {
+
+    private static Logger log = LogManager.getLogger("GmailBaseTest");
 
     @Override
     public void onTestInitialization() {
-        getWebDriver().navigate().to("https://gmail.com");
+        log.info("Navigate to http://www.gmail.com");
+        provider.get().navigate().to("http://www.gmail.com");
     }
 
 }
