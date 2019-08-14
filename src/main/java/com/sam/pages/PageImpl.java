@@ -12,8 +12,11 @@ import java.net.URL;
 
 public class PageImpl<C extends Content> implements Page<C> {
 
-    protected WebDriver driver = WebDriverProvider.getInstance().get();
     protected final C content;
+
+    protected WebDriver getDriver()  {
+        return WebDriverProvider.getInstance().get();
+    }
 
     public PageImpl(C content) {
         this.content = content;
@@ -31,64 +34,74 @@ public class PageImpl<C extends Content> implements Page<C> {
 
     @Override
     public void refresh() {
-        driver.navigate().refresh();
+        getDriver().navigate().refresh();
     }
 
     @Override
     public String getUrl() {
-        return driver.getCurrentUrl();
+        return  getDriver().getCurrentUrl();
     }
 
     @Override
     public Dimension getSize() {
-        return driver.manage().window().getSize();
+        return  getDriver().manage().window().getSize();
     }
 
     @Override
     public void setSize(int width, int height) {
         Dimension targetSize = new Dimension(width, height);
-        driver.manage().window().setSize(targetSize);
+        getDriver().manage().window().setSize(targetSize);
     }
 
     @Override
     public void setSize(java.awt.Dimension dm) {
         Dimension targetSize = new Dimension(dm.width, dm.height);
-        driver.manage().window().setSize(targetSize);
+        getDriver().manage().window().setSize(targetSize);
     }
 
     @Override
     public void close() {
-        driver.close();
+        getDriver().close();
     }
 
     @Override
     public void back() {
-        driver.navigate().back();
+        getDriver().navigate().back();
     }
 
     @Override
     public void forward() {
-        driver.navigate().forward();
+        getDriver().navigate().forward();
     }
 
     @Override
     public void navigateTo(String url) {
-        driver.navigate().to(url);
+        getDriver().navigate().to(url);
     }
 
     @Override
     public void navigateTo(URL url) {
-        driver.navigate().to(url);
+        getDriver().navigate().to(url);
     }
 
     @Override
     public void getURL() {
-        driver.getCurrentUrl();
+        getDriver().getCurrentUrl();
     }
 
     @Override
     public void quit() {
-        driver.quit();
+        getDriver().quit();
+    }
+
+    @Override
+    public void dismissAlertPopup() {
+        getDriver().switchTo().alert().dismiss();
+    }
+
+    @Override
+    public void acceptAlertPopup() {
+        getDriver().switchTo().alert().accept();
     }
 
 }

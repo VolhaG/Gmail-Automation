@@ -35,4 +35,8 @@ public interface Page<C extends Content> {
 
     void quit();
 
+    void dismissAlertPopup();
+
+    void acceptAlertPopup();
+
 }

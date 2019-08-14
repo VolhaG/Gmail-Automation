@@ -4,12 +4,9 @@
       "name": "firefox_1",
       "proxy": false,
       "string_capabilities": {
-        "cap1": "val1",
-        "cap2": "val2"
       },
       "boolean_capabilities": {
-        "headless": false,
-        "cap4": false
+        "headless": false
       }
     },
     {
@@ -52,7 +49,7 @@
   ],
   "remote": [
     {
-      "name": "firefox_1",
+      "name": "firefox_remote",
       "proxy": false,
       "remoteAddress": "https://10.1.1.0/wd/hub"
     }
