@@ -31,7 +31,7 @@ public class GMailTests extends GmailBaseTest {
         init();
         log.info("Start " + method.getName() + " test...");
         if (!(method.getName().equals("login"))) {
-            GMailMainPage gmailMainPage = (GMailMainPage) loginPage.login(email, password);
+            GMailMainPage gmailMainPage = loginPage.login(email, password);
             assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
             log.info("Authentication passed successfull");
         }
@@ -49,7 +49,7 @@ public class GMailTests extends GmailBaseTest {
     void login(String email, String password) {
         assertThat(loginPage.exists()).as("Login page verification passed.").isTrue();
         log.info("Login page verification passed");
-        GMailMainPage gmailMainPage = (GMailMainPage) loginPage.login(email, password);
+        GMailMainPage gmailMainPage = loginPage.login(email, password);
         assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
         log.info("Main page verification is passed.");
     }

@@ -2,10 +2,13 @@ package com.sam.pages.gmail.main.compose_letter;
 
 import com.sam.pages.gmail.main.GMailMainImpl;
 import com.sam.webelement.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
 public class GMailComposeImpl extends GMailMainImpl implements GMailCompose {
 
+    private static Logger log = LogManager.getLogger();
     private Button send;
     private Input recipient;
     private Input subject;
@@ -17,11 +20,11 @@ public class GMailComposeImpl extends GMailMainImpl implements GMailCompose {
 
     GMailComposeImpl() {
         super();
-        send =(Button) this.findWrapElement(By.xpath("//div[@class = 'dC']/div"));
-        recipient = (Input) this.findWrapElement(By.xpath("//div[@class = 'wO nr l1']/textarea"));
-        subject = (Input) this.findWrapElement(By.name("subjectbox"));
-        letter = (Input) this.findWrapElement(By.xpath("//div[@class = 'Am Al editable LW-avf']"));
-        close = (Input) this.findWrapElement(By.xpath("//td[@class = 'Hm']/img[3]"));
+        send = findWrapElement(By.xpath("//div[@class = 'dC']/div"), ElementType.BUTTON);
+        recipient = findWrapElement(By.xpath("//div[@class = 'wO nr l1']/textarea"), ElementType.INPUT);
+        subject = findWrapElement(By.name("subjectbox"), ElementType.INPUT);
+        letter = findWrapElement(By.xpath("//div[@class = 'Am Al editable LW-avf']"), ElementType.INPUT);
+        close = findWrapElement(By.xpath("//td[@class = 'Hm']/img[3]"), ElementType.INPUT);
         sendBy = By.xpath("//div[@class = 'dC']/div");
         closeBy = By.xpath("//td[@class = 'Hm']/img[3]");
     }

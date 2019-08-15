@@ -1,23 +1,25 @@
 package com.sam.pages.gmail.login;
 
 import com.sam.webelement.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 
 public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
-    private static final String LOGIN_PAGE_ID_LOCATOR = "initialView";
-    private static final By by = By.id(LOGIN_PAGE_ID_LOCATOR);
+    private static Logger log = LogManager.getLogger();
+    private static final String LOGIN_PAGE_CSSLOCATOR = "div#initialView";
+    private static final By by = By.cssSelector(LOGIN_PAGE_CSSLOCATOR);
     private static final By logoBy = By.cssSelector("div#logo");
     private Button continueBtn;
-    private WebElement login;
+    private Input login;
     private Input password;
 
     GMailLoginImpl() {
         super(by);
-        WebElement defElement = getWebElement();
-    //    continueBtn = (Button) defElement.findElement(By.xpath("//span[@class = 'RveJvd snByac']"));
-        login =  getWebElement().findElement( By.name("identifier"));
-//        password = (Input) getWebElement().findElement(By.name("password"));
+        continueBtn = findWrapElement(By.xpath("//span[@class = 'RveJvd snByac']"), ElementType.BUTTON);
+        login = findWrapElement( By.id("identifierId"), ElementType.INPUT);
+        password = findWrapElement(By.name("password"), ElementType.INPUT);
     }
 
     public Boolean existsDefElement(){
@@ -27,6 +29,7 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
     @Override
     public void clickNext() {
         continueBtn.click();
+        log.info("Click continue button");
     }
 
     @Override
@@ -36,12 +39,14 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     @Override
     public void inputEmail(String email) {
-    //    login.setText(email);
+        login.setText(email);
+        log.info("Log in with email: "+ email);
     }
 
     @Override
     public void inputPassword(String pwd) {
         password.setText(pwd);
+        log.info("Log in with password: "+ pwd);
     }
 
 }
