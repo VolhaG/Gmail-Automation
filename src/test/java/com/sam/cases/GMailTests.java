@@ -9,10 +9,7 @@ import com.sam.pages.gmail.main.compose_letter.GMailComposePage;
 import com.sam.pageservice.LoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
 
@@ -21,13 +18,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GMailTests extends GmailBaseTest {
 
     private static Logger log = LogManager.getLogger("ExistingAccountLogin");
-    private static GMailLoginPage loginPage = LoginService.initFor(GMailLoginPage.class);
+    private GMailLoginPage loginPage = null;
+
+    @BeforeClass
+    void init() {
+        loginPage = LoginService.initFor(GMailLoginPage.class);
+    }
 
     @BeforeMethod
     @Parameters({"email", "password"})
     void setUp(Method method, String email, String password) {
         log.info("Start " + method.getName() + " test...");
-        if (!(method.getName() == "login")) {
+        if (!(method.getName().equals("login"))) {
             GMailMainPage gmailMainPage = (GMailMainPage) loginPage.login(email, password);
             assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
             log.info("Authentication passed successfull");
@@ -35,7 +37,7 @@ public class GMailTests extends GmailBaseTest {
     }
 
     @AfterMethod
-    void finish(Method  method) {
+    void finish(Method method) {
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         gmailMainPage.logout();
         log.info("End " + method.getName() + " test...");
@@ -55,7 +57,7 @@ public class GMailTests extends GmailBaseTest {
     void composeLetter() {
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
-        gmailComposePage.writeLetter("tt7381566@gmail.com", "New","Hello! How are you?")
+        gmailComposePage.writeLetter("tt7381566@gmail.com", "New", "Hello! How are you?")
                 .sendLetter();
         assertThat(gmailMainPage.exists()).as("Composing letter passed successful.").isTrue();
     }
@@ -64,7 +66,7 @@ public class GMailTests extends GmailBaseTest {
     void tryToSendLetterWithoutRecipient() {
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
-        gmailComposePage.writeLetter(" ", "New","Hello! How are you?").sendLetter();
+        gmailComposePage.writeLetter(" ", "New", "Hello! How are you?").sendLetter();
         assertThat(AlertAbsentRecipient.exists()).as("Alert appears when recipient is absent. " +
                 "The letter couldn't be sent.").isTrue();
         AlertAbsentRecipient.close();
@@ -77,16 +79,16 @@ public class GMailTests extends GmailBaseTest {
     void tryToSendLetterWithoutSubject() {
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
-        gmailComposePage.writeLetter("tt7381566@gmail.com", " ","Hello! How are you?")
-                        .sendLetter();
+        gmailComposePage.writeLetter("tt7381566@gmail.com", " ", "Hello! How are you?")
+                .sendLetter();
         assertThat(gmailMainPage.exists()).as("Sending letter without subject is successful.").isTrue();
     }
 
     @Test(priority = 5)
     void tryToSendLetterWithoutBody() {
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
-        GMailComposePage gmailComposePage = (GMailComposePage)gmailMainPage.compose();
-        gmailComposePage.writeLetter("tt7381566@gmail.com", "New"," ").sendLetter();
+        GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
+        gmailComposePage.writeLetter("tt7381566@gmail.com", "New", " ").sendLetter();
         assertThat(gmailMainPage.exists()).as("Sending letter without body is successful.").isTrue();
     }
 

@@ -14,10 +14,9 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     GMailLoginImpl() {
         super(by);
-        WebElement defElement = findElement(by);
-        continueBtn = (Button) defElement.findElement(By.xpath("//span[@class = 'RveJvd snByac']"));
-        login = (Input) getWebElement().findElement( By.name("identifier"));
-        password = (Input) getWebElement().findElement(By.name("password"));
+        continueBtn = findButton(By.xpath("//span[@class = 'RveJvd snByac']"));
+        login = findInput( By.id("identifierId"));
+        password = findInput(By.name("password"));
     }
 
     public Boolean existsDefElement(){

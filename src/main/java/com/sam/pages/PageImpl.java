@@ -18,6 +18,15 @@ public class PageImpl<C extends Content> implements Page<C> {
         return WebDriverProvider.getInstance().get();
     }
 
+
+    protected void delay(int delay) {
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public PageImpl(C content) {
         this.content = content;
     }
