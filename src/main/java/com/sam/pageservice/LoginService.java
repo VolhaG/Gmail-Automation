@@ -3,6 +3,8 @@ package com.sam.pageservice;
 import com.sam.pages.base.login.LoginPage;
 import com.sam.pages.gmail.login.GMailLoginPage;
 import com.sam.pages.gmail.login.GMailLoginPageImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -11,6 +13,7 @@ import java.util.Map;
 
 public class LoginService {
 
+    private static Logger log = LogManager.getLogger("LoginService");
     private LoginService() {
     }
 
@@ -40,6 +43,7 @@ public class LoginService {
         } catch (InstantiationException | InvocationTargetException | ClassNotFoundException | IllegalAccessException | NoSuchMethodException | NullPointerException ex) {
             ex.printStackTrace();
         }
+        log.info("Login page is null!");
         return null;
     }
 
