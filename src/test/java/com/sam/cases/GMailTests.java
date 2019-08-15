@@ -9,10 +9,7 @@ import com.sam.pages.gmail.main.compose_letter.GMailComposePage;
 import com.sam.pageservice.LoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
 
@@ -21,13 +18,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GMailTests extends GmailBaseTest {
 
     private static Logger log = LogManager.getLogger("ExistingAccountLogin");
-    private static GMailLoginPage loginPage = LoginService.initFor(GMailLoginPage.class);
+    private GMailLoginPage loginPage = null;// = LoginService.initFor(GMailLoginPage.class);
+
+    private void init(){
+        if (loginPage == null) {
+         loginPage = LoginService.initFor(GMailLoginPage.class);}
+    }
 
     @BeforeMethod
     @Parameters({"email", "password"})
     void setUp(Method method, String email, String password) {
+        init();
         log.info("Start " + method.getName() + " test...");
-        if (!(method.getName() == "login")) {
+        if (!(method.getName().equals("login"))) {
             GMailMainPage gmailMainPage = (GMailMainPage) loginPage.login(email, password);
             assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
             log.info("Authentication passed successfull");
