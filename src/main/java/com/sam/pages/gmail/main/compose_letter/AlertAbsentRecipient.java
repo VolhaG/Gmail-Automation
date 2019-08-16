@@ -11,12 +11,12 @@ public class AlertAbsentRecipient {
     private static By defElementBy = By.xpath("//div[@class = 'Kj-JD']");
     private static Button closeButton = new ButtonImpl(By.name("ok"));
 
-    public static Boolean exists(){
+    public static Boolean exists() {
         WebElement el = ElementWaiters.waitForPresence(defElementBy, 10);
         return el != null;
     }
 
-    public static void close(){
+    public static void close() {
         closeButton.click();
     }
 

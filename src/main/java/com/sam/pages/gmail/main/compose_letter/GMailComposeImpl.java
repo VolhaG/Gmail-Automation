@@ -1,14 +1,15 @@
 package com.sam.pages.gmail.main.compose_letter;
 
-import com.sam.pages.gmail.main.GMailMainImpl;
 import com.sam.webelement.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
-public class GMailComposeImpl extends GMailMainImpl implements GMailCompose {
+public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
     private static Logger log = LogManager.getLogger();
+    private static final String GMAIL_COMPOSE_IDLOCATOR = "//div[@class = \"nH Hd\"]";
     private Button send;
     private Input recipient;
     private Input subject;
@@ -19,12 +20,12 @@ public class GMailComposeImpl extends GMailMainImpl implements GMailCompose {
     private By closeBy;
 
     GMailComposeImpl() {
-        super();
-        send = findWrapElement(By.xpath("//div[@class = 'dC']/div"), ElementType.BUTTON);
-        recipient = findWrapElement(By.xpath("//div[@class = 'wO nr l1']/textarea"), ElementType.INPUT);
-        subject = findWrapElement(By.name("subjectbox"), ElementType.INPUT);
-        letter = findWrapElement(By.xpath("//div[@class = 'Am Al editable LW-avf']"), ElementType.INPUT);
-        close = findWrapElement(By.xpath("//td[@class = 'Hm']/img[3]"), ElementType.INPUT);
+        super(By.xpath(GMAIL_COMPOSE_IDLOCATOR));
+        send = findWrapElement("send", By.xpath("//div[@class = 'dC']/div"), ElementType.BUTTON);
+        recipient = findWrapElement("recipient", By.xpath("//div[@class = 'wO nr l1']/textarea"), ElementType.INPUT);
+        subject = findWrapElement("subject", By.xpath("//input[@name = 'subjectbox']"), ElementType.INPUT);
+        letter = findWrapElement("letter", By.xpath("//div[@class = 'Am Al editable LW-avf']"), ElementType.INPUT);
+        close = findWrapElement("close", By.xpath("//td[@class = 'Hm']/img[3]"), ElementType.INPUT);
         sendBy = By.xpath("//div[@class = 'dC']/div");
         closeBy = By.xpath("//td[@class = 'Hm']/img[3]");
     }
@@ -40,34 +41,46 @@ public class GMailComposeImpl extends GMailMainImpl implements GMailCompose {
         sb.append(startBody)
                 .append(body)
                 .append(endBody);
+        log.info("Set text '" + sb.toString() + "' in " + letter.getElementName());
         letter.setText(sb.toString());
     }
 
     @Override
     public void writeLetter(String body) {
+        log.info("Set text '" + body + "' in " + letter.getElementName());
         letter.setText(body);
     }
 
     @Override
     public void close() {
+        log.info("Click on " + close.getElementName());
         ElementWaiters.wait(5);
         close.click();
     }
 
     @Override
     public void setSubject(String topic) {
+        log.info("Set text '" + topic + "' in " + subject.getElementName());
         subject.setText(topic);
+        subject.addText(String.valueOf(Keys.ENTER));
     }
 
     @Override
     public void setRecipient(String mail) {
         ElementWaiters.wait(3);
+        log.info("Set text '" + mail + "' in " + recipient.getElementName());
         recipient.setText(mail);
+        recipient.addText(String.valueOf(Keys.ENTER));
     }
 
     @Override
     public void sendLetter() {
-        send.click();
+        try {
+            log.info("Click on '" + send.getElementName());
+            send.click();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

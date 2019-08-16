@@ -17,12 +17,12 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
     public GMailMainImpl() {
         super(By.cssSelector(MAIN_PAGE_CSSLOCATOR));
-        title = findWrapElement(By.xpath("//a[@class ='gb_me gb_pc gb_ke']"));
-        compose = findWrapElement(By.xpath("//div[@class = 'T-I J-J5-Ji T-I-KE L3']"), ElementType.BUTTON);
+        title = findWrapElement("title", By.xpath("//a[@class ='gb_me gb_pc gb_ke']"), ElementType.DEFAULT);
+        compose = findWrapElement("compose", By.xpath("//div[@class = 'T-I J-J5-Ji T-I-KE L3']"), ElementType.BUTTON);
         composeBy = By.xpath("//div[@class = 'T-I J-J5-Ji T-I-KE L3']");
-        accountMenu = findWrapElement(By.xpath("//a[@class = 'gb_z gb_Ia gb_g']/span[@class =" +
-                " 'gb_Ba gbii']"));
-        logout = findWrapElement(By.xpath("//div[@class = 'gb_5f gb_sb']/div/a[@class =" +
+        accountMenu = findWrapElement("accountMenu", By.xpath("//a[@class = 'gb_z gb_Ia gb_g']/span[@class =" +
+                " 'gb_Ba gbii']"), ElementType.DEFAULT);
+        logout = findWrapElement("logout", By.xpath("//div[@class = 'gb_5f gb_sb']/div/a[@class =" +
                 " 'gb_4 gb_8f gb_gg gb_Qe gb_tb']"), ElementType.BUTTON);
     }
 
@@ -31,27 +31,25 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
         //try to find element BUTTON
         //driver.findElement(...)
         //Click on BTN_NAME
-        // WebElement el = ElementWaiters.waitForPresence(composeBy,20);
         ElementWaiters.wait(7);
-        log.info("Click on compose button");
+        log.info("Click on " + compose.getElementName());
         compose.click();
     }
 
     @Override
     public String getTitle() {
-  //      WebElement titleElement = this.findElement(By.xpath("//a[@class ='gb_me gb_pc gb_ke']"));
         return title.getAttribute("title");
     }
 
     @Override
     public void openAccountMenu() {
-        log.info("Click on account menu button");
+        log.info("Click on " + accountMenu.getElementName());
         accountMenu.click();
     }
 
     @Override
     public void clickLogout() {
-        log.info("Click to logout");
+        log.info("Click on " + logout.getElementName());
         logout.click();
     }
 

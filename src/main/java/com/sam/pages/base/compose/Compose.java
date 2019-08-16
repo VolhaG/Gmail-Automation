@@ -1,8 +1,8 @@
 package com.sam.pages.base.compose;
 
-import com.sam.pages.base.main.Main;
+import com.sam.components.Content;
 
-public interface Compose extends Main {
+public interface Compose extends Content {
 
     void writeLetter(String startBody, String body, String endBody);
 

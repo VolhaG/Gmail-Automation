@@ -16,7 +16,7 @@ public class GMailComposePageImpl extends PageImpl<Compose> implements GMailComp
         content.setRecipient(recipient);
         content.setSubject(subject);
         content.writeLetter(letter);
-        return new GMailComposePageImpl();
+        return this;
     }
 
     @Override
@@ -24,12 +24,15 @@ public class GMailComposePageImpl extends PageImpl<Compose> implements GMailComp
         content.setRecipient(to);
         content.setSubject(topic);
         content.writeLetter(letterStart, letterBody, letterEnd);
-        return new GMailComposePageImpl();
+        return this;
     }
 
     @Override
     public GMailMainPage sendLetter() {
         content.sendLetter();
+        if (AlertAbsentRecipient.exists()) {
+            AlertAbsentRecipient.close();
+        }
         return new GMailMainPageImpl();
     }
 

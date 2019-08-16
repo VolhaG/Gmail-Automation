@@ -1,9 +1,12 @@
 package com.sam.pages.gmail.login;
 
-import com.sam.webelement.*;
+import com.sam.webelement.Button;
+import com.sam.webelement.ElementType;
+import com.sam.webelement.Input;
+import com.sam.webelement.WrapElementImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
 
 public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
@@ -17,19 +20,19 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     GMailLoginImpl() {
         super(by);
-        continueBtn = findWrapElement(By.xpath("//span[@class = 'RveJvd snByac']"), ElementType.BUTTON);
-        login = findWrapElement( By.id("identifierId"), ElementType.INPUT);
-        password = findWrapElement(By.name("password"), ElementType.INPUT);
+        continueBtn = findWrapElement("continue", By.xpath("//span[@class = 'RveJvd snByac']"), ElementType.BUTTON);
+        login = findWrapElement("login", By.id("identifierId"), ElementType.INPUT);
+        password = findWrapElement("password", By.name("password"), ElementType.INPUT);
     }
 
-    public Boolean existsDefElement(){
-        return existsDefElement(logoBy,20);
+    public Boolean existsDefElement() {
+        return existsDefElement(logoBy, 20);
     }
 
     @Override
     public void clickNext() {
+        log.info("Click on" + continueBtn.getElementName());
         continueBtn.click();
-        log.info("Click continue button");
     }
 
     @Override
@@ -39,14 +42,14 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     @Override
     public void inputEmail(String email) {
+        log.info("Set text '" + email + "' in " + login.getElementName());
         login.setText(email);
-        log.info("Log in with email: "+ email);
     }
 
     @Override
     public void inputPassword(String pwd) {
+        log.info("Set text '" + pwd + "' in " + password.getElementName());
         password.setText(pwd);
-        log.info("Log in with password: "+ pwd);
     }
 
 }
