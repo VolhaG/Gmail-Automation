@@ -18,7 +18,6 @@ public class PageImpl<C extends Content> implements Page<C> {
         return WebDriverProvider.getInstance().get();
     }
 
-
     protected void delay(int delay) {
         try {
             Thread.sleep(delay);

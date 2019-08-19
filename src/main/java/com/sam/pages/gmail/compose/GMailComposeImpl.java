@@ -22,17 +22,18 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
     GMailComposeImpl() {
         super(By.xpath(GMAIL_COMPOSE_IDLOCATOR));
-        send = findWrapElement("send", By.xpath("//div[@class = 'dC']/div"), ElementType.BUTTON);
+        sendBy = By.xpath("//div[@class = 'dC']/div");
+        closeBy = By.xpath("//td[@class = 'Hm']/img[3]");
+        send = findWrapElement("send", sendBy, ElementType.BUTTON);
         recipient = findWrapElement("recipient", By.xpath("//div[@class = 'wO nr l1']/textarea"), ElementType.INPUT);
         subject = findWrapElement("subject", By.xpath("//input[@name = 'subjectbox']"), ElementType.INPUT);
         letter = findWrapElement("letter", By.xpath("//div[@class = 'Am Al editable LW-avf']"), ElementType.INPUT);
         close = findWrapElement("close", By.xpath("//td[@class = 'Hm']/img[3]"), ElementType.INPUT);
-        sendBy = By.xpath("//div[@class = 'dC']/div");
-        closeBy = By.xpath("//td[@class = 'Hm']/img[3]");
     }
 
     @Override
     public Boolean existsDefElement() {
+        log.info("Wait for page identifier " + send.getElementName());
         return existsDefElement(sendBy, 20);
     }
 
@@ -60,7 +61,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
     }
 
     @Override
-    public void setSubject(String topic) {
+    public void setTopic(String topic) {
         log.info("Set text '" + topic + "' in " + subject.getElementName());
         subject.setText(topic);
         subject.addText(String.valueOf(Keys.ENTER));

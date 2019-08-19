@@ -1,5 +1,6 @@
 package com.sam;
 
+import com.sam.utils.BaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

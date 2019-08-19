@@ -5,7 +5,7 @@ import com.sam.pages.gmail.main.GMailMainPage;
 
 public interface GMailComposePage extends ComposePage {
 
-     GMailComposePage writeLetter(String recipient, String subject, String letter);
+     GMailComposePage writeLetter(String recipient, String topic, String letter);
 
      GMailComposePage writeLetter(String to, String topic, String letterBody,  String letterStart, String letterEnd);
 

@@ -5,6 +5,7 @@ import com.sam.pages.gmail.compose.GMailComposePage;
 import com.sam.pages.gmail.login.GMailLoginPage;
 import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
+import com.sam.pages.gmail.sent.GMailSentPage;
 import com.sam.pageservice.LoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,11 +18,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GMailTests extends GmailBaseTest {
 
     private static Logger log = LogManager.getLogger("ExistingAccountLogin");
-    private GMailLoginPage loginPage = null;// = LoginService.initFor(GMailLoginPage.class);
+    private GMailLoginPage loginPage = null;
+    private String letterRecipient;
+    private String letterTopic;
+    private String letterBody;
 
     private void init(){
         if (loginPage == null) {
-         loginPage = LoginService.initFor(GMailLoginPage.class);}
+            loginPage = LoginService.initFor(GMailLoginPage.class);
+            letterRecipient = "tt7381566@gmail.com";
+            letterTopic = "New";
+            letterBody = "Hello! How are you?";
+        }
     }
 
     @BeforeMethod
@@ -57,38 +65,43 @@ public class GMailTests extends GmailBaseTest {
     void composeLetter() {
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
-        gmailComposePage.writeLetter("tt7381566@gmail.com", "New","Hello! How are you?")
+        gmailMainPage = gmailComposePage.writeLetter(letterRecipient, letterTopic, letterBody)
                 .sendLetter();
         assertThat(gmailMainPage.exists()).as("Composing letter passed successful.").isTrue();
-        //TODO check that letter sent
+        GMailSentPage gMailSentPage = gmailMainPage.openSent();
+        Boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, letterTopic, letterBody);
+        assertThat(letterIsSent).as("Letter is sent.").isTrue();
     }
 
     @Test(priority = 3)
     void tryToSendLetterWithoutRecipient() {
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
-        gmailComposePage.writeLetter(" ", "New","Hello! How are you?").sendLetter();
-        gmailComposePage.closePage();
-        //TODO check that letter wasn't sent
+        gmailComposePage.writeLetter(" ", letterTopic, letterBody).sendLetter();
+        GMailSentPage gMailSentPage = gmailMainPage.openSent();
+        Boolean letterIsSent = gMailSentPage.checkIfLetterSent(" ", letterTopic, letterBody);
+        assertThat(letterIsSent).as("Letter is sent without recipient.").isTrue();
     }
 
     @Test(priority = 4)
     void tryToSendLetterWithoutSubject() {
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
-        gmailComposePage.writeLetter("tt7381566@gmail.com", " ","Hello! How are you?")
+        gmailComposePage.writeLetter(letterRecipient, " ", letterBody)
                         .sendLetter();
-        //TODO check that letter sent
-        assertThat(gmailMainPage.exists()).as("Sending letter without subject is successful.").isTrue();
+        GMailSentPage gMailSentPage = gmailMainPage.openSent();
+        Boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, " ", letterBody);
+        assertThat(letterIsSent).as("Letter was sent without subject.").isTrue();
     }
 
     @Test(priority = 5)
     void tryToSendLetterWithoutBody() {
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         GMailComposePage gmailComposePage = (GMailComposePage)gmailMainPage.compose();
-        gmailComposePage.writeLetter("tt7381566@gmail.com", "New"," ").sendLetter();
-        //TODO check that letter sent
-        assertThat(gmailMainPage.exists()).as("Sending letter without body is successful.").isTrue();
+        gmailComposePage.writeLetter(letterRecipient, letterTopic, " ").sendLetter();
+        GMailSentPage gMailSentPage = gmailMainPage.openSent();
+        Boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, letterTopic, " ");
+        assertThat(letterIsSent).as("Letter was sent without body.").isTrue();
     }
 
 }

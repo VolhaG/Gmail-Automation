@@ -12,4 +12,6 @@ public interface Main extends Content {
 
     void clickLogout();
 
+    void clickSent();
+
 }

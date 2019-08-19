@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 
 public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
+    private static final Integer timeToWait = 5;
     private static final String MAIN_PAGE_CSSLOCATOR = "div.nH";
     private static Logger log = LogManager.getLogger();
     private WrapElement title;
@@ -14,7 +15,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
     private By composeBy;
     private WrapElement accountMenu;
     private Button logout;
-    private static final Integer timeToWait = 5;
+    private WrapElement sent;
 
     public GMailMainImpl() {
         super(By.cssSelector(MAIN_PAGE_CSSLOCATOR));
@@ -25,6 +26,8 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
                 " 'gb_Ba gbii']"), ElementType.DEFAULT);
         logout = findWrapElement("logout", By.xpath("//div[@class = 'gb_5f gb_sb']/div/a[@class =" +
                 " 'gb_4 gb_8f gb_gg gb_Qe gb_tb']"), ElementType.BUTTON);
+
+        sent = findWrapElement("sent", By.xpath(""), ElementType.DEFAULT);
     }
 
     @Override
@@ -55,7 +58,14 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
     }
 
     @Override
+    public void clickSent() {
+        log.info("Click on " + sent.getElementName());
+        sent.click();
+    }
+
+    @Override
     public Boolean existsDefElement() {
+        log.info("Wait for page identifier " + compose.getElementName());
         ElementWaiters.wait(timeToWait);
         return existsDefElement(composeBy, timeToWait);
     }

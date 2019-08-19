@@ -6,7 +6,7 @@ public interface Compose extends Content {
 
     void writeLetter(String startBody, String body, String endBody);
 
-    void setSubject(String subject);
+    void setTopic(String subject);
 
     void setRecipient(String subject);
 
