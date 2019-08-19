@@ -1,4 +1,4 @@
-package com.sam.pages.gmail.main.compose_letter;
+package com.sam.pages.gmail.compose;
 
 import com.sam.webelement.*;
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +18,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
     private By sendBy;
     private By closeBy;
+    private static final Integer timeToWait = 5;
 
     GMailComposeImpl() {
         super(By.xpath(GMAIL_COMPOSE_IDLOCATOR));
@@ -54,7 +55,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
     @Override
     public void close() {
         log.info("Click on " + close.getElementName());
-        ElementWaiters.wait(5);
+        ElementWaiters.wait(timeToWait);
         close.click();
     }
 
@@ -67,7 +68,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
     @Override
     public void setRecipient(String mail) {
-        ElementWaiters.wait(3);
+        ElementWaiters.wait(timeToWait);
         log.info("Set text '" + mail + "' in " + recipient.getElementName());
         recipient.setText(mail);
         recipient.addText(String.valueOf(Keys.ENTER));

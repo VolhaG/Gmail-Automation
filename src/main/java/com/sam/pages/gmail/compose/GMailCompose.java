@@ -1,4 +1,4 @@
-package com.sam.pages.gmail.main.compose_letter;
+package com.sam.pages.gmail.compose;
 
 import com.sam.pages.base.compose.Compose;
 

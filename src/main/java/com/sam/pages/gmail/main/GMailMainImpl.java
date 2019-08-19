@@ -14,6 +14,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
     private By composeBy;
     private WrapElement accountMenu;
     private Button logout;
+    private static final Integer timeToWait = 5;
 
     public GMailMainImpl() {
         super(By.cssSelector(MAIN_PAGE_CSSLOCATOR));
@@ -28,11 +29,11 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
     @Override
     public void clickCompose() {
-        //try to find element BUTTON
-        //driver.findElement(...)
-        //Click on BTN_NAME
-        ElementWaiters.wait(7);
-        log.info("Click on " + compose.getElementName());
+        //TODO try to find element BUTTON
+        //TODO driver.findElement(...)
+        //TODO Click on BTN_NAME
+        ElementWaiters.wait(timeToWait);
+
         compose.click();
     }
 
@@ -55,8 +56,8 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
     @Override
     public Boolean existsDefElement() {
-        ElementWaiters.wait(7);
-        return existsDefElement(composeBy, 20);
+        ElementWaiters.wait(timeToWait);
+        return existsDefElement(composeBy, timeToWait);
     }
 
 }

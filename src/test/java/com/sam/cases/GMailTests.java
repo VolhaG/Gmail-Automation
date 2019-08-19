@@ -1,11 +1,10 @@
 package com.sam.cases;
 
 import com.sam.GmailBaseTest;
+import com.sam.pages.gmail.compose.GMailComposePage;
 import com.sam.pages.gmail.login.GMailLoginPage;
 import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
-import com.sam.pages.gmail.main.compose_letter.AlertAbsentRecipient;
-import com.sam.pages.gmail.main.compose_letter.GMailComposePage;
 import com.sam.pageservice.LoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,7 +32,7 @@ public class GMailTests extends GmailBaseTest {
         if (!(method.getName().equals("login"))) {
             GMailMainPage gmailMainPage = loginPage.login(email, password);
             assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
-            log.info("Authentication passed successfull");
+            log.info("Authentication passed successful");
         }
     }
 

@@ -3,9 +3,9 @@ package com.sam.pages.gmail.main;
 import com.sam.pages.PageImpl;
 import com.sam.pages.base.login.LoginPage;
 import com.sam.pages.base.main.Main;
+import com.sam.pages.gmail.compose.GMailComposePage;
+import com.sam.pages.gmail.compose.GMailComposePageImpl;
 import com.sam.pages.gmail.login.GMailLoginPageImpl;
-import com.sam.pages.gmail.main.compose_letter.GMailComposePage;
-import com.sam.pages.gmail.main.compose_letter.GMailComposePageImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

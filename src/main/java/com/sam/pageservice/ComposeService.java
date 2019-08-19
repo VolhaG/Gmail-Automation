@@ -1,8 +1,8 @@
 package com.sam.pageservice;
 
 import com.sam.pages.base.compose.ComposePage;
-import com.sam.pages.gmail.main.compose_letter.GMailComposePage;
-import com.sam.pages.gmail.main.compose_letter.GMailComposePageImpl;
+import com.sam.pages.gmail.compose.GMailComposePage;
+import com.sam.pages.gmail.compose.GMailComposePageImpl;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
