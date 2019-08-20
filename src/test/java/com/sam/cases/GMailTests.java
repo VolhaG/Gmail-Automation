@@ -91,7 +91,7 @@ public class GMailTests extends GmailBaseTest {
                         .sendLetter();
         GMailSentPage gMailSentPage = gmailMainPage.openSent();
         Boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, " ", letterBody);
-        assertThat(letterIsSent).as("Letter was sent without subject.").isTrue();
+        assertThat(letterIsSent).as("Letter is sent without subject.").isTrue();
     }
 
     @Test(priority = 5)
@@ -101,7 +101,7 @@ public class GMailTests extends GmailBaseTest {
         gmailComposePage.writeLetter(letterRecipient, letterTopic, " ").sendLetter();
         GMailSentPage gMailSentPage = gmailMainPage.openSent();
         Boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, letterTopic, " ");
-        assertThat(letterIsSent).as("Letter was sent without body.").isTrue();
+        assertThat(letterIsSent).as("Letter is sent without body.").isTrue();
     }
 
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.Keys;
 public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
     private static Logger log = LogManager.getLogger();
-    private static final String GMAIL_COMPOSE_IDLOCATOR = "//div[@class = \"nH Hd\"]";
+    private static final By INITIAL_LOCATOR = By.cssSelector("div.nH.Hd[role = 'dialog']");
     private Button send;
     private Input recipient;
     private Input subject;
@@ -21,14 +21,14 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
     private static final Integer timeToWait = 5;
 
     GMailComposeImpl() {
-        super(By.xpath(GMAIL_COMPOSE_IDLOCATOR));
-        sendBy = By.xpath("//div[@class = 'dC']/div");
-        closeBy = By.xpath("//td[@class = 'Hm']/img[3]");
+        super(INITIAL_LOCATOR);
+        sendBy = By.cssSelector("div.dC div");
+        closeBy = By.cssSelector("tr td:nth-child(2) img:nth-child(3)");
         send = findWrapElement("send", sendBy, ElementType.BUTTON);
-        recipient = findWrapElement("recipient", By.xpath("//div[@class = 'wO nr l1']/textarea"), ElementType.INPUT);
-        subject = findWrapElement("subject", By.xpath("//input[@name = 'subjectbox']"), ElementType.INPUT);
-        letter = findWrapElement("letter", By.xpath("//div[@class = 'Am Al editable LW-avf']"), ElementType.INPUT);
-        close = findWrapElement("close", By.xpath("//td[@class = 'Hm']/img[3]"), ElementType.INPUT);
+        recipient = findWrapElement("recipient", By.cssSelector("textarea[name = 'to']"), ElementType.INPUT);
+        subject = findWrapElement("subject", By.cssSelector("input[name = 'subjectbox']"), ElementType.INPUT);
+        letter = findWrapElement("letter", By.cssSelector("div[role = 'textbox']"), ElementType.INPUT);
+        close = findWrapElement("close", By.cssSelector("tr td:nth-child(2) img:nth-child(3)"), ElementType.INPUT);
     }
 
     @Override

@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     private static Logger log = LogManager.getLogger();
-    private static final String LOGIN_PAGE_CSSLOCATOR = "div#initialView";
+    private static final String LOGIN_PAGE_CSSLOCATOR = "div[id= 'view_container']";
     private static final By initialElement = By.cssSelector(LOGIN_PAGE_CSSLOCATOR);
     private static final By logoBy = By.cssSelector("div#logo");
     private WrapElement pageIdentifier;
@@ -19,9 +19,9 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
     GMailLoginImpl() {
         super(initialElement);
         pageIdentifier = findWrapElement("pageIdentifier", logoBy, ElementType.DEFAULT);
-        continueBtn = findWrapElement("continue", By.xpath("//span[@class = 'RveJvd snByac']"), ElementType.BUTTON);
-        login = findWrapElement("login", By.id("identifierId"), ElementType.INPUT);
-        password = findWrapElement("password", By.name("password"), ElementType.INPUT);
+        continueBtn = findWrapElement("continue", By.cssSelector("span.CwaK9"), ElementType.BUTTON);
+        login = findWrapElement("login", By.cssSelector("input[id = 'identifierId']"), ElementType.INPUT);
+        password = findWrapElement("password", By.cssSelector("input[type= 'password']"), ElementType.INPUT);
     }
 
     public Boolean existsDefElement() {
@@ -31,7 +31,7 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     @Override
     public void clickNext() {
-        log.info("Click on" + continueBtn.getElementName());
+        log.info("Click on " + continueBtn.getElementName());
         continueBtn.click();
     }
 

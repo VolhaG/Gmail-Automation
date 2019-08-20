@@ -6,6 +6,7 @@ import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
 
 public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPage {
@@ -22,13 +23,14 @@ public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPag
             log.info("Try to log in with email: " + email);
             content.inputEmail(email);
             content.clickNext();
-        } catch (NoSuchElementException ex) {
+        } catch (NoSuchElementException| ElementNotInteractableException ex) {
             log.info("Continue authentification without email.");
         }
-        delay(1_000);
+        delay(1);
         log.info("Try to log in with password: " + password);
         content.inputPassword(password);
         content.clickNext();
+        delay(5);
         return new GMailMainPageImpl();
     }
 

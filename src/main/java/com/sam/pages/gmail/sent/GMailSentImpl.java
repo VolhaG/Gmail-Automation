@@ -8,6 +8,8 @@ import com.sam.webelement.WrapElementImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import java.util.List;
 
 public class GMailSentImpl extends WrapElementImpl implements GMailSent {
@@ -48,7 +50,8 @@ public class GMailSentImpl extends WrapElementImpl implements GMailSent {
 
     @Override
     public List<GMailTableColumns> getGMailTable() {
-        List<GMailTableColumns> gmailTable = getTable(findElement(By.cssSelector("table.F.cf.zt")), GMailTableColumns.class);
+        WebElement el = new WrapElementImpl(By.cssSelector("table.F.cf.zt")).getWebElement();
+        List<GMailTableColumns> gmailTable = getTable(el, GMailTableColumns.class);
         for (GMailTableColumns row: gmailTable ) {
             row.setEmail(By.cssSelector("span[name]"));
             row.setTopic(By.cssSelector(" td:nth-child(6) span span"));

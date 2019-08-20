@@ -20,7 +20,7 @@ public class PageImpl<C extends Content> implements Page<C> {
 
     protected void delay(int delay) {
         try {
-            Thread.sleep(delay);
+            Thread.sleep(delay * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
