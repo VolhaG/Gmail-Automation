@@ -13,14 +13,14 @@ import java.util.List;
 public class GMailSentImpl extends WrapElementImpl implements GMailSent {
 
     private static final Integer TIME_TO_WAIT = 5;
-    private static final By INITIAL_LOCATOR = By.cssSelector("table[id = ':r8']");
+    private static final By INITIAL_LOCATOR = By.cssSelector("table.F.cf.zt");
     private static Logger log = LogManager.getLogger();
     private WrapElement pageIdentifier;
     private WrapElement tableIdentifier;
 
     GMailSentImpl() {
         super(INITIAL_LOCATOR);
-        tableIdentifier = findWrapElement("tableIdentifier", By.cssSelector("table[id = ':r8']"), ElementType.DEFAULT);
+        tableIdentifier = findWrapElement("tableIdentifier", By.cssSelector("table.F.cf.zt"), ElementType.DEFAULT);
         pageIdentifier = findWrapElement("pageIdentifier", INITIAL_LOCATOR, ElementType.DEFAULT);
     }
 
@@ -48,11 +48,11 @@ public class GMailSentImpl extends WrapElementImpl implements GMailSent {
 
     @Override
     public List<GMailTableColumns> getGMailTable() {
-        List<GMailTableColumns> gmailTable = getTable(findElement(By.cssSelector("table[id = ':r8']")), GMailTableColumns.class);
+        List<GMailTableColumns> gmailTable = getTable(findElement(By.cssSelector("table.F.cf.zt")), GMailTableColumns.class);
         for (GMailTableColumns row: gmailTable ) {
-            row.setEmail(By.cssSelector(""));
-            row.setTopic(By.cssSelector(""));
-            row.setLetterBody(By.cssSelector(""));
+            row.setEmail(By.cssSelector("span[name]"));
+            row.setTopic(By.cssSelector(" td:nth-child(6) span span"));
+            row.setLetterBody(By.cssSelector("td:nth-child(6) span:nth-child(3) span"));
         }
         return gmailTable;
     }
