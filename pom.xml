@@ -21,13 +21,6 @@
     </build>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.sam_solutions</groupId>-->
-<!--            <artifactId>configurations-module</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/lib/configurations-module-1.0-SNAPSHOT.jar</systemPath>-->
-<!--        </dependency>-->
 
         <dependency>
         <groupId>com.sam_solutions</groupId>
@@ -40,14 +33,6 @@
             <artifactId>selenium-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>com.sam_solutions</groupId>-->
-<!--            <artifactId>selenium-common</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/lib/selenium-common-1.0-SNAPSHOT.jar</systemPath>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>

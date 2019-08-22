@@ -33,7 +33,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
     @Override
     public Boolean existsDefElement() {
-        log.info("Wait for page identifier " + send.getElementName());
+        log.info("Wait for compose page identifier.." );
         return existsDefElement(sendBy, 20);
     }
 
@@ -78,7 +78,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
     @Override
     public void sendLetter() {
         try {
-            log.info("Click on '" + send.getElementName());
+            log.info("Click on " + send.getElementName());
             send.click();
         } catch (Exception ex) {
             ex.printStackTrace();

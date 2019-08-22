@@ -6,8 +6,6 @@ public interface Login extends Content {
 
     void clickNext();
 
-    String getTitle();
-
     void inputEmail(String email);
 
     void inputPassword(String email);

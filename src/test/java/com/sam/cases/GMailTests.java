@@ -2,53 +2,24 @@ package com.sam.cases;
 
 import com.sam.GmailBaseTest;
 import com.sam.pages.gmail.compose.GMailComposePage;
-import com.sam.pages.gmail.login.GMailLoginPage;
 import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
 import com.sam.pages.gmail.sent.GMailSentPage;
-import com.sam.pageservice.LoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.*;
-
-import java.lang.reflect.Method;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GMailTests extends GmailBaseTest {
 
-    private static Logger log = LogManager.getLogger("ExistingAccountLogin");
-    private GMailLoginPage loginPage = null;
-    private String letterRecipient;
-    private String letterTopic;
-    private String letterBody;
+    private static Logger log = LogManager.getLogger(GMailTests.class);
 
-    private void init(){
-        if (loginPage == null) {
-            loginPage = LoginService.initFor(GMailLoginPage.class);
-            letterRecipient = "tt7381566@gmail.com";
-            letterTopic = "New";
-            letterBody = "Hello! How are you?";
-        }
-    }
-
-    @BeforeMethod
-    @Parameters({"email", "password"})
-    void setUp(Method method, String email, String password) {
-        init();
-        log.info("Start " + method.getName() + " test...");
-        if (!(method.getName().equals("login"))) {
-            GMailMainPage gmailMainPage = loginPage.login(email, password);
-            assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
-            log.info("Authentication passed successful");
-        }
-    }
-
-    @AfterMethod
-    void finish(Method  method) {
-        GMailMainPage gmailMainPage = new GMailMainPageImpl();
-        gmailMainPage.logout();
-        log.info("End " + method.getName() + " test...");
+    private void logIn(String email, String password) {
+        GMailMainPage gmailMainPage = loginPage.login(email, password);
+        assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
+        log.info("Authentication passed successful");
     }
 
     @Test(priority = 1)
@@ -62,7 +33,9 @@ public class GMailTests extends GmailBaseTest {
     }
 
     @Test(priority = 2)
-    void composeLetter() {
+    @Parameters({"email", "password"})
+    void composeLetter(String email, String password) {
+        logIn(email, password);
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
         gmailMainPage = gmailComposePage.writeLetter(letterRecipient, letterTopic, letterBody)
@@ -74,33 +47,39 @@ public class GMailTests extends GmailBaseTest {
     }
 
     @Test(priority = 3)
-    void tryToSendLetterWithoutRecipient() {
+    @Parameters({"email", "password"})
+    void tryToSendLetterWithoutRecipient(String email, String password) {
+        logIn(email, password);
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
-        gmailComposePage.writeLetter(" ", letterTopic, letterBody).sendLetter();
+        gmailComposePage.writeLetter("", letterTopic, letterBody).sendLetter();
         GMailSentPage gMailSentPage = gmailMainPage.openSent();
-        Boolean letterIsSent = gMailSentPage.checkIfLetterSent(" ", letterTopic, letterBody);
-        assertThat(letterIsSent).as("Letter is sent without recipient.").isTrue();
+        Boolean letterIsSent = gMailSentPage.checkIfLetterSent("", letterTopic, letterBody);
+        assertThat(letterIsSent).as("Letter is sent without recipient.").isFalse();
     }
 
     @Test(priority = 4)
-    void tryToSendLetterWithoutSubject() {
+    @Parameters({"email", "password"})
+    void tryToSendLetterWithoutSubject(String email, String password) {
+        logIn(email, password);
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
-        gmailComposePage.writeLetter(letterRecipient, " ", letterBody)
-                        .sendLetter();
+        gmailComposePage.writeLetter(letterRecipient, "", letterBody)
+                .sendLetter();
         GMailSentPage gMailSentPage = gmailMainPage.openSent();
-        Boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, " ", letterBody);
+        Boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, "", letterBody);
         assertThat(letterIsSent).as("Letter is sent without subject.").isTrue();
     }
 
     @Test(priority = 5)
-    void tryToSendLetterWithoutBody() {
+    @Parameters({"email", "password"})
+    void tryToSendLetterWithoutBody(String email, String password) {
+        logIn(email, password);
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
-        GMailComposePage gmailComposePage = (GMailComposePage)gmailMainPage.compose();
-        gmailComposePage.writeLetter(letterRecipient, letterTopic, " ").sendLetter();
+        GMailComposePage gmailComposePage = (GMailComposePage) gmailMainPage.compose();
+        gmailComposePage.writeLetter(letterRecipient, letterTopic, "").sendLetter();
         GMailSentPage gMailSentPage = gmailMainPage.openSent();
-        Boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, letterTopic, " ");
+        Boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, letterTopic, "");
         assertThat(letterIsSent).as("Letter is sent without body.").isTrue();
     }
 

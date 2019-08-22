@@ -5,7 +5,7 @@ import com.sam.webelement.WrapElement;
 import com.sam.webelement.WrapElementImpl;
 import org.openqa.selenium.By;
 
-abstract public class GMailTableColumns extends AbstractTable {
+public class GMailTableColumns extends AbstractTable {
 
     protected WrapElement time;
     protected WrapElement email;

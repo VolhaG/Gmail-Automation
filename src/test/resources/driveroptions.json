@@ -59,7 +59,7 @@
   "settings": {
     "width": 0,
     "height": 0,
-    "pageLoadTimeout": 5,
-    "scriptTimeout": 5
+    "pageLoadTimeout": 15,
+    "scriptTimeout": 15
   }
 }

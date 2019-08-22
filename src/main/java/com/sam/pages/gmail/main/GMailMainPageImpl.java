@@ -21,12 +21,14 @@ public class GMailMainPageImpl extends PageImpl<Main> implements GMailMainPage {
 
     @Override
     public GMailComposePage compose() {
+        log.info("Compose letter..");
         content.clickCompose();
         return new GMailComposePageImpl();
     }
 
     @Override
     public GMailLoginPage logout() {
+        log.info("Try to log out..");
         content.openAccountMenu();
         content.clickLogout();
         return new GMailLoginPageImpl();
@@ -34,7 +36,9 @@ public class GMailMainPageImpl extends PageImpl<Main> implements GMailMainPage {
 
     @Override
     public GMailSentPage openSent() {
+        log.info("Open menu with sent letters..");
         content.clickSent();
+        delay(3);
         return new GMailSentPageImpl();
     }
 

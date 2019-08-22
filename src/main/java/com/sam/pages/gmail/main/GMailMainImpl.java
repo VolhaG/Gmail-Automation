@@ -23,15 +23,12 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
         compose = findWrapElement("compose", By.cssSelector("div.T-I.J-J5-Ji.T-I-KE.L3"), ElementType.BUTTON);
         composeBy = By.cssSelector("div.T-I.J-J5-Ji.T-I-KE.L3");
         accountMenu = findWrapElement("accountMenu", By.cssSelector("span.gb_Ba.gbii"), ElementType.DEFAULT);
-        logout = findWrapElement("logout", By.cssSelector("a.gb_4.gb_8f.gb_gg.gb_Qe.gb_tb"), ElementType.BUTTON);
+        logout = findWrapElement("logout", By.cssSelector("div.gb_6f.gb_sb div:nth-child(2) a"), ElementType.BUTTON);
         sent = findWrapElement("sent", By.cssSelector("div.aim:nth-child(4) span.nU"), ElementType.DEFAULT);
     }
 
     @Override
     public void clickCompose() {
-        //TODO try to find element BUTTON
-        //TODO driver.findElement(...)
-        //TODO Click on BTN_NAME
         ElementWaiters.wait(timeToWait);
         compose.click();
     }
@@ -61,8 +58,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
     @Override
     public Boolean existsDefElement() {
-        log.info("Wait for page identifier " + compose.getElementName());
-        ElementWaiters.wait(timeToWait);
+        log.info("Wait for main page identifier..");
         return existsDefElement(composeBy, timeToWait);
     }
 
