@@ -21,7 +21,7 @@ public abstract class GmailBaseTest extends BaseTest {
     protected String letterTopic;
     protected String letterBody;
 
-    private void init(){
+    private void init() {
         if (loginPage == null) {
             loginPage = LoginService.initFor(GMailLoginPage.class);
             letterRecipient = "tt7381566@gmail.com";
@@ -39,20 +39,16 @@ public abstract class GmailBaseTest extends BaseTest {
 
     @AfterMethod
     @Override
-    public void clearTest(Method  method, ITestResult testResult) {
+    public void clearTest(Method method, ITestResult testResult) {
         if (!testResult.isSuccess()) {
             log.info("Test is failed. Taking screenshot..");
             ScreenshotsUtil.takeScreenshot();
             log.info("Screenshot of failed method " + method.getName() + " is in " + ScreenshotsUtil.getScreenshotsPath());
         }
-        try {
-            GMailMainPage gmailMainPage = new GMailMainPageImpl();
-            gmailMainPage.logout();
-            super.clearTest(method, testResult);
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
+
+        GMailMainPage gmailMainPage = new GMailMainPageImpl();
+        gmailMainPage.logout();
+        super.clearTest(method, testResult);
     }
 
 }
