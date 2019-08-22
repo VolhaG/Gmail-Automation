@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public class GMailSentPageImpl extends PageImpl<Sent> implements GMailSentPage {
 
-    Logger log = LogManager.getLogger("GMailSentPageImpl");
+    Logger log = LogManager.getLogger(GMailSentPageImpl.class);
 
     public GMailSentPageImpl() {
         super(new GMailSentImpl());

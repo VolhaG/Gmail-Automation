@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 public class GMailMainPageImpl extends PageImpl<Main> implements GMailMainPage {
 
-    Logger log = LogManager.getLogger("GMailMainPageImpl");
+    Logger log = LogManager.getLogger(GMailMainPageImpl.class);
 
     public GMailMainPageImpl() {
         super(new GMailMainImpl());

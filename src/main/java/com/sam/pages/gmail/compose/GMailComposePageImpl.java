@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 public class GMailComposePageImpl extends PageImpl<Compose> implements GMailComposePage {
 
-    private static Logger log = LogManager.getLogger("GMailComposePageImpl");
+    private static Logger log = LogManager.getLogger(GMailComposePageImpl.class);
 
     public GMailComposePageImpl() {
         super(new GMailComposeImpl());

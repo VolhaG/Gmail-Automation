@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class ScreenshotsUtil {
 
-    private static Logger log = LogManager.getLogger("ScreenshotsUtil");
+    private static Logger log = LogManager.getLogger(ScreenshotsUtil.class);
 
     private static WebDriverProvider provider = WebDriverProvider.getInstance();
 

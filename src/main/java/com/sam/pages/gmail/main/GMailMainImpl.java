@@ -9,7 +9,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
     private static final Integer timeToWait = 9;
     private static final By INITIAL_LOCATOR = By.cssSelector("div.nH");
-    private static Logger log = LogManager.getLogger();
+    private static Logger log = LogManager.getLogger(GMailMainImpl.class);
     private WrapElement title;
     private Button compose;
     private By composeBy;

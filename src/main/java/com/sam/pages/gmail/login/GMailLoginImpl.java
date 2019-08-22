@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 
 public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
-    private static Logger log = LogManager.getLogger();
+    private static Logger log = LogManager.getLogger(GMailLoginImpl.class);
     private static final String LOGIN_PAGE_CSSLOCATOR = "div[id= 'view_container']";
     private static final By initialElement = By.cssSelector(LOGIN_PAGE_CSSLOCATOR);
     private Button continueBtn;

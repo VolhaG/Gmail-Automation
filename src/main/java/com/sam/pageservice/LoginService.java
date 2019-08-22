@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class LoginService {
 
-    private static Logger log = LogManager.getLogger("LoginService");
+    private static Logger log = LogManager.getLogger(LoginService.class);
     private LoginService() {
     }
 

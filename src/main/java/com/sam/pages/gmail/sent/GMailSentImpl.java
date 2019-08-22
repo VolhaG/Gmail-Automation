@@ -14,7 +14,7 @@ import java.util.List;
 
 public class GMailSentImpl extends WrapElementImpl implements GMailSent {
 
-    private static Logger log = LogManager.getLogger();
+    private static Logger log = LogManager.getLogger(GMailSentImpl.class);
     private static final Integer TIME_TO_WAIT = 5;
     private static final By INITIAL_LOCATOR = By.cssSelector("table.F.cf.zt");
     private WrapElement tableIdentifier;

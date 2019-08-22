@@ -8,7 +8,7 @@ import org.openqa.selenium.Keys;
 
 public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
-    private static Logger log = LogManager.getLogger();
+    private static Logger log = LogManager.getLogger(GMailComposeImpl.class);
     private static final By INITIAL_LOCATOR = By.cssSelector("div.nH.Hd[role = 'dialog']");
     private Button send;
     private Input recipient;

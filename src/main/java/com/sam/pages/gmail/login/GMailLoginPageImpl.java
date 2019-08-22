@@ -11,7 +11,7 @@ import org.openqa.selenium.NoSuchElementException;
 
 public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPage {
 
-    private static Logger log = LogManager.getLogger();
+    private static Logger log = LogManager.getLogger(GMailLoginPageImpl.class);
 
     public GMailLoginPageImpl() {
         super(new GMailLoginImpl());
