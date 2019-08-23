@@ -3,6 +3,7 @@ package com.sam.pageservice;
 import com.sam.pages.base.compose.ComposePage;
 import com.sam.pages.gmail.compose.GMailComposePage;
 import com.sam.pages.gmail.compose.GMailComposePageImpl;
+import com.sam.utils.IllegalAssignableClassesException;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -30,7 +31,7 @@ public class ComposeService {
             throw new NullPointerException("Implementation is absent for interface " + composePageInterface.toString());
         }
         if (!composePageInterface.isAssignableFrom(impl)) {
-            throw new IllegalArgumentException("Implementation is not assigned with interface.");
+            throw new IllegalAssignableClassesException("Implementation is not assigned with interface.");
         }
         String classImplementation = impl.getCanonicalName();
         T result = null;

@@ -3,6 +3,7 @@ package com.sam.pageservice;
 import com.sam.pages.base.login.LoginPage;
 import com.sam.pages.gmail.login.GMailLoginPage;
 import com.sam.pages.gmail.login.GMailLoginPageImpl;
+import com.sam.utils.IllegalAssignableClassesException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +15,7 @@ import java.util.Map;
 public class LoginService {
 
     private static Logger log = LogManager.getLogger(LoginService.class);
+
     private LoginService() {
     }
 
@@ -33,7 +35,7 @@ public class LoginService {
             throw new NullPointerException("Implementation is absent for interface " + loginPageInterface.toString());
         }
         if (!loginPageInterface.isAssignableFrom(impl)) {
-            throw new IllegalArgumentException("Implementation is not assigned with interface.");
+            throw new IllegalAssignableClassesException("Implementation is not assigned with interface.");
         }
         String classImplementation = impl.getCanonicalName();
         try {

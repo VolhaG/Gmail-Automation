@@ -3,6 +3,7 @@ package com.sam.pageservice;
 import com.sam.pages.base.main.MainPage;
 import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
+import com.sam.utils.IllegalAssignableClassesException;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -30,7 +31,7 @@ public class MainService {
             throw new NullPointerException("Implementation is absent for interface " + mainPageInterface.toString());
         }
         if (!mainPageInterface.isAssignableFrom(impl)) {
-            throw new IllegalArgumentException("Implementation is not assigned with interface.");
+            throw new IllegalAssignableClassesException("Implementation is not assigned with interface.");
         }
         String classImplementation = impl.getCanonicalName();
         T result = null;

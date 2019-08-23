@@ -23,8 +23,8 @@ public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPag
             log.info("Try to log in with email: " + email);
             content.inputEmail(email);
             content.clickNext();
-        } catch (NoSuchElementException| ElementNotInteractableException ex) {
-            log.info("Continue authentification without email.");
+        } catch (NoSuchElementException | ElementNotInteractableException ex) {
+            log.info("Continue authentication without email.");
         }
         delay(1);
         log.info("Try to log in with password: " + password);

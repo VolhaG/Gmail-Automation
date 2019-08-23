@@ -10,15 +10,14 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
     private static Logger log = LogManager.getLogger(GMailComposeImpl.class);
     private static final By INITIAL_LOCATOR = By.cssSelector("div.nH.Hd[role = 'dialog']");
+    private static final Integer DELAY_TIME = 1;
     private Button send;
     private Input recipient;
     private Input subject;
     private Input letter;
     private Input close;
-
     private By sendBy;
     private By closeBy;
-    private static final Integer timeToWait = 5;
 
     GMailComposeImpl() {
         super(INITIAL_LOCATOR);
@@ -33,8 +32,8 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
     @Override
     public Boolean existsDefElement() {
-        log.info("Wait for compose page identifier.." );
-        return existsDefElement(sendBy, 20);
+        log.info("Wait for compose page identifier..");
+        return existsDefElement(sendBy, DELAY_TIME);
     }
 
     @Override
@@ -56,7 +55,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
     @Override
     public void close() {
         log.info("Click on " + close.getElementName());
-        ElementWaiters.wait(timeToWait);
+        ElementWaiters.wait(DELAY_TIME);
         close.click();
     }
 
@@ -69,7 +68,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
     @Override
     public void setRecipient(String mail) {
-        ElementWaiters.wait(timeToWait);
+        ElementWaiters.wait(DELAY_TIME);
         log.info("Set text '" + mail + "' in " + recipient.getElementName());
         recipient.setText(mail);
         recipient.addText(String.valueOf(Keys.ENTER));

@@ -7,9 +7,9 @@ import org.openqa.selenium.By;
 
 public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
-    private static final Integer timeToWait = 9;
     private static final By INITIAL_LOCATOR = By.cssSelector("div.nH");
     private static Logger log = LogManager.getLogger(GMailMainImpl.class);
+    private static final Integer DELAY_TIME = 1;
     private WrapElement title;
     private Button compose;
     private By composeBy;
@@ -29,7 +29,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
     @Override
     public void clickCompose() {
-        ElementWaiters.wait(timeToWait);
+        ElementWaiters.wait(DELAY_TIME);
         compose.click();
     }
 
@@ -59,7 +59,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
     @Override
     public Boolean existsDefElement() {
         log.info("Wait for main page identifier..");
-        return existsDefElement(composeBy, timeToWait);
+        return existsDefElement(By.cssSelector("div[id='loading']"), DELAY_TIME);
     }
 
 }

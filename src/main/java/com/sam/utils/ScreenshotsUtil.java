@@ -16,9 +16,7 @@ import java.io.IOException;
 public class ScreenshotsUtil {
 
     private static Logger log = LogManager.getLogger(ScreenshotsUtil.class);
-
     private static WebDriverProvider provider = WebDriverProvider.getInstance();
-
     private static String screenshotFilePath;
 
     private static void writeScreenshotToFile(File srcFile, String fileWithPath) {
@@ -54,7 +52,7 @@ public class ScreenshotsUtil {
         writeScreenshotToFile(srcFile, fileWithPath);
     }
 
-    public static String getScreenshotsPath(){
+    public static String getScreenshotsPath() {
         return screenshotFilePath;
     }
 

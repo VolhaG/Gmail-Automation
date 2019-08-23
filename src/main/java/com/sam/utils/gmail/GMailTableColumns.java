@@ -12,7 +12,7 @@ public class GMailTableColumns extends AbstractTable {
     protected WrapElement topic;
     protected WrapElement letterBody;
 
-    public GMailTableColumns(){
+    public GMailTableColumns() {
     }
 
     public WrapElement getTime() {

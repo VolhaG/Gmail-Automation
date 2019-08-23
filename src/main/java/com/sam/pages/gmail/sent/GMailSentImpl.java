@@ -15,7 +15,7 @@ import java.util.List;
 public class GMailSentImpl extends WrapElementImpl implements GMailSent {
 
     private static Logger log = LogManager.getLogger(GMailSentImpl.class);
-    private static final Integer TIME_TO_WAIT = 5;
+    private static final Integer DELAY_TIME = 1;
     private static final By INITIAL_LOCATOR = By.cssSelector("table.F.cf.zt");
     private WrapElement tableIdentifier;
     List<GMailTableColumns> sentTable;
@@ -54,7 +54,7 @@ public class GMailSentImpl extends WrapElementImpl implements GMailSent {
     @Override
     public String getLetterBody(int row) {
         String letterBody = sentTable.get(row).getLetterBody().getInnerText();
-        letterBody = letterBody.replace("\u00a0","");
+        letterBody = letterBody.replace("\u00a0", "");
         if (!letterBody.isEmpty()) {
             letterBody = letterBody.subSequence(1, letterBody.length()).toString();
         }
@@ -66,8 +66,8 @@ public class GMailSentImpl extends WrapElementImpl implements GMailSent {
     @Override
     public Boolean existsDefElement() {
         log.info("Wait for sent page identifier..");
-        ElementWaiters.wait(TIME_TO_WAIT);
-        return existsDefElement(By.cssSelector("table.F.cf.zt"), TIME_TO_WAIT);
+        ElementWaiters.wait(DELAY_TIME);
+        return existsDefElement(By.cssSelector("table.F.cf.zt"), DELAY_TIME);
     }
 
     @Override

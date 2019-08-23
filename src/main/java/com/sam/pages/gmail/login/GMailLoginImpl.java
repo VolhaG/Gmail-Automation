@@ -1,6 +1,9 @@
 package com.sam.pages.gmail.login;
 
-import com.sam.webelement.*;
+import com.sam.webelement.Button;
+import com.sam.webelement.ElementType;
+import com.sam.webelement.Input;
+import com.sam.webelement.WrapElementImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -10,6 +13,7 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
     private static Logger log = LogManager.getLogger(GMailLoginImpl.class);
     private static final String LOGIN_PAGE_CSSLOCATOR = "div[id= 'view_container']";
     private static final By initialElement = By.cssSelector(LOGIN_PAGE_CSSLOCATOR);
+    private static final Integer DELAY_TIME = 1;
     private Button continueBtn;
     private Input login;
     private Input password;
@@ -23,7 +27,7 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     public Boolean existsDefElement() {
         log.info("Wait for login page identifier.. ");
-        return existsDefElement(By.cssSelector("span.CwaK9"), 20);
+        return existsDefElement(By.cssSelector("span.CwaK9"), DELAY_TIME);
     }
 
     @Override
