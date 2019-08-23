@@ -12,7 +12,6 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
     private static final Integer DELAY_TIME = 1;
     private WrapElement title;
     private Button compose;
-    private By composeBy;
     private WrapElement accountMenu;
     private Button logout;
     private WrapElement sent;
@@ -21,7 +20,6 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
         super(INITIAL_LOCATOR);
         title = findWrapElement("title", By.cssSelector("a[title]"), ElementType.DEFAULT);
         compose = findWrapElement("compose", By.cssSelector("div.T-I.J-J5-Ji.T-I-KE.L3"), ElementType.BUTTON);
-        composeBy = By.cssSelector("div.T-I.J-J5-Ji.T-I-KE.L3");
         accountMenu = findWrapElement("accountMenu", By.cssSelector("span.gb_Ba.gbii"), ElementType.DEFAULT);
         logout = findWrapElement("logout", By.cssSelector("div.gb_6f.gb_sb div:nth-child(2) a"), ElementType.BUTTON);
         sent = findWrapElement("sent", By.cssSelector("div.aim:nth-child(4) span.nU"), ElementType.DEFAULT);

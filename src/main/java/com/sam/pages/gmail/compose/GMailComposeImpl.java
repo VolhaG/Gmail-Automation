@@ -17,12 +17,10 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
     private Input letter;
     private Input close;
     private By sendBy;
-    private By closeBy;
 
     GMailComposeImpl() {
         super(INITIAL_LOCATOR);
         sendBy = By.cssSelector("div.dC div");
-        closeBy = By.cssSelector("tr td:nth-child(2) img:nth-child(3)");
         send = findWrapElement("send", sendBy, ElementType.BUTTON);
         recipient = findWrapElement("recipient", By.cssSelector("textarea[name = 'to']"), ElementType.INPUT);
         subject = findWrapElement("subject", By.cssSelector("input[name = 'subjectbox']"), ElementType.INPUT);
