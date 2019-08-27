@@ -1,54 +1,40 @@
 package com.sam.utils.gmail;
 
-import com.sam.utils.AbstractRow;
+import com.sam.webelement.ElementType;
+import com.sam.webelement.TableRowImpl;
 import com.sam.webelement.WrapElement;
-import com.sam.webelement.WrapElementImpl;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
-public class GMailRow extends AbstractRow {
+public class GMailRow extends TableRowImpl {
 
-    protected WrapElement time;
-    protected WrapElement email;
-    protected WrapElement topic;
-    protected WrapElement letterBody;
+    private final WrapElement time;
+    private final WrapElement email;
+    private final WrapElement topic;
+    private final WrapElement letterBody;
 
-    public GMailRow(String name, By by) {
-        super(name, by);
-    }
-
-    public GMailRow() {
+    public GMailRow(String name, By by, WebElement parent) {
+        super(name, by, parent);
+        time = null;
+        email = findWrapElement(getElementName() + "#email", By.cssSelector("span[name]"), ElementType.DEFAULT);
+        topic = findWrapElement(getElementName() + "#topic", By.cssSelector(" td:nth-child(6) span span"), ElementType.DEFAULT);
+        letterBody = findWrapElement(getElementName() + "#letterBody", By.cssSelector("td:nth-child(6) span.y2"), ElementType.DEFAULT);
     }
 
     public WrapElement getTime() {
         return time;
     }
 
-    public void setTime(By by, WrapElement row) {
-        this.time = new WrapElementImpl("time", by, row.getWebElement());
-    }
-
     public WrapElement getEmail() {
         return email;
-    }
-
-    public void setEmail(By by, WrapElement row) {
-        this.email = new WrapElementImpl("email", by,  row.getWebElement());
     }
 
     public WrapElement getTopic() {
         return topic;
     }
 
-    public void setTopic(By by, WrapElement row) {
-        this.topic = new WrapElementImpl("topic", by,  row.getWebElement());
-    }
-
     public WrapElement getLetterBody() {
         return letterBody;
-    }
-
-    public void setLetterBody(By by, WrapElement row) {
-        this.letterBody = new WrapElementImpl("letterBody", by,  row.getWebElement());
     }
 
 }
