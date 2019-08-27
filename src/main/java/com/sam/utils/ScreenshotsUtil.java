@@ -12,6 +12,7 @@ import org.openqa.selenium.WrapsDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 public class ScreenshotsUtil {
 
@@ -31,7 +32,7 @@ public class ScreenshotsUtil {
         }
     }
 
-    public static void takeScreenshot(String fileWithPath) {
+    public static void takeScreenshot(String fileWithPath, String methodName) {
         WebDriver driver = provider.get();
         TakesScreenshot scrShot = ((TakesScreenshot) driver);
         File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
@@ -39,8 +40,8 @@ public class ScreenshotsUtil {
         writeScreenshotToFile(srcFile, fileWithPath);
     }
 
-    public static void takeScreenshot() {
-        String fileWithPath = "./screenshots/" + provider.get().getPageSource().getClass() + System.currentTimeMillis();
+    public static void takeScreenshot(String methodName) {
+        String fileWithPath = "./screenshots/" + methodName + System.currentTimeMillis();
         screenshotFilePath = fileWithPath;
         takeScreenshot(fileWithPath);
     }

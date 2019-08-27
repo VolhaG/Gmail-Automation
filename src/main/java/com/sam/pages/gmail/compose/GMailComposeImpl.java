@@ -10,7 +10,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
 
     private static Logger log = LogManager.getLogger(GMailComposeImpl.class);
     private static final By INITIAL_LOCATOR = By.cssSelector("div.nH.Hd[role = 'dialog']");
-    private static final Integer DELAY_TIME = 1;
+    private static final int DELAY_TIME = 1;
     private Button send;
     private Input recipient;
     private Input subject;
@@ -29,7 +29,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
     }
 
     @Override
-    public Boolean existsDefElement() {
+    public boolean existsDefElement() {
         log.info("Wait for compose page identifier..");
         return existsDefElement(sendBy, DELAY_TIME);
     }

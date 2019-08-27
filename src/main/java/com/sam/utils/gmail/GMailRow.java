@@ -1,18 +1,19 @@
 package com.sam.utils.gmail;
 
-import com.sam.utils.AbstractTable;
+import com.sam.utils.AbstractRow;
 import com.sam.webelement.WrapElement;
 import com.sam.webelement.WrapElementImpl;
 import org.openqa.selenium.By;
 
-public class GMailTableColumns extends AbstractTable {
+public class GMailRow extends AbstractRow {
 
     protected WrapElement time;
     protected WrapElement email;
     protected WrapElement topic;
     protected WrapElement letterBody;
 
-    public GMailTableColumns() {
+    public GMailRow(String name, By by) {
+        super(name, by);
     }
 
     public WrapElement getTime() {

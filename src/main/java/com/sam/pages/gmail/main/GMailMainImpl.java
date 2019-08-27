@@ -9,7 +9,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
     private static final By INITIAL_LOCATOR = By.cssSelector("div.nH");
     private static Logger log = LogManager.getLogger(GMailMainImpl.class);
-    private static final Integer DELAY_TIME = 1;
+    private static final int DELAY_TIME = 1;
     private WrapElement title;
     private Button compose;
     private WrapElement accountMenu;
@@ -55,7 +55,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
     }
 
     @Override
-    public Boolean existsDefElement() {
+    public boolean existsDefElement() {
         log.info("Wait for main page identifier..");
         return existsDefElement(By.cssSelector("div[id='loading']"), DELAY_TIME);
     }

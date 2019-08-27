@@ -1,10 +1,7 @@
 package com.sam.pages.gmail.sent;
 
-import com.sam.utils.gmail.GMailTableColumns;
-import com.sam.webelement.ElementType;
-import com.sam.webelement.ElementWaiters;
-import com.sam.webelement.WrapElement;
-import com.sam.webelement.WrapElementImpl;
+import com.sam.utils.gmail.GMailRow;
+import com.sam.webelement.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -15,18 +12,18 @@ import java.util.List;
 public class GMailSentImpl extends WrapElementImpl implements GMailSent {
 
     private static Logger log = LogManager.getLogger(GMailSentImpl.class);
-    private static final Integer DELAY_TIME = 1;
+    private static final int DELAY_TIME = 1;
     private static final By INITIAL_LOCATOR = By.cssSelector("table.F.cf.zt");
-    private WrapElement tableIdentifier;
-    List<GMailTableColumns> sentTable;
+    private Table tableIdentifier;
+    private List<GMailRow> sentTable;
 
     GMailSentImpl() {
         super(INITIAL_LOCATOR);
-        tableIdentifier = findWrapElement("tableIdentifier", By.cssSelector("table.F.cf.zt"), ElementType.DEFAULT);
+        tableIdentifier = findWrapElement("tableIdentifier", By.cssSelector("table.F.cf.zt"), ElementType.TABLE);
         initSentTable();
     }
 
-    private List<GMailTableColumns> initSentTable() {
+    private List<GMailRow> initSentTable() {
         if (sentTable == null) {
             log.info("Init table with sent letters");
             sentTable = getGMailTable();
@@ -64,17 +61,17 @@ public class GMailSentImpl extends WrapElementImpl implements GMailSent {
     }
 
     @Override
-    public Boolean existsDefElement() {
+    public boolean existsDefElement() {
         log.info("Wait for sent page identifier..");
         ElementWaiters.wait(DELAY_TIME);
         return existsDefElement(By.cssSelector("table.F.cf.zt"), DELAY_TIME);
     }
 
     @Override
-    public List<GMailTableColumns> getGMailTable() {
+    public List<GMailRow> getGMailTable() {
         WebElement el = new WrapElementImpl(By.cssSelector("table.F.cf.zt")).getWebElement();
-        List<GMailTableColumns> gmailTable = getTable(el, GMailTableColumns.class);
-        for (GMailTableColumns row : gmailTable) {
+        List<GMailRow> gmailTable = tableIdentifier.getTable(el, GMailRow.class);
+        for (GMailRow row : gmailTable) {
             row.setEmail(By.cssSelector("span[name]"));
             row.setTopic(By.cssSelector(" td:nth-child(6) span span"));
             row.setLetterBody(By.cssSelector("td:nth-child(6) span.y2"));

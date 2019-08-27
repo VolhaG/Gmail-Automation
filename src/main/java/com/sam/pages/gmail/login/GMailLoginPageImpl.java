@@ -20,17 +20,15 @@ public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPag
     @Override
     public GMailMainPage login(String email, String password) {
         try {
-            log.info("Try to log in with email: " + email);
+            log.info("Try to log in with email: {}", email);
             content.inputEmail(email);
             content.clickNext();
         } catch (NoSuchElementException | ElementNotInteractableException ex) {
             log.info("Continue authentication without email.");
         }
-        delay(1);
-        log.info("Try to log in with password: " + password);
+        log.info("Try to log in with password: {}", password);
         content.inputPassword(password);
         content.clickNext();
-        delay(5);
         return new GMailMainPageImpl();
     }
 

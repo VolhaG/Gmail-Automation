@@ -14,9 +14,9 @@ public class AlertAbsentRecipient {
     private static By defElementBy = By.cssSelector("div.Kj-JD");
     private static Button closeButton = new ButtonImpl("close", By.cssSelector("span.Kj-JD-K7-Jq"));
     private static Button okButton = new ButtonImpl("ok", By.cssSelector("button[name = 'ok'']"));
-    private static final Integer DELAY_TIME = 10;
+    private static final int DELAY_TIME = 10;
 
-    public static Boolean exists() {
+    public static boolean exists() {
         log.info("Wait for alert page identifier..");
         WebElement el = ElementWaiters.waitForPresence(defElementBy, DELAY_TIME);
         return el != null;
@@ -28,7 +28,7 @@ public class AlertAbsentRecipient {
     }
 
     public static void ok() {
-        log.info("Click on " + okButton.getElementName());
+        log.info("Click on {}", okButton.getElementName());
         okButton.click();
     }
 

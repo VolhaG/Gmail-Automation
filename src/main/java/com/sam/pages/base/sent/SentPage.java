@@ -8,6 +8,6 @@ public interface SentPage {
 
     String getLastLetterBody();
 
-    Boolean checkIfLetterSent(String recepient, String topic, String body);
+    boolean checkIfLetterSent(String recepient, String topic, String body);
 
 }

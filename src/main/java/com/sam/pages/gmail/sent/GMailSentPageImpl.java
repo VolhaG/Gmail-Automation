@@ -32,7 +32,7 @@ public class GMailSentPageImpl extends PageImpl<Sent> implements GMailSentPage {
     }
 
     @Override
-    public Boolean checkIfLetterSent(String recipient, String topic, String body) {
+    public boolean checkIfLetterSent(String recipient, String topic, String body) {
         if (!getLastLetterTopic().equals(topic)) {
             log.info("Letter topic: " + getLastLetterTopic() + " is not equal expected: " + topic);
             return false;

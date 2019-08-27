@@ -36,7 +36,7 @@ public class PageImpl<C extends Content> implements Page<C> {
     }
 
     @Override
-    public Boolean exists() {
+    public boolean exists() {
         return content.existsDefElement();
     }
 

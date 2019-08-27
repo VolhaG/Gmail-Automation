@@ -7,7 +7,7 @@ public interface Page<C extends Content> {
 
     C getContent();
 
-    Boolean exists();
+    boolean exists();
 
     void refresh();
 
