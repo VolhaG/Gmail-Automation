@@ -26,9 +26,11 @@ public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPag
         } catch (NoSuchElementException | ElementNotInteractableException ex) {
             log.info("Continue authentication without email.");
         }
+        delay(1);
         log.info("Try to log in with password: {}", password);
         content.inputPassword(password);
         content.clickNext();
+        delay(5);
         return new GMailMainPageImpl();
     }
 

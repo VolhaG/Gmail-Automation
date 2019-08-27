@@ -16,36 +16,39 @@ public class GMailRow extends AbstractRow {
         super(name, by);
     }
 
+    public GMailRow() {
+    }
+
     public WrapElement getTime() {
         return time;
     }
 
-    public void setTime(By by) {
-        this.time = new WrapElementImpl("time", by, super.element);
+    public void setTime(By by, WrapElement row) {
+        this.time = new WrapElementImpl("time", by, row.getWebElement());
     }
 
     public WrapElement getEmail() {
         return email;
     }
 
-    public void setEmail(By by) {
-        this.email = new WrapElementImpl("email", by, super.element);
+    public void setEmail(By by, WrapElement row) {
+        this.email = new WrapElementImpl("email", by,  row.getWebElement());
     }
 
     public WrapElement getTopic() {
         return topic;
     }
 
-    public void setTopic(By by) {
-        this.topic = new WrapElementImpl("topic", by, super.element);
+    public void setTopic(By by, WrapElement row) {
+        this.topic = new WrapElementImpl("topic", by,  row.getWebElement());
     }
 
     public WrapElement getLetterBody() {
         return letterBody;
     }
 
-    public void setLetterBody(By by) {
-        this.letterBody = new WrapElementImpl("letterBody", by, super.element);
+    public void setLetterBody(By by, WrapElement row) {
+        this.letterBody = new WrapElementImpl("letterBody", by,  row.getWebElement());
     }
 
 }
