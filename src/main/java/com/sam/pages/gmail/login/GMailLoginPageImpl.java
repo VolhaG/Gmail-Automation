@@ -8,10 +8,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 
 public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPage {
 
     private static Logger log = LogManager.getLogger(GMailLoginPageImpl.class);
+    private static final int DELAY_TIME = 1;
 
     public GMailLoginPageImpl() {
         super(new GMailLoginImpl());
@@ -23,14 +25,13 @@ public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPag
             log.info("Try to log in with email: {}", email);
             content.inputEmail(email);
             content.clickNext();
-        } catch (NoSuchElementException | ElementNotInteractableException ex) {
+        } catch (NoSuchElementException | ElementNotInteractableException | TimeoutException | NullPointerException ex) {
             log.info("Continue authentication without email.");
         }
-        delay(1);
+        delay(DELAY_TIME);
         log.info("Try to log in with password: {}", password);
         content.inputPassword(password);
         content.clickNext();
-        delay(5);
         return new GMailMainPageImpl();
     }
 

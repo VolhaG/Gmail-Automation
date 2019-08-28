@@ -41,9 +41,10 @@ public class ScreenshotsUtil {
     }
 
     public static void takeScreenshot(String methodName) {
-        String fileWithPath = "./screenshots/" + methodName + System.currentTimeMillis();
+        StringBuilder builder = new StringBuilder();
+        String fileWithPath = builder.append("./screenshots/").append(methodName).append(System.currentTimeMillis()).toString();
         screenshotFilePath = fileWithPath;
-        takeScreenshot(fileWithPath);
+        takeScreenshot(fileWithPath, methodName);
     }
 
     public static void takeElementScreenshot(WrapElement el, String fileWithPath) {

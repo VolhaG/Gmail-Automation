@@ -16,9 +16,9 @@ public class GMailRow extends TableRowImpl {
     public GMailRow(String name, By by, WebElement parent) {
         super(name, by, parent);
         time = null;
-        email = findWrapElement(getElementName() + "#email", By.cssSelector("span[name]"), ElementType.DEFAULT);
-        topic = findWrapElement(getElementName() + "#topic", By.cssSelector(" td:nth-child(6) span span"), ElementType.DEFAULT);
-        letterBody = findWrapElement(getElementName() + "#letterBody", By.cssSelector("td:nth-child(6) span.y2"), ElementType.DEFAULT);
+        email = findWrapElement(getElementName() + "#email", By.cssSelector("span[email]"), ElementType.DEFAULT);
+        topic = findWrapElement(getElementName() + "#topic", By.cssSelector("span.bog span"), ElementType.DEFAULT);
+        letterBody = findWrapElement(getElementName() + "#letterBody", By.cssSelector("span.y2"), ElementType.DEFAULT);
     }
 
     public WrapElement getTime() {

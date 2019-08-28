@@ -42,7 +42,7 @@ public class GMailSentImpl extends TableImpl implements GMailSent {
         String letterBody = sentRows.get(row).getLetterBody().getInnerText();
         letterBody = letterBody.replace("\u00a0", "");
         if (!letterBody.isEmpty()) {
-            letterBody = letterBody.subSequence(1, letterBody.length()).toString();
+            letterBody = letterBody.subSequence(2, letterBody.length()).toString();
         }
         log.info("Get text of letter " + (row + 1) + ": " + letterBody);
 
