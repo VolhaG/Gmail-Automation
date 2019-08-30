@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Gmail ignored tests",
+    "matchedStatuses": ["skipped"]
+  },
+  {
+    "name": "Infrastructure problems",
+    "matchedStatuses": ["broken", "failed"],
+    "messageRegex": ".*bye-bye.*"
+  },
+  {
+    "name": "Gmail outdated tests",
+    "matchedStatuses": ["broken"],
+    "traceRegex": ".*FileNotFoundException.*"
+  },
+  {
+    "name": "Product defects",
+    "matchedStatuses": ["failed"]
+  },
+  {
+    "name": "Gmail test defects",
+    "matchedStatuses": ["broken"],
+  },
+  {
+    "name": "Gmail passed tests",
+    "matchedStatuses": ["passed"]
+  }
+]

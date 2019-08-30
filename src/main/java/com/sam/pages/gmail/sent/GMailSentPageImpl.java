@@ -34,19 +34,19 @@ public class GMailSentPageImpl extends PageImpl<Sent> implements GMailSentPage {
     @Override
     public boolean checkIfLetterSent(String recipient, String topic, String body) {
         if (!getLastLetterTopic().equals(topic)) {
-            log.info("Letter topic: " + getLastLetterTopic() + " is not equal expected: " + topic);
+            log.info("Letter topic: {} is not equal expected: {}", getLastLetterTopic(), topic);
             return false;
         }
         if (!getLastLetterRecipient().equals(recipient)) {
-            log.info("Letter recipient: " + getLastLetterRecipient() + " is not equal expected: " + recipient);
+            log.info("Letter recipient: {} is not equal expected: {}", getLastLetterRecipient(), recipient);
             return false;
         }
 
         if (!getLastLetterBody().equals(body)) {
-            log.info("Letter body: " + getLastLetterBody() + " is not equal expected: " + body);
+            log.info("Letter body: {} is not equal expected: {}", getLastLetterBody(), body);
             return false;
         }
-        log.info("Found sent letter with expected recipient: " + recipient + ", topic: " + topic + ", body: " + body);
+        log.info("Found sent letter with expected recipient: {}, topic: {}, body: {}", recipient, topic, body);
         return true;
     }
 

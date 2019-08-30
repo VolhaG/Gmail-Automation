@@ -23,7 +23,7 @@ public class AlertAbsentRecipient {
     }
 
     public static void close() {
-        log.info("Click on " + closeButton.getElementName());
+        log.info("Click on {}", closeButton.getElementName());
         closeButton.click();
     }
 

@@ -40,26 +40,26 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
         sb.append(startBody)
                 .append(body)
                 .append(endBody);
-        log.info("Set text '" + sb.toString() + "' in " + letter.getElementName());
+        log.info("Set text '{}' in {}", sb.toString(), letter.getElementName());
         letter.setText(sb.toString());
     }
 
     @Override
     public void writeLetter(String body) {
-        log.info("Set text '" + body + "' in " + letter.getElementName());
+        log.info("Set text '{}' in {}", body, letter.getElementName());
         letter.setText(body);
     }
 
     @Override
     public void close() {
-        log.info("Click on " + close.getElementName());
+        log.info("Click on {}", close.getElementName());
         ElementWaiters.wait(DELAY_TIME);
         close.click();
     }
 
     @Override
     public void setTopic(String topic) {
-        log.info("Set text '" + topic + "' in " + subject.getElementName());
+        log.info("Set text '{}' in {}", topic, subject.getElementName());
         subject.setText(topic);
         subject.addText(String.valueOf(Keys.ENTER));
     }
@@ -67,7 +67,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
     @Override
     public void setRecipient(String mail) {
         ElementWaiters.wait(DELAY_TIME);
-        log.info("Set text '" + mail + "' in " + recipient.getElementName());
+        log.info("Set text '{}' in {}", mail, recipient.getElementName());
         recipient.setText(mail);
         recipient.addText(String.valueOf(Keys.ENTER));
     }
@@ -75,7 +75,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
     @Override
     public void sendLetter() {
         try {
-            log.info("Click on " + send.getElementName());
+            log.info("Click on {}", send.getElementName());
             send.click();
         } catch (Exception ex) {
             ex.printStackTrace();

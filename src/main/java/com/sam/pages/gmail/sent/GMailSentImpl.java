@@ -26,14 +26,14 @@ public class GMailSentImpl extends TableImpl implements GMailSent {
         if (topic.startsWith("(") && (topic.endsWith(")"))) {
             topic = "";
         }
-        log.info("Get topic for letter " + (row + 1) + ": " + topic);
+        log.info("Get topic of letter {}: {}", (row + 1),  topic);
         return topic;
     }
 
     @Override
     public String getLetterRecipient(int row) {
         String email = sentRows.get(row).getEmail().getAttribute("email");
-        log.info("Get email for letter " + (row + 1) + ": " + email);
+        log.info("Get email of letter {}: {}", (row + 1), email);
         return email;
     }
 
@@ -44,7 +44,7 @@ public class GMailSentImpl extends TableImpl implements GMailSent {
         if (!letterBody.isEmpty()) {
             letterBody = letterBody.subSequence(2, letterBody.length()).toString();
         }
-        log.info("Get text of letter " + (row + 1) + ": " + letterBody);
+        log.info("Get text of letter {}: {}", (row + 1) , letterBody);
 
         return letterBody;
     }

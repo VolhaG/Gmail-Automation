@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="AllTestsSuite" >
-    <parameter name="configurationName" value="firefox_1"/>
+<suite name="GmailTestsSuite" >
+    <parameter name="configurationName" value="chrome_default"/>
     <parameter name="email" value="tt7381566@gmail.com"/>
     <parameter name="password" value="test11111"/>
 
-    <test name="TestCore Tests" parallel="classes" thread-count="1" group-by-instances="true">
+    <test name="TestCore Tests" parallel="classes" thread-count="1">
         <classes>
             <class name="com.sam.cases.GMailTests"/>
         </classes>

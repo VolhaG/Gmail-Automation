@@ -2,6 +2,7 @@ package com.sam.utils;
 
 import com.sam.webdriver.WebDriverProvider;
 import com.sam.webelement.WrapElement;
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +25,7 @@ public class ScreenshotsUtil {
         File destFile = new File(fileWithPath);
         try {
             FileUtils.copyFile(srcFile, destFile);
-            log.info("Find screenshot in " + destFile);
+            log.info("Find screenshot in {}", destFile);
             screenshotFilePath = fileWithPath;
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -32,6 +33,7 @@ public class ScreenshotsUtil {
         }
     }
 
+    @Attachment(value = "Page screenshot for {0} and method {1}", type = "img/png")
     public static void takeScreenshot(String fileWithPath, String methodName) {
         WebDriver driver = provider.get();
         TakesScreenshot scrShot = ((TakesScreenshot) driver);
@@ -47,21 +49,23 @@ public class ScreenshotsUtil {
         takeScreenshot(fileWithPath, methodName);
     }
 
-    public static void takeElementScreenshot(WrapElement el, String fileWithPath) {
+    @Attachment(value = "Element screenshot in file:{0} for element: {1} and method: {2}", type = "img/png")
+    public static void takeElementScreenshot(String fileWithPath, WrapElement el, String methodName) {
         WrapsDriver wrapsDriver = (WrapsDriver) el;
         File srcFile = ((TakesScreenshot) wrapsDriver.getWrappedDriver()).getScreenshotAs(OutputType.FILE);
         screenshotFilePath = fileWithPath;
         writeScreenshotToFile(srcFile, fileWithPath);
     }
 
-    public static String getScreenshotsPath() {
-        return screenshotFilePath;
+    public static void takeElementScreenshot(WrapElement el, String methodName) {
+        StringBuilder builder = new StringBuilder();
+        String fileWithPath = builder.append("./screenshots/").append(methodName).append(System.currentTimeMillis()).toString();
+        screenshotFilePath = fileWithPath;
+        takeElementScreenshot(fileWithPath, el, methodName);
     }
 
-    public static void takeElementScreenshot(WrapElement el) {
-        String fileWithPath = "./screenshots/" + provider.get().getPageSource().getClass() + System.currentTimeMillis();
-        screenshotFilePath = fileWithPath;
-        takeElementScreenshot(el, fileWithPath);
+    public static String getScreenshotsPath() {
+        return screenshotFilePath;
     }
 
 }

@@ -4,6 +4,7 @@ import com.sam.webelement.Button;
 import com.sam.webelement.ElementType;
 import com.sam.webelement.Input;
 import com.sam.webelement.WrapElementImpl;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -32,19 +33,19 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
 
     @Override
     public void clickNext() {
-        log.info("Click on " + continueBtn.getElementName());
+        log.info("Click on {}", continueBtn.getElementName());
         continueBtn.click();
     }
 
     @Override
     public void inputEmail(String email) {
-        log.info("Set text " + email + "' in " + login.getElementName());
+        log.info("Set text: '{}' in {}", email, login.getElementName());
         login.setText(email);
     }
 
     @Override
     public void inputPassword(String pwd) {
-        log.info("Set text " + pwd + "' in " + password.getElementName());
+        log.info("Set text '{}' in {}", pwd, password.getElementName());
         password.setText(pwd);
     }
 

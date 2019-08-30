@@ -5,6 +5,9 @@ import com.sam.pages.gmail.compose.GMailComposePage;
 import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
 import com.sam.pages.gmail.sent.GMailSentPage;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import org.apache.any23.plugin.Author;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Parameters;
@@ -23,6 +26,8 @@ public class GMailTests extends GmailBaseTest {
     }
 
     @Test(priority = 1)
+    @Severity(SeverityLevel.CRITICAL)
+
     @Parameters({"email", "password"})
     void login(String email, String password) {
         assertThat(loginPage.exists()).as("Login page verification passed.").isTrue();

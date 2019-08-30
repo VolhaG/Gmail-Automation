@@ -44,7 +44,7 @@ public abstract class GmailBaseTest extends BaseTest {
             log.info("Test is failed. Taking screenshot..");
             String methodName = method.getName();
             ScreenshotsUtil.takeScreenshot(methodName);
-            log.info("Screenshot of failed method " + methodName + " is in " + ScreenshotsUtil.getScreenshotsPath());
+            log.info("Screenshot of failed method {} is in {}", methodName, ScreenshotsUtil.getScreenshotsPath());
         }
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         gmailMainPage.logout();

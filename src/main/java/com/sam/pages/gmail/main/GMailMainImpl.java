@@ -38,19 +38,19 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
     @Override
     public void openAccountMenu() {
-        log.info("Click on " + accountMenu.getElementName());
+        log.info("Click on {}", accountMenu.getElementName());
         accountMenu.click();
     }
 
     @Override
     public void clickLogout() {
-        log.info("Click on " + logout.getElementName());
+        log.info("Click on {}", logout.getElementName());
         logout.click();
     }
 
     @Override
     public void clickSent() {
-        log.info("Click on " + sent.getElementName());
+        log.info("Click on {}", sent.getElementName());
         sent.click();
     }
 
