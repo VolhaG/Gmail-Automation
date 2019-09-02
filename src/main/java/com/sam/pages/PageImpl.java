@@ -4,20 +4,20 @@ import com.sam.annotations.PageVerification;
 import com.sam.components.Content;
 import com.sam.components.Page;
 import com.sam.webdriver.WebDriverProvider;
+import com.sam.webelement.ElementWaiters;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 import java.net.URL;
 
 public class PageImpl<C extends Content> implements Page<C> {
 
     protected Logger log = LogManager.getLogger(PageImpl.class);
     protected final C content;
+
 
     protected WebDriver getDriver() {
         return WebDriverProvider.getInstance().get();
@@ -33,6 +33,7 @@ public class PageImpl<C extends Content> implements Page<C> {
 
     public PageImpl(C content) {
         this.content = content;
+        verify();
     }
 
     @Override
@@ -117,29 +118,30 @@ public class PageImpl<C extends Content> implements Page<C> {
         getDriver().switchTo().alert().accept();
     }
 
-    public void addAnnotation(String locator, int timeOut) {
-        try {
-            for (Method method : PageImpl.class
-                    .getClassLoader()
-                    .loadClass("PageImpl.class")
-                    .getMethods()) {
-                if (method.isAnnotationPresent(PageVerification.class)) {
-                    for (Annotation annot : method.getDeclaredAnnotations()) {
-                        log.info("Annotation: {} presents in method: {}", annot, method);
-                        PageVerification methodAnnotation = method
-                                .getAnnotation(PageVerification.class);
-                        if (methodAnnotation != null) {
-                            if (methodAnnotation.delayTime() != 1) {
-                                log.info("Try to verify page...");
-                                content.existsDefElement(By.cssSelector(locator), timeOut);
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (SecurityException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+    private void verify() {
+        Class<? extends Object> pageClass = getClass();
+        PageVerification pageAnnotation = pageClass.getAnnotation(PageVerification.class);
+        if (pageAnnotation == null) {
+            throw new IllegalArgumentException("Class " + pageClass.getCanonicalName() + " is not annotated with PageVerification annotation");
         }
+
+        String locator = pageAnnotation.locator();
+        By by = null;
+        switch (pageAnnotation.byType()) {
+            case CSS:
+                by = By.cssSelector(locator);
+                break;
+            case XPATH:
+                by = By.xpath(locator);
+                break;
+            case ID:
+                by = By.id(locator);
+                break;
+            case NAME:
+                by = By.name(locator);
+                break;
+        }
+        ElementWaiters.waitForPresence(by, pageAnnotation.delayTime());
     }
 
 }
