@@ -119,7 +119,7 @@ public class PageImpl<C extends Content> implements Page<C> {
     }
 
     private void verify() {
-        Class<? extends Object> pageClass = getClass();
+        Class<? extends PageImpl> pageClass = getClass();
         PageVerification pageAnnotation = pageClass.getAnnotation(PageVerification.class);
         if (pageAnnotation == null) {
             throw new IllegalArgumentException("Class " + pageClass.getCanonicalName() + " is not annotated with PageVerification annotation");

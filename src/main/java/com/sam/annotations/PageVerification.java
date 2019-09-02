@@ -2,7 +2,7 @@ package com.sam.annotations;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.TYPE})
+@Target(ElementType.TYPE)
 @Inherited
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
