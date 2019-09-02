@@ -1,5 +1,6 @@
 package com.sam.pages.gmail.login;
 
+import com.sam.annotations.PageVerification;
 import com.sam.pages.PageImpl;
 import com.sam.pages.base.login.Login;
 import com.sam.pages.gmail.main.GMailMainPage;
@@ -16,6 +17,7 @@ public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPag
     private static Logger log = LogManager.getLogger(GMailLoginPageImpl.class);
     private static final int DELAY_TIME = 2;
 
+    @PageVerification(locator = "span.CwaK9", delayTime = 3)
     public GMailLoginPageImpl() {
         super(new GMailLoginImpl());
     }

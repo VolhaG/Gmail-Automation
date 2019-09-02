@@ -1,20 +1,25 @@
 package com.sam.pages;
 
+import com.sam.annotations.PageVerification;
 import com.sam.components.Content;
 import com.sam.components.Page;
 import com.sam.webdriver.WebDriverProvider;
-import com.sam.webelement.WrapElement;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.net.URL;
 
 public class PageImpl<C extends Content> implements Page<C> {
 
+    protected Logger log = LogManager.getLogger(PageImpl.class);
     protected final C content;
 
-    protected WebDriver getDriver()  {
+    protected WebDriver getDriver() {
         return WebDriverProvider.getInstance().get();
     }
 
@@ -47,12 +52,12 @@ public class PageImpl<C extends Content> implements Page<C> {
 
     @Override
     public String getUrl() {
-        return  getDriver().getCurrentUrl();
+        return getDriver().getCurrentUrl();
     }
 
     @Override
     public Dimension getSize() {
-        return  getDriver().manage().window().getSize();
+        return getDriver().manage().window().getSize();
     }
 
     @Override
@@ -110,6 +115,31 @@ public class PageImpl<C extends Content> implements Page<C> {
     @Override
     public void acceptAlertPopup() {
         getDriver().switchTo().alert().accept();
+    }
+
+    public void addAnnotation(String locator, int timeOut) {
+        try {
+            for (Method method : PageImpl.class
+                    .getClassLoader()
+                    .loadClass("PageImpl.class")
+                    .getMethods()) {
+                if (method.isAnnotationPresent(PageVerification.class)) {
+                    for (Annotation annot : method.getDeclaredAnnotations()) {
+                        log.info("Annotation: {} presents in method: {}", annot, method);
+                        PageVerification methodAnnotation = method
+                                .getAnnotation(PageVerification.class);
+                        if (methodAnnotation != null) {
+                            if (methodAnnotation.delayTime() != 1) {
+                                log.info("Try to verify page...");
+                                content.existsDefElement(By.cssSelector(locator), timeOut);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (SecurityException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
