@@ -1,0 +1,51 @@
+[ {
+  "uid" : "5510f21f778c9b07",
+  "name" : "composeLetter",
+  "time" : {
+    "start" : 1567425801165,
+    "stop" : 1567425832709,
+    "duration" : 31544
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ebc2240f2314c61c",
+  "name" : "tryToSendLetterWithoutBody",
+  "time" : {
+    "start" : 1567425909801,
+    "stop" : 1567425941240,
+    "duration" : 31439
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "95baeaf363a1ff09",
+  "name" : "login",
+  "time" : {
+    "start" : 1567425784038,
+    "stop" : 1567425790524,
+    "duration" : 6486
+  },
+  "status" : "passed",
+  "severity" : "critical"
+}, {
+  "uid" : "400a80a4918eb172",
+  "name" : "tryToSendLetterWithoutRecipient",
+  "time" : {
+    "start" : 1567425841329,
+    "stop" : 1567425861561,
+    "duration" : 20232
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "85ce979229510b83",
+  "name" : "tryToSendLetterWithoutSubject",
+  "time" : {
+    "start" : 1567425871079,
+    "stop" : 1567425901188,
+    "duration" : 30109
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

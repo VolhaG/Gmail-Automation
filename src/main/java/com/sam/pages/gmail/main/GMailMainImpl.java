@@ -1,6 +1,7 @@
 package com.sam.pages.gmail.main;
 
 import com.sam.webelement.*;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -54,6 +55,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
         sent.click();
     }
 
+    @Step("Main page verification")
     @Override
     public boolean existsDefElement() {
         log.info("Wait for main page identifier..");

@@ -33,13 +33,24 @@ public class ScreenshotsUtil {
         }
     }
 
-    @Attachment(value = "Page screenshot for {0} and method {1}", type = "img/png")
+    /**
+     * screenShot method is invoked whenever the Testcase is Failed.
+     * @param fileWithPath
+     * @param methodName
+     */
     public static void takeScreenshot(String fileWithPath, String methodName) {
         WebDriver driver = provider.get();
         TakesScreenshot scrShot = ((TakesScreenshot) driver);
         File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
         screenshotFilePath = fileWithPath;
         writeScreenshotToFile(srcFile, fileWithPath);
+    }
+
+    @Attachment(value = "Page screenshot for method {0}", type = "img/png")
+    public static byte[] saveScreenshot() {
+        WebDriver driver = provider.get();
+        TakesScreenshot scrShot = ((TakesScreenshot) driver);
+        return scrShot.getScreenshotAs(OutputType.BYTES);
     }
 
     public static void takeScreenshot(String methodName) {
@@ -49,7 +60,6 @@ public class ScreenshotsUtil {
         takeScreenshot(fileWithPath, methodName);
     }
 
-    @Attachment(value = "Element screenshot in file:{0} for element: {1} and method: {2}", type = "img/png")
     public static void takeElementScreenshot(String fileWithPath, WrapElement el, String methodName) {
         WrapsDriver wrapsDriver = (WrapsDriver) el;
         File srcFile = ((TakesScreenshot) wrapsDriver.getWrappedDriver()).getScreenshotAs(OutputType.FILE);

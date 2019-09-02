@@ -2,6 +2,7 @@ package com.sam.pages.gmail.sent;
 
 import com.sam.utils.gmail.GMailRow;
 import com.sam.webelement.*;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -49,6 +50,7 @@ public class GMailSentImpl extends TableImpl implements GMailSent {
         return letterBody;
     }
 
+    @Step("Sent page verification")
     @Override
     public boolean existsDefElement() {
         log.info("Wait for sent page identifier..");

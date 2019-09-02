@@ -2,6 +2,7 @@ package com.sam.pages.gmail.sent;
 
 import com.sam.pages.PageImpl;
 import com.sam.pages.base.sent.Sent;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,6 +32,7 @@ public class GMailSentPageImpl extends PageImpl<Sent> implements GMailSentPage {
         return content.getLetterBody(0);
     }
 
+    @Step("Check if letter with recipient: {0}, topic: {1}, body: {2} was sent")
     @Override
     public boolean checkIfLetterSent(String recipient, String topic, String body) {
         if (!getLastLetterTopic().equals(topic)) {

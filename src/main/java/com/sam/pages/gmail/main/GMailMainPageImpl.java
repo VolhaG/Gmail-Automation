@@ -8,6 +8,7 @@ import com.sam.pages.gmail.login.GMailLoginPage;
 import com.sam.pages.gmail.login.GMailLoginPageImpl;
 import com.sam.pages.gmail.sent.GMailSentPage;
 import com.sam.pages.gmail.sent.GMailSentPageImpl;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +20,7 @@ public class GMailMainPageImpl extends PageImpl<Main> implements GMailMainPage {
         super(new GMailMainImpl());
     }
 
+    @Step("Compose new letter")
     @Override
     public GMailComposePage compose() {
         log.info("Compose letter..");
@@ -26,6 +28,7 @@ public class GMailMainPageImpl extends PageImpl<Main> implements GMailMainPage {
         return new GMailComposePageImpl();
     }
 
+    @Step("Log out from resource")
     @Override
     public GMailLoginPage logout() {
         log.info("Try to log out..");
@@ -34,6 +37,7 @@ public class GMailMainPageImpl extends PageImpl<Main> implements GMailMainPage {
         return new GMailLoginPageImpl();
     }
 
+    @Step("Check sent letters")
     @Override
     public GMailSentPage openSent() {
         log.info("Open menu with sent letters..");

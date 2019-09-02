@@ -20,7 +20,7 @@ public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPag
         super(new GMailLoginImpl());
     }
 
-    @Step("Type {user.name} / {user.password}.")
+    @Step("Login to www.gmail.com with email: {0} and password: {1}.")
     @Override
     public GMailMainPage login(String email, String password) {
         try {

@@ -1,6 +1,7 @@
 package com.sam.pages.gmail.compose;
 
 import com.sam.webelement.*;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -28,6 +29,7 @@ public class GMailComposeImpl extends WrapElementImpl implements GMailCompose {
         close = findWrapElement("close", By.cssSelector("table.cf.Ht img:nth-child(3)"), ElementType.INPUT);
     }
 
+    @Step("Compose page verification")
     @Override
     public boolean existsDefElement() {
         log.info("Wait for compose page identifier..");

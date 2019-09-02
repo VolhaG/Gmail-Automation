@@ -26,6 +26,7 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
         password = findWrapElement("password", By.cssSelector("input[type= 'password']"), ElementType.INPUT);
     }
 
+    @Step("Login page verification")
     public boolean existsDefElement() {
         log.info("Wait for login page identifier.. ");
         return existsDefElement(By.cssSelector("span.CwaK9"), DELAY_TIME);
