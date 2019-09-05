@@ -1,6 +1,0 @@
-"Status","Name","Duration in ms","Description"
-"passed","com.sam.cases.GMailTests.composeLetter","31544",""
-"passed","com.sam.cases.GMailTests.tryToSendLetterWithoutBody","31439",""
-"passed","com.sam.cases.GMailTests.login","6486",""
-"passed","com.sam.cases.GMailTests.tryToSendLetterWithoutRecipient","20232",""
-"passed","com.sam.cases.GMailTests.tryToSendLetterWithoutSubject","30109",""

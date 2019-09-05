@@ -4,10 +4,10 @@ import com.sam.components.Content;
 
 public interface Sent extends Content {
 
-    String getLetterTopic(int row);
+    String getLetterTopic(int rowIndex);
 
-    String getLetterRecipient(int row);
+    String getLetterRecipient(int rowIndex);
 
-    String getLetterBody(int row);
+    String getLetterBody(int rowIndex);
 
 }

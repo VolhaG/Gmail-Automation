@@ -1,13 +1,15 @@
 package com.sam.pages.gmail.login;
 
-import com.sam.annotations.PageVerification;
+import com.sam.annotations.ElementVerification;
 import com.sam.pages.PageImpl;
 import com.sam.pages.base.login.Login;
 import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
+import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
@@ -17,12 +19,15 @@ public class GMailLoginPageImpl extends PageImpl<Login> implements GMailLoginPag
     private static Logger log = LogManager.getLogger(GMailLoginPageImpl.class);
     private static final int DELAY_TIME = 2;
 
-    @PageVerification(locator = "span.CwaK9", delayTime = 3)
+    @ElementVerification(description = "Root element verification on login page")
+    public static final By rootElement = By.cssSelector("div[id= 'view_container']");
+
     public GMailLoginPageImpl() {
         super(new GMailLoginImpl());
     }
 
     @Step("Login to www.gmail.com with email: {0} and password: {1}.")
+    @Description("Login to www.gmail.com with email: {0} and password: {1}.")
     @Override
     public GMailMainPage login(String email, String password) {
         try {

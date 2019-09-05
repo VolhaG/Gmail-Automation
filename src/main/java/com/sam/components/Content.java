@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement;
 
 public interface Content extends WrapElement {
 
-    boolean existsDefElement();
+    boolean existVerificationElement();
 
-    default boolean existsDefElement(By by, int timeOut) {
+    default boolean existVerificationElement(By by, int timeOut) {
         WebElement el = ElementWaiters.waitForPresence(by, timeOut);
         return el != null;
     }

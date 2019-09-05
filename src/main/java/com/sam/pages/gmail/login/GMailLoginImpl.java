@@ -27,9 +27,9 @@ public class GMailLoginImpl extends WrapElementImpl implements GMailLogin {
     }
 
     @Step("Login page verification")
-    public boolean existsDefElement() {
+    public boolean existVerificationElement() {
         log.info("Wait for login page identifier.. ");
-        return existsDefElement(By.cssSelector("span.CwaK9"), DELAY_TIME);
+        return existVerificationElement(By.cssSelector("span.CwaK9"), DELAY_TIME);
     }
 
     @Override

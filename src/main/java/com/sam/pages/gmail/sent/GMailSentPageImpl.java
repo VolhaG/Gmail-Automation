@@ -1,14 +1,19 @@
 package com.sam.pages.gmail.sent;
 
+import com.sam.annotations.ElementVerification;
 import com.sam.pages.PageImpl;
 import com.sam.pages.base.sent.Sent;
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 
 public class GMailSentPageImpl extends PageImpl<Sent> implements GMailSentPage {
 
-    Logger log = LogManager.getLogger(GMailSentPageImpl.class);
+    private static Logger log = LogManager.getLogger(GMailSentPageImpl.class);
+
+    @ElementVerification(description = "Root element verification on sent page")
+    public static final By rootElement = By.cssSelector("table.F.cf.zt");
 
     public GMailSentPageImpl() {
         super(new GMailSentImpl());
@@ -43,7 +48,6 @@ public class GMailSentPageImpl extends PageImpl<Sent> implements GMailSentPage {
             log.info("Letter recipient: {} is not equal expected: {}", getLastLetterRecipient(), recipient);
             return false;
         }
-
         if (!getLastLetterBody().equals(body)) {
             log.info("Letter body: {} is not equal expected: {}", getLastLetterBody(), body);
             return false;

@@ -37,19 +37,19 @@ public abstract class GmailBaseTest extends BaseTest {
         init();
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     @Override
     public void clearTest(Method method, ITestResult testResult) {
         if (!testResult.isSuccess()) {
             log.info("Test is failed. Taking screenshot..");
             String methodName = method.getName();
             ScreenshotsUtil.takeScreenshot(methodName);
-            ScreenshotsUtil.saveScreenshot();
-            log.info("Screenshot of failed method {} is in {}", methodName, ScreenshotsUtil.getScreenshotsPath());
+            log.info("Got screenshot of failed method: {}", methodName);
         }
         GMailMainPage gmailMainPage = new GMailMainPageImpl();
         gmailMainPage.logout();
         super.clearTest(method, testResult);
+        provider.get().quit();
     }
 
 }

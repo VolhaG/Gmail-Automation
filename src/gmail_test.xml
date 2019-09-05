@@ -6,7 +6,7 @@
     <parameter name="email" value="tt7381566@gmail.com"/>
     <parameter name="password" value="test11111"/>
 
-    <test name="TestCore Tests" parallel="classes" thread-count="1">
+    <test name="TestCore Tests">
         <classes>
             <class name="com.sam.cases.GMailTests"/>
         </classes>

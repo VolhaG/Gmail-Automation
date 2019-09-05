@@ -22,7 +22,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
         title = findWrapElement("title", By.cssSelector("a[title]"), ElementType.DEFAULT);
         compose = findWrapElement("compose", By.cssSelector("div.T-I.J-J5-Ji.T-I-KE.L3"), ElementType.BUTTON);
         accountMenu = findWrapElement("accountMenu", By.cssSelector("span.gb_Ba.gbii"), ElementType.DEFAULT);
-        logout = findWrapElement("logout", By.cssSelector("div.gb_Wa.gb_B.gb_Hc div:nth-child(4) div:nth-child(2) a"), ElementType.BUTTON);
+        logout = findWrapElement("logout", By.cssSelector("div[img-loaded] div:nth-child(4) div:nth-child(2) a"), ElementType.BUTTON);
         sent = findWrapElement("sent", By.cssSelector("div.aim:nth-child(4) span.nU"), ElementType.DEFAULT);
     }
 
@@ -46,6 +46,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
     @Override
     public void clickLogout() {
         log.info("Click on {}", logout.getElementName());
+
         logout.click();
     }
 
@@ -57,9 +58,9 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
 
     @Step("Main page verification")
     @Override
-    public boolean existsDefElement() {
+    public boolean existVerificationElement() {
         log.info("Wait for main page identifier..");
-        return existsDefElement(By.cssSelector("div[id='loading']"), DELAY_TIME);
+        return existVerificationElement(By.cssSelector("div[id='loading']"), DELAY_TIME);
     }
 
 }
