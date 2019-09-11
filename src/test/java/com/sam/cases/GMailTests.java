@@ -1,5 +1,6 @@
 package com.sam.cases;
 
+import com.beust.jcommander.JCommander;
 import com.sam.GmailBaseTest;
 import com.sam.pages.gmail.compose.GMailComposePage;
 import com.sam.pages.gmail.login.GMailLoginPage;
@@ -7,6 +8,7 @@ import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
 import com.sam.pages.gmail.sent.GMailSentPage;
 import com.sam.pageservice.LoginService;
+import com.sam.utils.argumentsToUseWithJSCommander.Args;
 import com.sam.utils.ScreenshotsUtil;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -31,10 +33,18 @@ public class GMailTests extends GmailBaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Parameters({"email", "password"})
     void login(String email, String password) {
+        Args args = new Args();
+        String[] argv = {"-groups", "unit" };
+        JCommander.newBuilder()
+                .addObject(args)
+                .build()
+                .parse(argv);
+
         gmailMainPage = loginPage.login(email, password);
         assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
     }
 
+    @Ignore
     @Test(priority = 2, dependsOnMethods = "login", description = "Compose new letter")
     void composeLetter() {
         gmailComposePage = gmailMainPage.compose();

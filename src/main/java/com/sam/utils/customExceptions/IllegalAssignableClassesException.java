@@ -1,4 +1,4 @@
-package com.sam.utils;
+package com.sam.utils.customExceptions;
 
 public class IllegalAssignableClassesException extends RuntimeException {
 

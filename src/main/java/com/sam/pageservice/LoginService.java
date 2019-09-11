@@ -3,7 +3,7 @@ package com.sam.pageservice;
 import com.sam.pages.base.login.LoginPage;
 import com.sam.pages.gmail.login.GMailLoginPage;
 import com.sam.pages.gmail.login.GMailLoginPageImpl;
-import com.sam.utils.IllegalAssignableClassesException;
+import com.sam.utils.customExceptions.IllegalAssignableClassesException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

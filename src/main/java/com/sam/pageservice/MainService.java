@@ -3,7 +3,7 @@ package com.sam.pageservice;
 import com.sam.pages.base.main.MainPage;
 import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
-import com.sam.utils.IllegalAssignableClassesException;
+import com.sam.utils.customExceptions.IllegalAssignableClassesException;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
