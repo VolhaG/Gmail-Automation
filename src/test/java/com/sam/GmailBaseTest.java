@@ -57,27 +57,28 @@ public abstract class GmailBaseTest extends BaseTest {
                 password = args.password;
             }
         }
-
-        @Override
-        public void onTestInitialization (Method method){
-            log.info("Navigate to http://www.gmail.com");
-            provider.get().navigate().to("http://www.gmail.com");
-            init();
-        }
-
-        @AfterMethod(alwaysRun = true)
-        @Override
-        public void clearTest (Method method, ITestResult testResult){
-            if (!testResult.isSuccess()) {
-                log.info("Test is failed. Taking screenshot..");
-                String methodName = method.getName();
-                ScreenshotsUtil.takeScreenshot(methodName);
-                log.info("Got screenshot of failed method: {}", methodName);
-            }
-            GMailMainPage gmailMainPage = new GMailMainPageImpl();
-            gmailMainPage.logout();
-            super.clearTest(method, testResult);
-            provider.get().quit();
-        }
-
     }
+
+    @Override
+    public void onTestInitialization(Method method) {
+        log.info("Navigate to http://www.gmail.com");
+        provider.get().navigate().to("http://www.gmail.com");
+        init();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    @Override
+    public void clearTest(Method method, ITestResult testResult) {
+        if (!testResult.isSuccess()) {
+            log.info("Test is failed. Taking screenshot..");
+            String methodName = method.getName();
+            ScreenshotsUtil.takeScreenshot(methodName);
+            log.info("Got screenshot of failed method: {}", methodName);
+        }
+        GMailMainPage gmailMainPage = new GMailMainPageImpl();
+        gmailMainPage.logout();
+        super.clearTest(method, testResult);
+        provider.get().quit();
+    }
+
+}
