@@ -1,6 +1,5 @@
 package com.sam.cases;
 
-import com.beust.jcommander.JCommander;
 import com.sam.GmailBaseTest;
 import com.sam.pages.gmail.compose.GMailComposePage;
 import com.sam.pages.gmail.login.GMailLoginPage;
@@ -8,7 +7,6 @@ import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
 import com.sam.pages.gmail.sent.GMailSentPage;
 import com.sam.pageservice.LoginService;
-import com.sam.utils.argumentsToUseWithJSCommander.Args;
 import com.sam.utils.ScreenshotsUtil;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -16,7 +14,10 @@ import io.qameta.allure.SeverityLevel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Ignore;
+import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
 
@@ -31,15 +32,7 @@ public class GMailTests extends GmailBaseTest {
 
     @Test(priority = 1, description = "Login with existing account")
     @Severity(SeverityLevel.CRITICAL)
-    @Parameters({"email", "password"})
-    void login(String email, String password) {
-        Args args = new Args();
-        String[] argv = {"-groups", "unit" };
-        JCommander.newBuilder()
-                .addObject(args)
-                .build()
-                .parse(argv);
-
+    void login() {
         gmailMainPage = loginPage.login(email, password);
         assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
     }
@@ -96,6 +89,7 @@ public class GMailTests extends GmailBaseTest {
         letterRecipient = "tt7381566@gmail.com";
         letterTopic = "New";
         letterBody = "Hello! How are you?";
+        initCommandLineArguments();
     }
 
     @Description("Log out after tests have been finished.")
