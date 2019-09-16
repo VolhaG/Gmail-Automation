@@ -1,6 +1,8 @@
 package com.sam.cases;
 
 import com.sam.GmailBaseTest;
+import com.sam.entities.Letter;
+import com.sam.entities.LetterImpl;
 import com.sam.pages.gmail.compose.GMailComposePage;
 import com.sam.pages.gmail.login.GMailLoginPage;
 import com.sam.pages.gmail.main.GMailMainPage;
@@ -16,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Ignore;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
@@ -29,6 +31,10 @@ public class GMailTests extends GmailBaseTest {
     private GMailMainPage gmailMainPage;
     private GMailComposePage gmailComposePage;
     private GMailSentPage gMailSentPage;
+    private Letter letterWithoutRecipient;
+    private Letter letterWithoutTopic;
+    private Letter letterWithoutBody;
+    private Letter letter;
 
     @Test(priority = 1, description = "Login with existing account")
     @Severity(SeverityLevel.CRITICAL)
@@ -37,59 +43,65 @@ public class GMailTests extends GmailBaseTest {
         assertThat(gmailMainPage.exists()).as("Main page verification passed.").isTrue();
     }
 
-    @Ignore
     @Test(priority = 2, dependsOnMethods = "login", description = "Compose new letter")
     void composeLetter() {
         gmailComposePage = gmailMainPage.compose();
-        gmailMainPage = gmailComposePage.writeLetter(letterRecipient, letterTopic, letterBody)
+        gmailMainPage = gmailComposePage.writeLetter(letter)
                 .sendLetter();
         assertThat(gmailMainPage.exists()).as("Composing letter passed successful.").isTrue();
         gMailSentPage = gmailMainPage.openSent();
-        boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, letterTopic, letterBody);
+        boolean letterIsSent = gMailSentPage.checkIfLetterSent(letter);
         assertThat(letterIsSent).as("Letter is sent.").isTrue();
     }
 
-    @Ignore
     @Test(priority = 3, dependsOnMethods = "login", description = "Compose new letter without recipient and try to send it")
     void tryToSendLetterWithoutRecipient() {
         gmailComposePage = gmailMainPage.compose();
-        gmailComposePage.writeLetter("", letterTopic, letterBody).sendLetter();
+        gmailComposePage.writeLetter(letterWithoutRecipient).sendLetter();
         gMailSentPage = gmailMainPage.openSent();
-        boolean letterIsSent = gMailSentPage.checkIfLetterSent("", letterTopic, letterBody);
+        boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterWithoutRecipient);
         assertThat(letterIsSent).as("Letter is sent without recipient.").isFalse();
     }
 
-    @Ignore
     @Test(priority = 4, dependsOnMethods = "login", description = "Compose new letter without subject and try to send it")
-    void tryToSendLetterWithoutSubject() {
+    void tryToSendLetterWithoutTopic() {
         gmailComposePage = gmailMainPage.compose();
-        gmailComposePage.writeLetter(letterRecipient, "", letterBody)
+        gmailComposePage.writeLetter(letterWithoutTopic)
                 .sendLetter();
         gMailSentPage = gmailMainPage.openSent();
-        boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, "", letterBody);
+        boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterWithoutTopic);
         assertThat(letterIsSent).as("Letter is sent without subject.").isTrue();
     }
 
-    @Ignore
     @Test(priority = 5, dependsOnMethods = "login", description = "Compose new letter without body and try to send it")
     void tryToSendLetterWithoutBody() {
         gmailComposePage = gmailMainPage.compose();
-        gmailComposePage.writeLetter(letterRecipient, letterTopic, "").sendLetter();
+        gmailComposePage.writeLetter(letterWithoutBody).sendLetter();
         gMailSentPage = gmailMainPage.openSent();
-        boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterRecipient, letterTopic, "");
+        boolean letterIsSent = gMailSentPage.checkIfLetterSent(letterWithoutBody);
         assertThat(letterIsSent).as("Letter is sent without body.").isTrue();
     }
 
     @Description("Start tests. Navigate to http://www.gmail.com and set test's parameters.")
+    @Parameters({"email","password"})
     @BeforeTest
-    public void startTests() {
+    public void startTests(String email, String password) {
         provider.initialize("chrome_default");
         getWebDriver().navigate().to("http://www.gmail.com");
         loginPage = LoginService.initFor(GMailLoginPage.class);
-        letterRecipient = "tt7381566@gmail.com";
-        letterTopic = "New";
-        letterBody = "Hello! How are you?";
+        letter = letterWithoutRecipient = letterWithoutTopic = letterWithoutBody =
+                new LetterImpl("tt7381566@gmail.com",  "New",  "Hello! How are you?");
+        letterWithoutRecipient =  new LetterImpl("",  "New",  "Hello! How are you?");
+        letterWithoutTopic = new LetterImpl("tt7381566@gmail.com",  "",  "Hello! How are you?");
+        letterWithoutBody =  new LetterImpl("tt7381566@gmail.com",  "New",  "");
+
         initCommandLineArguments();
+        if (this.email == null) {
+            this.email = email;
+        }
+        if (this.password == null) {
+            this.password = password;
+        }
     }
 
     @Description("Log out after tests have been finished.")

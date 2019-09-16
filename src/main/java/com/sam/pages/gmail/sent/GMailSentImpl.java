@@ -1,5 +1,7 @@
 package com.sam.pages.gmail.sent;
 
+import com.sam.entities.Letter;
+import com.sam.entities.LetterImpl;
 import com.sam.utils.gmail.GMailRow;
 import com.sam.webelement.*;
 import io.qameta.allure.Step;
@@ -13,7 +15,7 @@ public class GMailSentImpl extends TableImpl implements GMailSent {
 
     private static Logger log = LogManager.getLogger(GMailSentImpl.class);
     private static final int DELAY_TIME = 1;
-    private static final By INITIAL_LOCATOR = By.cssSelector("div.ae4.UI table.F.cf.zt");
+    private static final By INITIAL_LOCATOR = By.cssSelector("div.ae4.UI div:nth-child(2) table");
     private final List<GMailRow> sentRows;
 
     GMailSentImpl() {
@@ -48,6 +50,11 @@ public class GMailSentImpl extends TableImpl implements GMailSent {
         log.info("Get text of letter {}: {}", (rowIndex + 1) , letterBody);
 
         return letterBody;
+    }
+
+    @Override
+    public Letter getLetter(int i) {
+        return new LetterImpl(getLetterRecipient(i), getLetterTopic(i), getLetterBody(i));
     }
 
     @Step("Sent page verification")

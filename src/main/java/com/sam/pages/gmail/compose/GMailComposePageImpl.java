@@ -3,6 +3,7 @@ package com.sam.pages.gmail.compose;
 import com.sam.annotations.ElementVerification;
 import com.sam.pages.PageImpl;
 import com.sam.pages.base.compose.Compose;
+import com.sam.entities.Letter;
 import com.sam.pages.gmail.main.GMailMainPage;
 import com.sam.pages.gmail.main.GMailMainPageImpl;
 import io.qameta.allure.Description;
@@ -22,24 +23,14 @@ public class GMailComposePageImpl extends PageImpl<Compose> implements GMailComp
         super(new GMailComposeImpl());
     }
 
-    @Description("Try to write letter")
-    @Step("Write letter with recipient: {0}, topic: {1} and body: {2}")
+    @Description("Try to write letter: {}")
+    @Step("Write letter: {0}")
     @Override
-    public GMailComposePage writeLetter(String recipient, String topic, String letter) {
+    public GMailComposePage writeLetter(Letter letter) {
         log.info("Composing letter..");
-        content.setRecipient(recipient);
-        content.setTopic(topic);
-        content.writeLetter(letter);
-        return this;
-    }
-
-    @Step("Write letter with recipient: {0}, topic: {1} and body: {2}")
-    @Override
-    public GMailComposePage writeLetter(String to, String topic, String letterBody, String letterStart, String letterEnd) {
-        log.info("Composing letter..");
-        content.setRecipient(to);
-        content.setTopic(topic);
-        content.writeLetter(letterStart, letterBody, letterEnd);
+        content.setRecipient(letter.getRecipient());
+        content.setTopic(letter.getTopic());
+        content.writeLetter(letter.getLetterContent());
         return this;
     }
 

@@ -1,13 +1,10 @@
 package com.sam.pages.base.sent;
 
+import com.sam.entities.Letter;
+
 public interface SentPage {
 
-    String getLastLetterTopic();
-
-    String getLastLetterRecipient();
-
-    String getLastLetterBody();
-
-    boolean checkIfLetterSent(String recepient, String topic, String body);
+    boolean checkIfLetterSent(Letter letter);
+    Letter getLastLetter();
 
 }

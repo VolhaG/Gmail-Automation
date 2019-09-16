@@ -3,6 +3,7 @@ package com.sam.pages.gmail.sent;
 import com.sam.annotations.ElementVerification;
 import com.sam.pages.PageImpl;
 import com.sam.pages.base.sent.Sent;
+import com.sam.entities.Letter;
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,40 +20,21 @@ public class GMailSentPageImpl extends PageImpl<Sent> implements GMailSentPage {
         super(new GMailSentImpl());
     }
 
+    @Step("Get last sent letter")
     @Override
-    public String getLastLetterTopic() {
-        log.info("Getting last letter topic..");
-        return content.getLetterTopic(0);
+    public Letter getLastLetter(){
+        return content.getLetter(0);
     }
 
+    @Step("Check if letter: {0} was sent")
     @Override
-    public String getLastLetterRecipient() {
-        log.info("Getting last letter recipient..");
-        return content.getLetterRecipient(0);
-    }
-
-    @Override
-    public String getLastLetterBody() {
-        log.info("Getting last letter text..");
-        return content.getLetterBody(0);
-    }
-
-    @Step("Check if letter with recipient: {0}, topic: {1}, body: {2} was sent")
-    @Override
-    public boolean checkIfLetterSent(String recipient, String topic, String body) {
-        if (!getLastLetterTopic().equals(topic)) {
-            log.info("Letter topic: {} is not equal expected: {}", getLastLetterTopic(), topic);
+    public boolean checkIfLetterSent(Letter letter) {
+        Letter lastLetter = getLastLetter();
+        if (!lastLetter.equals(letter) && (lastLetter.hashCode() == letter.hashCode())) {
+            log.info("Letter: {} is not equal expected: {}", lastLetter, letter);
             return false;
         }
-        if (!getLastLetterRecipient().equals(recipient)) {
-            log.info("Letter recipient: {} is not equal expected: {}", getLastLetterRecipient(), recipient);
-            return false;
-        }
-        if (!getLastLetterBody().equals(body)) {
-            log.info("Letter body: {} is not equal expected: {}", getLastLetterBody(), body);
-            return false;
-        }
-        log.info("Found sent letter with expected recipient: {}, topic: {}, body: {}", recipient, topic, body);
+        log.info("Found last sent letter: {}", letter);
         return true;
     }
 

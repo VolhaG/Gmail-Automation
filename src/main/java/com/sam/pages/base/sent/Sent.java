@@ -1,6 +1,7 @@
 package com.sam.pages.base.sent;
 
 import com.sam.components.Content;
+import com.sam.entities.Letter;
 
 public interface Sent extends Content {
 
@@ -10,4 +11,5 @@ public interface Sent extends Content {
 
     String getLetterBody(int rowIndex);
 
+    Letter getLetter(int i);
 }

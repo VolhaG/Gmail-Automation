@@ -19,18 +19,12 @@ public abstract class GmailBaseTest extends BaseTest {
 
     private static Logger log = LogManager.getLogger(GmailBaseTest.class);
     protected GMailLoginPage loginPage = null;
-    protected String letterRecipient;
-    protected String letterTopic;
-    protected String letterBody;
     protected String email;
     protected String password;
 
     private void init() {
         if (loginPage == null) {
             loginPage = LoginService.initFor(GMailLoginPage.class);
-            letterRecipient = "tt7381566@gmail.com";
-            letterTopic = "New";
-            letterBody = "Hello! How are you?";
         }
     }
 
