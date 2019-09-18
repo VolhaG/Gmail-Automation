@@ -24,16 +24,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-<!--    <repositories>-->
-<!--        <repository>-->
-<!--            <id>configurations-module</id>-->
-<!--            <url>file://${basedir}/lib</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>selenium-common</id>-->
-<!--            <url>file://${basedir}/lib</url>-->
-<!--        </repository>-->
-<!--    </repositories>-->
+    <repositories>
+        <repository>
+            <id>configurations-module</id>
+            <url>file://${basedir}/lib</url>
+        </repository>
+        <repository>
+            <id>selenium-common</id>
+            <url>file://${basedir}/lib</url>
+        </repository>
+    </repositories>
     <build>
         <plugins>
             <plugin>
@@ -93,37 +93,6 @@
                                     </includes>
                                 </resource>
                             </resources>
-                        </configuration>
-                    </execution>
-
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>configurations-module</id>
-                        <configuration>
-                            <groupId>com.sam_solutions</groupId>
-                            <artifactId>configurations-module</artifactId>
-                            <version>1.0-SNAPSHOT</version>
-                            <packaging>jar</packaging>
-                            <file>${basedir}/libs/configurations-module-1.0-SNAPSHOT.jar</file>
-                            <createChecksum>true</createChecksum>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>selenium-common</id>
-                        <configuration>
-                            <groupId>com.sam_solutions</groupId>
-                            <artifactId>selenium-common</artifactId>
-                            <version>1.0-SNAPSHOT</version>
-                            <packaging>jar</packaging>
-                            <file>${basedir}/libs/selenium-common-1.0-SNAPSHOT.jar</file>
-                            <createChecksum>true</createChecksum>
-                            <generatePom>true</generatePom>
                         </configuration>
                     </execution>
                 </executions>
