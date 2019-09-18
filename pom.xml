@@ -22,18 +22,19 @@
         <jdk.level>1.8</jdk.level>
         <aspectj.version>1.9.4</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <testSourceDirectory>/src/test</testSourceDirectory>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>configurations-module</id>
-            <url>file://${basedir}/lib</url>
-        </repository>
-        <repository>
-            <id>selenium-common</id>
-            <url>file://${basedir}/lib</url>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>configurations-module</id>-->
+<!--            <url>file://${basedir}/lib/configurations-module-1.0-SNAPSHOT.jar</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>selenium-common</id>-->
+<!--            <url>file://${basedir}/lib/selenium-common-1.0-SNAPSHOT.jar</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
     <build>
         <plugins>
             <plugin>
@@ -155,15 +156,15 @@
         <dependency>
             <groupId>com.sam_solutions</groupId>
             <artifactId>configurations-module</artifactId>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/lib/configurations-module-1.0-SNAPSHOT.jar</systemPath>-->
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/configurations-module-1.0-SNAPSHOT.jar</systemPath>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.sam_solutions</groupId>
             <artifactId>selenium-common</artifactId>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/lib/selenium-common-1.0-SNAPSHOT.jar</systemPath>-->
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/selenium-common-1.0-SNAPSHOT.jar</systemPath>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
