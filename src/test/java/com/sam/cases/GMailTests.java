@@ -86,6 +86,7 @@ public class GMailTests extends GmailBaseTest {
     @Parameters({"email","password"})
     @BeforeTest
     public void startTests(String email, String password) {
+        System.getProperty("webdriver.chrome.driver");
         provider.initialize("chrome_default");
         getWebDriver().navigate().to("http://www.gmail.com");
         loginPage = LoginService.initFor(GMailLoginPage.class);
