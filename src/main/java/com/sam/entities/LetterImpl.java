@@ -1,5 +1,7 @@
 package com.sam.entities;
 
+import java.util.Objects;
+
 public class LetterImpl implements Letter {
 
     private String recipient;
@@ -42,7 +44,7 @@ public class LetterImpl implements Letter {
     @Override
     public String toString() {
         StringBuilder buildLetter = new StringBuilder("Letter with recipient: ").append(this.recipient)
-                .append(", topic").append(this.topic).append(", content: ").append(this.getLetterContent());
+                .append(", topic: ").append(this.topic).append(", content: ").append(this.getLetterContent());
         return buildLetter.toString();
     }
 
@@ -56,4 +58,8 @@ public class LetterImpl implements Letter {
                 this.letterContent.equals(letter.getLetterContent()));
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(recipient, topic, letterContent);
+    }
 }

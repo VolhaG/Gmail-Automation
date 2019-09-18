@@ -30,7 +30,7 @@ public class GMailSentPageImpl extends PageImpl<Sent> implements GMailSentPage {
     @Override
     public boolean checkIfLetterSent(Letter letter) {
         Letter lastLetter = getLastLetter();
-        if (!lastLetter.equals(letter) && (lastLetter.hashCode() == letter.hashCode())) {
+        if (!lastLetter.equals(letter)) {
             log.info("Letter: {} is not equal expected: {}", lastLetter, letter);
             return false;
         }
