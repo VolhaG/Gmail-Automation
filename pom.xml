@@ -158,14 +158,14 @@
         <dependency>
             <groupId>com.sam_solutions</groupId>
             <artifactId>configurations-module</artifactId>
-            <scope>system</scope>
+            <scope>provided</scope>
             <systemPath>${project.basedir}/lib/configurations-module-1.0-SNAPSHOT-jar-with-dependencies.jar</systemPath>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.sam_solutions</groupId>
             <artifactId>selenium-common</artifactId>
-            <scope>system</scope>
+            <scope>provided</scope>
             <systemPath>${project.basedir}/lib/selenium-common-1.0-SNAPSHOT-jar-with-dependencies.jar</systemPath>
             <version>1.0-SNAPSHOT</version>
         </dependency>
