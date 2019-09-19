@@ -87,8 +87,9 @@ public class GMailTests extends GmailBaseTest {
     @BeforeTest
     public void startTests(String email, String password) {
 
-        provider.initialize("chrome_default");
-        getWebDriver().navigate().to("http://www.gmail.com");
+        //provider.initialize("chrome_default");
+        provider.initialize("");
+        provider.get().navigate().to("http://www.gmail.com");
         loginPage = LoginService.initFor(GMailLoginPage.class);
         letter = letterWithoutRecipient = letterWithoutTopic = letterWithoutBody =
                 new LetterImpl("tt7381566@gmail.com",  "New",  "Hello! How are you?");
