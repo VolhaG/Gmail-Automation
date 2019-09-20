@@ -54,7 +54,7 @@
       "remoteAddress": "https://10.1.1.0/wd/hub"
     }
   ],
-  "default": "firefox_2",
+  "default": "firefox_1",
 
   "settings": {
     "width": 0,
