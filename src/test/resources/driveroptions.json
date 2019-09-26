@@ -56,8 +56,7 @@
       "proxy": false,
       "remoteAddress": "https://10.0.2.15/wd/hub",
       "string_capabilities": {
-        "browserName": "firefox",
-        "firefox_binary": ""
+        "browserName": "firefox"
       },
       "boolean_capabilities": {
         "acceptSslCerts": true,
@@ -70,8 +69,7 @@
       "proxy": false,
       "remoteAddress": "https://10.0.2.15/wd/hub",
       "string_capabilities": {
-        "browserName": "chrome",
-        "maxInstances": 5
+        "browserName": "chrome"
       }
     },
     {
@@ -85,7 +83,7 @@
     }
   ],
 
-  "default": "chrome_default",
+  "default": "remote_firefox",
 
   "settings": {
     "width": 0,
