@@ -21,7 +21,7 @@ public class GMailMainImpl extends WrapElementImpl implements GMailMain {
         super(INITIAL_LOCATOR);
         title = findWrapElement("title", By.cssSelector("a[title]"), ElementType.DEFAULT);
         compose = findWrapElement("compose", By.cssSelector("div.T-I.J-J5-Ji.T-I-KE.L3"), ElementType.BUTTON);
-        accountMenu = findWrapElement("accountMenu", By.cssSelector("span.gb_Ba.gbii"), ElementType.DEFAULT);
+        accountMenu = findWrapElement("accountMenu", By.cssSelector("span.gb_xa.gbii"), ElementType.DEFAULT);
         logout = findWrapElement("logout", By.cssSelector("div[img-loaded] div:nth-child(4) div:nth-child(2) a"), ElementType.BUTTON);
         sent = findWrapElement("sent", By.cssSelector("div.aim:nth-child(4) span.nU"), ElementType.DEFAULT);
     }
