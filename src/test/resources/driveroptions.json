@@ -4,9 +4,12 @@
       "name": "firefox_1",
       "proxy": false,
       "string_capabilities": {
+        "cap1": "val1",
+        "cap2": "val2"
       },
       "boolean_capabilities": {
-        "headless": false
+        "headless": false,
+        "cap4": false
       }
     },
     {
@@ -49,17 +52,50 @@
   ],
   "remote": [
     {
-      "name": "firefox_remote",
+      "name": "remote_firefox",
       "proxy": false,
-      "remoteAddress": "https://10.1.1.0/wd/hub"
+      "remoteAddress": "https://10.1.1.0/wd/hub",
+      "string_capabilities": {
+        "browserName": "firefox",
+        "firefox_profile": "",
+        "browser-version": "27",
+        "firefox_binary": ""
+      },
+      "boolean_capabilities": {
+        "acceptSslCerts": true,
+        "javascriptEnabled": true,
+        "takesScreenshot": false,
+        "cleanSession": true
+      }
+    },
+    {
+      "name": "remote_chrome",
+      "proxy": false,
+      "remoteAddress": "https://10.1.1.0/wd/hub",
+      "string_capabilities": {
+        "browserName": "chrome",
+        "maxInstances": 5,
+        "webdriver.chrome.driver": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+      }
+    },
+    {
+      "name": "remote_ie",
+      "proxy": false,
+      "remoteAddress": "https://10.1.1.0/wd/hub",
+      "string_capabilities": {
+        "browserName": "internet explorer",
+        "maxInstances": 1,
+        "webdriver.ie.driver": "C:/Program Files (x86)/Internet Explorer/iexplore.exe"
+      }
     }
   ],
-  "default": "firefox_1",
+
+  "default": "chrome_default",
 
   "settings": {
     "width": 0,
     "height": 0,
-    "pageLoadTimeout": 15,
-    "scriptTimeout": 15
+    "pageLoadTimeout": 10,
+    "scriptTimeout": 10
   }
 }
