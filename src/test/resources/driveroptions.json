@@ -54,38 +54,33 @@
     {
       "name": "remote_firefox",
       "proxy": false,
-      "remoteAddress": "https://10.1.1.0/wd/hub",
+      "remoteAddress": "https://10.0.2.15/wd/hub",
       "string_capabilities": {
         "browserName": "firefox",
-        "firefox_profile": "",
-        "browser-version": "27",
         "firefox_binary": ""
       },
       "boolean_capabilities": {
         "acceptSslCerts": true,
         "javascriptEnabled": true,
-        "takesScreenshot": false,
-        "cleanSession": true
+        "takesScreenshot": true
       }
     },
     {
       "name": "remote_chrome",
       "proxy": false,
-      "remoteAddress": "https://10.1.1.0/wd/hub",
+      "remoteAddress": "https://10.0.2.15/wd/hub",
       "string_capabilities": {
         "browserName": "chrome",
-        "maxInstances": 5,
-        "webdriver.chrome.driver": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+        "maxInstances": 5
       }
     },
     {
       "name": "remote_ie",
       "proxy": false,
-      "remoteAddress": "https://10.1.1.0/wd/hub",
+      "remoteAddress": "https://10.0.2.15/wd/hub",
       "string_capabilities": {
         "browserName": "internet explorer",
-        "maxInstances": 1,
-        "webdriver.ie.driver": "C:/Program Files (x86)/Internet Explorer/iexplore.exe"
+        "maxInstances": 1
       }
     }
   ],
